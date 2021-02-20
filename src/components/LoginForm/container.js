@@ -18,7 +18,7 @@ const LoginForm = () => (
   >
     {
       ({
-        handleSubmit, handleChange, handleBlur, values, errors
+        handleSubmit, handleChange, handleBlur, values, errors, touched
       }) => (
         <LoginFormComponent
           handleSubmit={handleSubmit}
@@ -26,6 +26,7 @@ const LoginForm = () => (
           handleBlur={handleBlur}
           values={values}
           errors={errors}
+          touched={touched}
         />
       )
     }

@@ -4,9 +4,10 @@ import {
 } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import PropTypes from 'prop-types'
+import { Form as FormikForm } from 'formik'
 
 const LoginFormComponent = ({
-  errors, values, handleChange, handleBlur
+  handleSubmit, handleChange, handleBlur, values, errors, touched
 }) => (
   <div className="center">
     <Layout>
@@ -16,11 +17,11 @@ const LoginFormComponent = ({
           justify="center"
         >
           <Col>
-            <Form>
+            <FormikForm onSubmit={handleSubmit}>
               <Typography.Title>The Movie DB</Typography.Title>
               <Form.Item
-                validateStatus={errors.username && 'error'}
-                help={errors.username}
+                validateStatus={touched.username && errors.username && 'error'}
+                help={touched.username && errors.username}
               >
                 <Input
                   name="username"
@@ -36,8 +37,8 @@ const LoginFormComponent = ({
                 />
               </Form.Item>
               <Form.Item
-                validateStatus={errors.password && 'error'}
-                help={errors.password}
+                validateStatus={touched.password && errors.password && 'error'}
+                help={touched.password && errors.password}
               >
                 <Input
                   name="password"
@@ -62,7 +63,7 @@ const LoginFormComponent = ({
                   Log in
                 </Button>
               </Form.Item>
-            </Form>
+            </FormikForm>
           </Col>
         </Row>
       </Layout.Content>
@@ -79,15 +80,22 @@ LoginFormComponent.propTypes = {
     username: PropTypes.string,
     password: PropTypes.string
   }),
+  touched: PropTypes.shape({
+    username: PropTypes.bool,
+    password: PropTypes.bool
+  }),
   handleChange: PropTypes.func,
-  handleBlur: PropTypes.func
+  handleBlur: PropTypes.func,
+  handleSubmit: PropTypes.func
 }
 
 LoginFormComponent.defaultProps = {
   errors: {},
   values: {},
+  touched: {},
   handleChange: () => {},
-  handleBlur: () => {}
+  handleBlur: () => {},
+  handleSubmit: () => {}
 }
 
 export default LoginFormComponent

@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const path = require('path')
+const { SourceMapDevToolPlugin } = require("webpack")
 
 module.exports = {
   module: {
@@ -42,6 +43,11 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
       }
     ]
   },
@@ -50,7 +56,10 @@ module.exports = {
       template: './public/index.html',
       filename: './index.html'
     }),
-    new ExtractTextPlugin('style.css')
+    new ExtractTextPlugin('style.css'),
+    new SourceMapDevToolPlugin({
+      filename: "[file].map"
+    })
   ],
   resolve: {
     alias: {
