@@ -1,3 +1,3 @@
-import InputField from './component'
+import InputField from './container'
 
 export default InputField

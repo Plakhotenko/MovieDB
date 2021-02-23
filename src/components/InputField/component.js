@@ -2,68 +2,52 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Form, Input } from 'antd'
 
-const InputField = ({
-  field: {
-    name
-  },
-  form: {
-    touched,
-    errors,
-    values,
-    handleChange,
-    handleBlur
-  },
+const InputFieldComponent = ({
+  name,
+  value,
+  handleChange,
+  handleBlur,
+  help,
+  type,
   prefix,
   placeholder,
-  type
+  validateStatus
 }) => (
   <Form.Item
-    validateStatus={touched[name] && errors[name] && 'error'}
-    help={touched[name] && errors[name]}
+    validateStatus={validateStatus}
+    help={help}
   >
     <Input
       name={name}
-      value={values[name]}
+      value={value}
       onChange={handleChange}
       onBlur={handleBlur}
-      help={errors[name]}
       type={type}
-      placeholder={placeholder}
       prefix={prefix}
+      placeholder={placeholder}
     />
   </Form.Item>
 )
 
-InputField.propTypes = {
-  field: PropTypes.shape({
-    name: PropTypes.string.isRequired
-  }).isRequired,
-  form: PropTypes.shape({
-    touched: PropTypes.shape({
-      username: PropTypes.bool,
-      password: PropTypes.bool
-    }).isRequired,
-    errors: PropTypes.shape({
-      username: PropTypes.string,
-      password: PropTypes.string
-    }).isRequired,
-    values: PropTypes.shape({
-      username: PropTypes.string,
-      password: PropTypes.string
-    }).isRequired,
-    handleChange: PropTypes.func.isRequired,
-    handleBlur: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired
-  }).isRequired,
-  placeholder: PropTypes.string,
+InputFieldComponent.propTypes = {
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  handleChange: PropTypes.func.isRequired,
+  handleBlur: PropTypes.func.isRequired,
+  help: PropTypes.string,
   type: PropTypes.string,
-  prefix: PropTypes.element
+  prefix: PropTypes.element,
+  placeholder: PropTypes.string,
+  validateStatus: PropTypes.string
 }
 
-InputField.defaultProps = {
+InputFieldComponent.defaultProps = {
   placeholder: '',
   type: 'text',
-  prefix: null
+  prefix: null,
+  validateStatus: '',
+  help: null,
+  value: ''
 }
 
-export default InputField
+export default InputFieldComponent
