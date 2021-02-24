@@ -85,10 +85,10 @@ class Lists extends React.Component {
                       ]}
                     >
                       <Typography.Title level={4}>
-                      List name
+                        List name
                         {index}
                       </Typography.Title>
-                    Description
+                      Description
                     </Card>
                   </Col>
                 ))}
