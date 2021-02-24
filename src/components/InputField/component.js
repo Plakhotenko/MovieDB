@@ -42,11 +42,11 @@ InputFieldComponent.propTypes = {
 }
 
 InputFieldComponent.defaultProps = {
-  placeholder: '',
+  placeholder: undefined,
   type: 'text',
-  prefix: null,
-  validateStatus: '',
-  help: null,
+  prefix: undefined,
+  validateStatus: undefined,
+  help: undefined,
   value: ''
 }
 

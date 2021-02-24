@@ -75,9 +75,9 @@ InputField.propTypes = {
 }
 
 InputField.defaultProps = {
-  placeholder: '',
+  placeholder: undefined,
   type: 'text',
-  prefix: null
+  prefix: undefined
 }
 
 export default InputField
