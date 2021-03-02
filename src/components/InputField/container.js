@@ -27,6 +27,7 @@ class InputField extends Component {
       },
       prefix,
       placeholder,
+      autoComplete,
       type
     } = this.props
 
@@ -40,6 +41,7 @@ class InputField extends Component {
         handleBlur={handleBlur}
         type={type}
         placeholder={placeholder}
+        autoComplete={autoComplete}
         prefix={prefix}
         validateStatus={this.validateStatus}
         help={this.help}
@@ -70,12 +72,14 @@ InputField.propTypes = {
     handleSubmit: PropTypes.func.isRequired
   }).isRequired,
   placeholder: PropTypes.string,
+  autoComplete: PropTypes.string,
   type: PropTypes.string,
   prefix: PropTypes.element
 }
 
 InputField.defaultProps = {
   placeholder: undefined,
+  autoComplete: undefined,
   type: 'text',
   prefix: undefined
 }

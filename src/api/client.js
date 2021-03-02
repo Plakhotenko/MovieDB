@@ -1,7 +1,9 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-const baseURL = 'http://localhost:8080/api/'
+const baseURL = 'https://api.themoviedb.org/3/'
+// eslint-disable-next-line
+const API_KEY = process.env.API_KEY
 
 const client = axios.create({
   baseURL,
@@ -16,6 +18,12 @@ client.interceptors.request.use((config) => {
     newConfig.headers = { Authorization: `Bearer ${token}` }
   }
 
+  return newConfig
+})
+
+client.interceptors.request.use((config) => {
+  const newConfig = config
+  newConfig.url = `${config.url}?api_key=${API_KEY}`
   return newConfig
 })
 

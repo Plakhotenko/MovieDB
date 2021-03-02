@@ -11,6 +11,7 @@ const InputFieldComponent = ({
   type,
   prefix,
   placeholder,
+  autoComplete,
   validateStatus
 }) => (
   <Form.Item
@@ -25,6 +26,7 @@ const InputFieldComponent = ({
       type={type}
       prefix={prefix}
       placeholder={placeholder}
+      autoComplete={autoComplete}
     />
   </Form.Item>
 )
@@ -38,11 +40,13 @@ InputFieldComponent.propTypes = {
   type: PropTypes.string,
   prefix: PropTypes.element,
   placeholder: PropTypes.string,
+  autoComplete: PropTypes.string,
   validateStatus: PropTypes.string
 }
 
 InputFieldComponent.defaultProps = {
   placeholder: undefined,
+  autoComplete: undefined,
   type: 'text',
   prefix: undefined,
   validateStatus: undefined,
