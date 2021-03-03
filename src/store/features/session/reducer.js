@@ -9,7 +9,6 @@ const session = (state = initialState, action) => {
   switch (action.type) {
     case USER_LOGIN:
       return {
-        ...state,
         userIsAuthorized: true
       }
     default:

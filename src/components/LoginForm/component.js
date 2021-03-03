@@ -64,7 +64,11 @@ const LoginFormComponent = ({
 
 LoginFormComponent.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  isSubmitting: PropTypes.bool.isRequired
+  isSubmitting: PropTypes.bool
+}
+
+LoginFormComponent.defaultProps = {
+  isSubmitting: false
 }
 
 export default LoginFormComponent

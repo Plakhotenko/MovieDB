@@ -4,12 +4,13 @@ export const loginUser = () => ({
   type: USER_LOGIN
 })
 
-export const formSubmit = ({ username, password }) => ({
+export const formSubmit = ({ username, password }, form) => ({
   type: FORM_SUBMIT,
   payload: {
     data: {
       username,
       password
-    }
+    },
+    form
   }
 })
