@@ -1,3 +1,3 @@
-import PublicRoute from './component'
+import PublicRoute from './container'
 
 export default PublicRoute

@@ -1,21 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
-import { isAuthorized } from '../../utils'
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRouteComponent = ({ component: Component, isAuthorized, ...rest }) => (
   <Route
     {...rest}
     render={props => (
-      isAuthorized()
+      isAuthorized
         ? <Component {...props} />
         : <Redirect to="/login" />
     )}
   />
 )
 
-PrivateRoute.propTypes = {
-  component: PropTypes.element.isRequired
+PrivateRouteComponent.propTypes = {
+  component: PropTypes.elementType.isRequired,
+  isAuthorized: PropTypes.bool.isRequired
 }
 
-export default PrivateRoute
+export default PrivateRouteComponent

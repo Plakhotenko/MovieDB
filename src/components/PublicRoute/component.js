@@ -1,25 +1,35 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
-import { isAuthorized } from '../../utils'
 
-const PublicRoute = ({ component: Component, restricted, ...rest }) => (
+const PublicRouteComponent = ({
+  component: Component,
+  isAuthorized,
+  restricted,
+  ...rest
+}) => (
   <Route
     {...rest}
     render={props => (
-      isAuthorized() && restricted
+      isAuthorized && restricted
         ? <Redirect to="/dashboard" />
         : <Component {...props} />)}
   />
 )
 
-PublicRoute.propTypes = {
+PublicRouteComponent.propTypes = {
   restricted: PropTypes.bool,
-  component: PropTypes.element.isRequired
+  component: PropTypes.elementType.isRequired,
+  isAuthorized: PropTypes.bool.isRequired
 }
 
-PublicRoute.defaultProps = {
+PublicRouteComponent.defaultProps = {
   restricted: false
 }
 
-export default PublicRoute
+const mapStateToProps = state => ({
+  isAuthorized: state.session.userIsAuthorized
+})
+
+export default connect(mapStateToProps)(PublicRouteComponent)
