@@ -1,25 +1,26 @@
 import React from 'react'
-import { BrowserRouter, Route, Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import { BrowserRouter, Switch } from 'react-router-dom'
+import PrivateRoute from '../PrivateRoute'
+import GuestRoute from '../GuestRoute'
 import LoginForm from '../LoginForm'
+import Dashboard from '../Dashboard'
 
-const App = ({ userIsAuthorized }) => (
+
+const App = () => (
   <BrowserRouter>
-    <Route
-      exact
-      path="/login"
-      component={LoginForm}
-    />
-    {!userIsAuthorized && <Redirect to="/login" />}
+    <Switch>
+      <GuestRoute
+        component={LoginForm}
+        path="/login"
+        exact
+      />
+      <PrivateRoute
+        component={Dashboard}
+        path="/dashboard"
+        exact
+      />
+    </Switch>
   </BrowserRouter>
 )
-
-App.propTypes = {
-  userIsAuthorized: PropTypes.bool
-}
-
-App.defaultProps = {
-  userIsAuthorized: false
-}
 
 export default App

@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const path = require('path')
 const { SourceMapDevToolPlugin } = require("webpack")
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   module: {
@@ -59,7 +60,8 @@ module.exports = {
     new ExtractTextPlugin('style.css'),
     new SourceMapDevToolPlugin({
       filename: "[file].map"
-    })
+    }),
+    new Dotenv()
   ],
   resolve: {
     alias: {

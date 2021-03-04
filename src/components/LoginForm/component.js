@@ -8,7 +8,8 @@ import { Form as FormikForm, Field } from 'formik'
 import InputField from '../InputField'
 
 const LoginFormComponent = ({
-  handleSubmit
+  handleSubmit,
+  isSubmitting
 }) => (
   <div className="center">
     <Layout>
@@ -23,6 +24,7 @@ const LoginFormComponent = ({
               <Field
                 name="username"
                 placeholder="Username"
+                autoComplete="username"
                 component={InputField}
                 type="text"
                 prefix={(
@@ -34,6 +36,7 @@ const LoginFormComponent = ({
               <Field
                 name="password"
                 placeholder="Password"
+                autoComplete="current-password"
                 component={InputField}
                 type="password"
                 prefix={(
@@ -44,6 +47,7 @@ const LoginFormComponent = ({
               />
               <Form.Item>
                 <Button
+                  loading={isSubmitting}
                   type="primary"
                   htmlType="submit"
                 >
@@ -59,7 +63,12 @@ const LoginFormComponent = ({
 )
 
 LoginFormComponent.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool
+}
+
+LoginFormComponent.defaultProps = {
+  isSubmitting: false
 }
 
 export default LoginFormComponent
