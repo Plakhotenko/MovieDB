@@ -3,33 +3,27 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
 
-const PublicRouteComponent = ({
+const GuestRouteComponent = ({
   component: Component,
   isAuthorized,
-  restricted,
   ...rest
 }) => (
   <Route
     {...rest}
     render={props => (
-      isAuthorized && restricted
+      isAuthorized
         ? <Redirect to="/dashboard" />
         : <Component {...props} />)}
   />
 )
 
-PublicRouteComponent.propTypes = {
-  restricted: PropTypes.bool,
+GuestRouteComponent.propTypes = {
   component: PropTypes.elementType.isRequired,
   isAuthorized: PropTypes.bool.isRequired
-}
-
-PublicRouteComponent.defaultProps = {
-  restricted: false
 }
 
 const mapStateToProps = state => ({
   isAuthorized: state.session.userIsAuthorized
 })
 
-export default connect(mapStateToProps)(PublicRouteComponent)
+export default connect(mapStateToProps)(GuestRouteComponent)

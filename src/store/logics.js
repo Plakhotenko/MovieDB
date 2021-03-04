@@ -1,3 +1,3 @@
-import authLogic from './features/session/logics'
+import sessionLogics from './features/session/logics'
 
-export default [...authLogic]
+export default [...sessionLogics]

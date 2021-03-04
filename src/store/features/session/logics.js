@@ -5,19 +5,16 @@ import { loginUser } from './action'
 import { ENDPOINTS } from './endpoints'
 import { FORM_SUBMIT } from './types'
 
-const authLogic = createLogic({
+const sessionLogics = createLogic({
   type: FORM_SUBMIT,
   latest: true,
   async process({
     action: {
-      payload: {
-        data: { username, password },
-        form: { setErrors, setSubmitting }
-      }
+      data: { username, password },
+      form: { setErrors }
     }
   },
   dispatch, done) {
-    setSubmitting(true)
     try {
       const { data: { request_token: requestToken } } = await httpClient.get(ENDPOINTS.newToken)
       const { data: { request_token: validatedToken } } = await httpClient.post(
@@ -39,16 +36,10 @@ const authLogic = createLogic({
           username: 'Invalid username and/or password',
           password: 'Invalid username and/or password'
         })
-      } else {
-        setErrors({
-          username: 'error',
-          password: 'error'
-        })
       }
     }
-    setSubmitting(false)
     done()
   }
 })
 
-export default [authLogic]
+export default [sessionLogics]

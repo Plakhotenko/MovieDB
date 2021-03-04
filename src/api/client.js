@@ -1,12 +1,15 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { API_KEY } from './api_key'
+import { API_KEY } from '../constants'
 
 const baseURL = 'https://api.themoviedb.org/3/'
 
 const client = axios.create({
   baseURL,
-  timeout: 10000
+  timeout: 10000,
+  params: {
+    api_key: API_KEY
+  }
 })
 
 client.interceptors.request.use((config) => {
@@ -17,12 +20,6 @@ client.interceptors.request.use((config) => {
     newConfig.headers = { Authorization: `Bearer ${token}` }
   }
 
-  return newConfig
-})
-
-client.interceptors.request.use((config) => {
-  const newConfig = config
-  newConfig.url = `${config.url}?api_key=${API_KEY}`
   return newConfig
 })
 
