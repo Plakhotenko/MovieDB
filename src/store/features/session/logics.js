@@ -1,11 +1,11 @@
 import Cookies from 'js-cookie'
 import { createLogic } from 'redux-logic'
 import httpClient from '../../../api/client'
-import { loginUser } from './action'
+import { loginUser, loggedOutUser, userData } from './action'
 import { ENDPOINTS } from './endpoints'
-import { FORM_SUBMIT } from './types'
+import { FORM_SUBMIT, USER_LOGOUT, GET_USER_DATA } from './types'
 
-const sessionLogics = createLogic({
+const authLogic = createLogic({
   type: FORM_SUBMIT,
   latest: true,
   async process({
@@ -29,7 +29,7 @@ const sessionLogics = createLogic({
         { request_token: validatedToken }
       )
       Cookies.set('session_id', sessionId)
-      dispatch(loginUser())
+      dispatch(loginUser(username))
     } catch (error) {
       if (error.status === 401) {
         setErrors({
@@ -42,4 +42,29 @@ const sessionLogics = createLogic({
   }
 })
 
-export default [sessionLogics]
+const logOutLogic = createLogic({
+  type: USER_LOGOUT,
+  latest: true,
+  // eslint-disable-next-line
+  async process({ action }, dispatch, done) {
+    await httpClient.delete(ENDPOINTS.session, { data: { session_id: Cookies.get('session_id') } })
+
+    dispatch(loggedOutUser())
+    Cookies.remove('session_id')
+    done()
+  }
+})
+
+const getUserDataLogic = createLogic({
+  type: GET_USER_DATA,
+  latest: true,
+  // eslint-disable-next-line
+  async process({ action }, dispatch, done) {
+    const sessionId = Cookies.get('session_id')
+    const { data: { username } } = await httpClient.get(`${ENDPOINTS.account}?session_id=${sessionId}`)
+    dispatch(userData(username))
+    done()
+  }
+})
+
+export default [authLogic, logOutLogic, getUserDataLogic]

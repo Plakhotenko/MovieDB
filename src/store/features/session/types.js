@@ -1,2 +1,6 @@
 export const USER_LOGIN = 'USER_LOGIN'
 export const FORM_SUBMIT = 'FORM_SUBMIT'
+export const USER_LOGOUT = 'USER_LOGOUT'
+export const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
+export const GET_USER_DATA = 'GET_USER_DATA'
+export const USER_DATA = 'USER_DATA'

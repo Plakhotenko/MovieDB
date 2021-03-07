@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { range } from 'lodash'
 
-import Header from '../stubs/Header'
+import Header from '../Header'
 import Movie from '../stubs/MovieItem'
 
 const Dashboard = () => (
