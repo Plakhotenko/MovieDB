@@ -6,8 +6,8 @@ import { logoutUser, getUserData } from '../../store/features/session/action'
 
 class Header extends Component {
   componentDidMount() {
-    const { getUserDataHadler } = this.props
-    getUserDataHadler()
+    const { getUserDataHandler } = this.props
+    getUserDataHandler()
   }
 
   render() {
@@ -24,7 +24,7 @@ class Header extends Component {
 Header.propTypes = {
   username: PropTypes.string,
   logoutHandler: PropTypes.func.isRequired,
-  getUserDataHadler: PropTypes.func.isRequired
+  getUserDataHandler: PropTypes.func.isRequired
 }
 
 Header.defaultProps = {
@@ -37,7 +37,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   logoutHandler: logoutUser,
-  getUserDataHadler: getUserData
+  getUserDataHandler: getUserData
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
