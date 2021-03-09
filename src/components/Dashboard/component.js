@@ -10,7 +10,9 @@ import Loader from '../Loader'
 import MoviesList from '../MoviesList'
 import { PAGINATION_PARAMS } from '../../constants'
 
-const DashboardComponent = ({ movies, fetchTrendingMoviesHandler, totalResults }) => (
+const DashboardComponent = ({
+  movies, getTrendingMoviesHandler, totalResults, currentPage, paginationDisabled
+}) => (
   <Layout>
     <Header />
     <Layout.Content>
@@ -22,18 +24,16 @@ const DashboardComponent = ({ movies, fetchTrendingMoviesHandler, totalResults }
           justify="center"
         >
           <Col>
-            { (movies.length >= PAGINATION_PARAMS.pageSize)
-            && (
             <Pagination
-              defaultCurrent={1}
+              current={currentPage}
               total={totalResults}
               pageSize={PAGINATION_PARAMS.pageSize}
-              disabled={false}
+              showSizeChanger={false}
+              hideOnSinglePage
+              disabled={paginationDisabled}
+              onChange={page => getTrendingMoviesHandler(page)}
               className="pagination"
-              onChange={page => fetchTrendingMoviesHandler(page)}
             />
-            )
-            }
           </Col>
         </Row>
       </div>
@@ -43,13 +43,17 @@ const DashboardComponent = ({ movies, fetchTrendingMoviesHandler, totalResults }
 
 DashboardComponent.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape),
-  fetchTrendingMoviesHandler: PropTypes.func.isRequired,
-  totalResults: PropTypes.number
+  getTrendingMoviesHandler: PropTypes.func.isRequired,
+  totalResults: PropTypes.number,
+  currentPage: PropTypes.number,
+  paginationDisabled: PropTypes.bool
 }
 
 DashboardComponent.defaultProps = {
   movies: [],
-  totalResults: 0
+  totalResults: 0,
+  currentPage: 1,
+  paginationDisabled: true
 }
 
 export default DashboardComponent
