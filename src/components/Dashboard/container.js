@@ -1,22 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchTrendingMovies } from '../../store/features/dashboard/actions'
+import { getTrendingMovies } from '../../store/features/dashboard/actions'
 import DashboardComponent from './component'
 
 class Dashboard extends Component {
   componentDidMount() {
-    const { fetchTrendingMoviesHandler } = this.props
-    fetchTrendingMoviesHandler()
+    const { getTrendingMoviesHandler } = this.props
+    getTrendingMoviesHandler()
   }
 
   render() {
-    const { trendingMovies, totalResults, fetchTrendingMoviesHandler } = this.props
+    const {
+      trendingMovies, currentPage, totalResults, getTrendingMoviesHandler
+    } = this.props
     return (
       <DashboardComponent
         movies={trendingMovies}
         totalResults={totalResults}
-        fetchTrendingMoviesHandler={fetchTrendingMoviesHandler}
+        currentPage={currentPage}
+        getTrendingMoviesHandler={getTrendingMoviesHandler}
+        paginationDisabled={!trendingMovies.length}
       />
     )
   }
@@ -24,22 +28,25 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
   trendingMovies: state.trendingMovies.movies,
-  totalResults: state.trendingMovies.totalResults
+  totalResults: state.trendingMovies.totalResults,
+  currentPage: state.trendingMovies.currentPage
 })
 
 const mapDispatchToProps = {
-  fetchTrendingMoviesHandler: fetchTrendingMovies
+  getTrendingMoviesHandler: getTrendingMovies
 }
 
 Dashboard.propTypes = {
-  fetchTrendingMoviesHandler: PropTypes.func.isRequired,
+  getTrendingMoviesHandler: PropTypes.func.isRequired,
   trendingMovies: PropTypes.arrayOf(PropTypes.shape),
-  totalResults: PropTypes.number
+  totalResults: PropTypes.number,
+  currentPage: PropTypes.number
 }
 
 Dashboard.defaultProps = {
   trendingMovies: [],
-  totalResults: 0
+  totalResults: 0,
+  currentPage: 1
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
