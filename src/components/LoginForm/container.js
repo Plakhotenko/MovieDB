@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import LoginFormComponent from './component'
-import { formSubmit } from '../../store/features/session/action'
+import { loginUser } from '../../store/features/session/action'
 
 const loginFormSchema = yup.object().shape({
   username: yup.string().required(),
@@ -43,7 +43,7 @@ LoginForm.propTypes = {
 }
 
 const mapDispatchToProps = {
-  onSubmit: formSubmit
+  onSubmit: loginUser
 }
 
 export default connect(null, mapDispatchToProps)(LoginForm)

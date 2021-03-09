@@ -16,7 +16,7 @@ const HeaderComponent = ({ username, logoutHandler }) => (
         <Typography.Text>THE MOVIE DB</Typography.Text>
       </Col>
       <Col>
-        <Dropdown overlay={() => <HeaderOverlay logoutHandler={logoutHandler} />}>
+        <Dropdown overlay={<HeaderOverlay logoutHandler={logoutHandler} />}>
           <Typography.Text>
             <Avatar icon={(<UserOutlined />)} />
             {' '}

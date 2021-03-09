@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import { USER_LOGIN, USER_LOGGED_OUT, USER_DATA } from './types'
+import { LOGIN_USER_SUCCESS, LOGOUT_USER_SUCCESS, SET_USER_DATA } from './types'
 
 const initialState = {
   userIsAuthorized: !!Cookies.get('session_id'),
@@ -8,17 +8,17 @@ const initialState = {
 
 const session = (state = initialState, action) => {
   switch (action.type) {
-    case USER_LOGIN:
+    case LOGIN_USER_SUCCESS:
       return {
         userIsAuthorized: true,
         username: action.username
       }
-    case USER_LOGGED_OUT:
+    case LOGOUT_USER_SUCCESS:
       return {
         userIsAuthorized: false,
         username: undefined
       }
-    case USER_DATA:
+    case SET_USER_DATA:
       return {
         ...state,
         username: action.username

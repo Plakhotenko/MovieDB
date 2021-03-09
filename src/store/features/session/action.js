@@ -1,21 +1,9 @@
 import {
-  USER_LOGIN, FORM_SUBMIT, USER_LOGOUT, USER_LOGGED_OUT, GET_USER_DATA, USER_DATA
+  LOGIN_USER, LOGIN_USER_SUCCESS, LOGOUT_USER, LOGOUT_USER_SUCCESS, GET_USER_DATA, SET_USER_DATA
 } from './types'
 
-export const loginUser = () => ({
-  type: USER_LOGIN
-})
-
-export const logoutUser = () => ({
-  type: USER_LOGOUT
-})
-
-export const loggedOutUser = () => ({
-  type: USER_LOGGED_OUT
-})
-
-export const formSubmit = ({ username, password }, form) => ({
-  type: FORM_SUBMIT,
+export const loginUser = ({ username, password }, form) => ({
+  type: LOGIN_USER,
   data: {
     username,
     password
@@ -23,11 +11,23 @@ export const formSubmit = ({ username, password }, form) => ({
   form
 })
 
+export const loginUserSuccess = () => ({
+  type: LOGIN_USER_SUCCESS
+})
+
 export const getUserData = () => ({
   type: GET_USER_DATA
 })
 
-export const userData = username => ({
-  type: USER_DATA,
+export const setUserData = username => ({
+  type: SET_USER_DATA,
   username
+})
+
+export const logoutUser = () => ({
+  type: LOGOUT_USER
+})
+
+export const logoutUserSuccess = () => ({
+  type: LOGOUT_USER_SUCCESS
 })
