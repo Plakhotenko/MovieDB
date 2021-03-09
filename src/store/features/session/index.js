@@ -1,3 +1,3 @@
-import userIsAuthorized from './reducer'
+import session from './reducer'
 
-export default userIsAuthorized
+export default session
