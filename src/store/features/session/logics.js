@@ -45,8 +45,7 @@ const authLogic = createLogic({
 const logOutLogic = createLogic({
   type: LOGOUT_USER,
   latest: true,
-  // eslint-disable-next-line
-  async process({ action }, dispatch, done) {
+  async process(_, dispatch, done) {
     await httpClient.delete(ENDPOINTS.session, { data: { session_id: Cookies.get('session_id') } })
 
     dispatch(logoutUserSuccess())
@@ -58,8 +57,7 @@ const logOutLogic = createLogic({
 const getUserDataLogic = createLogic({
   type: GET_USER_DATA,
   latest: true,
-  // eslint-disable-next-line
-  async process({ action }, dispatch, done) {
+  async process(_, dispatch, done) {
     const sessionId = Cookies.get('session_id')
     const { data: { username } } = await httpClient.get(ENDPOINTS.account,
       {
