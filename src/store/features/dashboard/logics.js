@@ -5,6 +5,7 @@ import { setTrendingMovies, fetchingTrendingMovies } from './actions'
 import { setMovies } from '../data/actions'
 import { ENDPOINTS } from './endpoints'
 import { GET_TRENDING_MOVIES } from './types'
+import { setCurrentPageToUrl } from '../../../utils'
 
 const moviesSchema = new schema.Entity('movies')
 const moviesListSchema = new schema.Array(moviesSchema)
@@ -23,6 +24,7 @@ const trendingMoviesLogic = createLogic({
     const { entities: { movies }, result: moviesIds } = normalize(results, moviesListSchema)
     dispatch(setMovies(movies))
     dispatch(setTrendingMovies(moviesIds, currentPage, totalResults))
+    setCurrentPageToUrl(currentPage)
     done()
   }
 })

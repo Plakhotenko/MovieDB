@@ -1,8 +1,9 @@
 import { SET_TRENDING_MOVIES, FETCHING_TRENDING_MOVIES } from './types'
+import { getCurrentPageFromUrl } from '../../../utils'
 
 const initialState = {
   movies: [],
-  currentPage: 1,
+  currentPage: getCurrentPageFromUrl(),
   totalResults: 0
 }
 

@@ -7,8 +7,8 @@ import { trendingMoviesSelector } from '../../store/features/dashboard/selectors
 
 class Dashboard extends Component {
   componentDidMount() {
-    const { getTrendingMoviesHandler } = this.props
-    getTrendingMoviesHandler()
+    const { getTrendingMoviesHandler, currentPage } = this.props
+    getTrendingMoviesHandler(currentPage)
   }
 
   render() {
