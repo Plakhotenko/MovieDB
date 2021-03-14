@@ -1,3 +1,3 @@
 export const ENDPOINTS = {
-  trending: 'trending/all/week?page=2'
+  trending: 'trending/movie/day'
 }

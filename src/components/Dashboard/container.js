@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getTrendingMovies } from '../../store/features/dashboard/actions'
 import DashboardComponent from './component'
+import { trendingMoviesSelector } from '../../store/features/dashboard/selectors'
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -27,7 +28,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-  trendingMovies: state.trendingMovies.movies,
+  trendingMovies: trendingMoviesSelector(state),
   totalResults: state.trendingMovies.totalResults,
   currentPage: state.trendingMovies.currentPage
 })
