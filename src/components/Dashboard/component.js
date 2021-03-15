@@ -4,11 +4,11 @@ import {
   Layout, Row, Col, Pagination
 } from 'antd'
 
+import { PAGINATION_PARAMS } from 'Constants'
 import Header from '../Header'
 import Search from '../Search'
 import Loader from '../Loader'
 import MoviesList from '../MoviesList'
-import { PAGINATION_PARAMS } from '../../constants'
 
 const DashboardComponent = ({
   movies, getTrendingMoviesHandler, totalResults, currentPage, paginationDisabled

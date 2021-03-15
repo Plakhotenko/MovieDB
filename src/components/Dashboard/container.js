@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getTrendingMovies } from '../../store/features/dashboard/actions'
+import { getTrendingMovies } from 'Store/features/dashboard/actions'
+import { trendingMoviesSelector } from 'Store/features/dashboard/selectors'
 import DashboardComponent from './component'
-import { trendingMoviesSelector } from '../../store/features/dashboard/selectors'
 
 class Dashboard extends Component {
   componentDidMount() {

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { API_KEY } from '../constants'
+import { API_KEY } from 'Constants'
 
 const baseURL = 'https://api.themoviedb.org/3/'
 

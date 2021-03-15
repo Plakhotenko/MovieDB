@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Card } from 'antd'
-import { IMAGES_BASE_URL } from '../../constants'
+import { IMAGES_BASE_URL } from 'Constants'
 
 const Movie = ({
   actions, posterPath, title, description
