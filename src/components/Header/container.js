@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { logoutUser, getUserData } from 'Store/features/session/action'
 import HeaderComponent from './component'
-import { logoutUser, getUserData } from '../../store/features/session/action'
 
 class Header extends Component {
   componentDidMount() {

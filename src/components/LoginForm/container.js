@@ -3,8 +3,8 @@ import { Formik } from 'formik'
 import * as yup from 'yup'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { loginUser } from 'Store/features/session/action'
 import LoginFormComponent from './component'
-import { loginUser } from '../../store/features/session/action'
 
 const loginFormSchema = yup.object().shape({
   username: yup.string().required(),

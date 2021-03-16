@@ -67,7 +67,10 @@ module.exports = {
     alias: {
       Components: path.resolve(__dirname, '../src/components'),
       Helpers: path.resolve(__dirname, '../src/helpers'),
-      Store: path.resolve(__dirname, '../src/store')
+      Store: path.resolve(__dirname, '../src/store'),
+      Constants: path.resolve(__dirname, '../src/constants'),
+      Utils: path.resolve(__dirname, '../src/utils'),
+      Api: path.resolve(__dirname, '../src/api')
     }
   },
   devServer: {

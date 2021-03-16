@@ -1,76 +1,37 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
-  Layout, Row, Col, Input, Pagination
+  Layout, Row, Col, Pagination
 } from 'antd'
-import { range } from 'lodash'
 
+import { PAGINATION_PARAMS } from 'Constants'
 import Header from '../Header'
-import Movie from '../stubs/MovieItem'
+import Search from '../Search'
+import Loader from '../Loader'
+import MoviesList from '../MoviesList'
 
-const Dashboard = () => (
+const DashboardComponent = ({
+  movies, getTrendingMovies, totalResults, currentPage, paginationDisabled, isLoading
+}) => (
   <Layout>
     <Header />
     <Layout.Content>
-      <Row
-        justify="center"
-        gutter={{
-          xs: 8, sm: 16, md: 24, lg: 22
-        }}
-      >
-        <Col
-          className="gutter-row"
-          xs={{ span: 20 }}
-          sm={{ span: 20 }}
-          md={{ span: 14 }}
-          lg={{ span: 12 }}
-          xl={{ span: 10 }}
-        >
-          <Input.Search
-            placeholder="Enter movie name"
-            size="large"
-            enterButton="Search"
-            className="top-margin"
-          />
-        </Col>
-      </Row>
+      <Search />
       <div className="top-margin">
-        <Row
-          type="flex"
-          gutter={16}
-        >
-          <Col
-            className="gutter-row"
-            span={20}
-            offset={2}
-          >
-            <Row
-              gutter={{
-                xs: 8, sm: 16, md: 24, lg: 32
-              }}
-            >
-              {range(17).map(item => (
-                <Col
-                  key={item}
-                  xs={{ span: 24 }}
-                  sm={{ span: 12 }}
-                  md={{ span: 8 }}
-                  lg={{ span: 8 }}
-                  xl={{ span: 6 }}
-                >
-                  <Movie />
-                </Col>
-              ))}
-            </Row>
-          </Col>
-        </Row>
+        {isLoading ? <Loader /> : <MoviesList movies={movies} /> }
         <Row
           type="flex"
           justify="center"
         >
           <Col>
             <Pagination
-              defaultCurrent={1}
-              total={50}
+              current={currentPage}
+              total={totalResults}
+              pageSize={PAGINATION_PARAMS.pageSize}
+              showSizeChanger={false}
+              hideOnSinglePage
+              disabled={paginationDisabled}
+              onChange={getTrendingMovies}
               className="pagination"
             />
           </Col>
@@ -80,4 +41,20 @@ const Dashboard = () => (
   </Layout>
 )
 
-export default Dashboard
+DashboardComponent.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.shape),
+  getTrendingMovies: PropTypes.func.isRequired,
+  totalResults: PropTypes.number,
+  currentPage: PropTypes.number,
+  paginationDisabled: PropTypes.bool,
+  isLoading: PropTypes.bool.isRequired
+}
+
+DashboardComponent.defaultProps = {
+  movies: [],
+  totalResults: 0,
+  currentPage: 1,
+  paginationDisabled: true
+}
+
+export default DashboardComponent

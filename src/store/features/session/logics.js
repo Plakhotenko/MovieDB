@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 import { createLogic } from 'redux-logic'
-import httpClient from '../../../api/client'
+import httpClient from 'Api/client'
 import { loginUserSuccess, logoutUserSuccess, setUserData } from './action'
 import { ENDPOINTS } from './endpoints'
 import { LOGIN_USER, LOGOUT_USER, GET_USER_DATA } from './types'

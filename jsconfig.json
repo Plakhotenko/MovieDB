@@ -6,7 +6,10 @@
     "paths": {
       "Components/*": ["./src/components/*"],
       "Helpers/*": ["./src/config/*"],
-      "Store/*": ["./src/store/*"]
+      "Store/*": ["./src/store/*"],
+      "Constants/*": ["src/constants/*"],
+      "Utils/*": ["src/utils/*"],
+      "Api/*": ["src/api/*"]
     },
     "module": "commonjs"
   },
