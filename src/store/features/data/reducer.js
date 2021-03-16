@@ -1,4 +1,4 @@
-import * as _ from 'lodash'
+import merge from 'lodash/merge'
 import { SET_DATA } from './types'
 
 const initialState = {}
@@ -6,7 +6,7 @@ const initialState = {}
 const data = (state = initialState, action) => {
   switch (action.type) {
     case SET_DATA:
-      return _.merge(state, action.data)
+      return merge({}, state, action.data)
     default:
       return state
   }

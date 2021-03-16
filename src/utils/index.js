@@ -1,8 +1,8 @@
 import { browserHistory } from 'react-router'
 
-export const setCurrentPageToUrl = ({ pathname, page }) => {
+export const setCurrentPageToUrl = (page) => {
   browserHistory.push({
-    pathname,
+    pathname: browserHistory.getCurrentLocation().pathname,
     search: `?page=${page}`
   })
 }

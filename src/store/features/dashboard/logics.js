@@ -31,7 +31,7 @@ const trendingMoviesLogic = createLogic({
     dispatch(setData({ movies }))
     dispatch(setTrendingMovies({ movieIds, page: currentPage, total: totalResults }))
     dispatch(setLoading(false))
-    setCurrentPageToUrl({ page: currentPage, pathname: '/dashboard' })
+    setCurrentPageToUrl(currentPage)
     done()
   }
 })
