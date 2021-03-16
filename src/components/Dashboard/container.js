@@ -1,26 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getTrendingMovies } from 'Store/features/dashboard/actions'
+import { getTrendingMovies as getTrendingMoviesAction } from 'Store/features/dashboard/actions'
 import { trendingMoviesSelector } from 'Store/features/dashboard/selectors'
 import DashboardComponent from './component'
 
 class Dashboard extends Component {
   componentDidMount() {
-    const { getTrendingMoviesHandler, currentPage } = this.props
-    getTrendingMoviesHandler(currentPage)
+    const { getTrendingMovies, currentPage } = this.props
+    getTrendingMovies(currentPage)
   }
 
   render() {
     const {
-      trendingMovies, currentPage, totalResults, getTrendingMoviesHandler, isLoading
+      trendingMovies, currentPage, totalResults, getTrendingMovies, isLoading
     } = this.props
     return (
       <DashboardComponent
         movies={trendingMovies}
         totalResults={totalResults}
         currentPage={currentPage}
-        getTrendingMoviesHandler={getTrendingMoviesHandler}
+        getTrendingMovies={getTrendingMovies}
         paginationDisabled={isLoading}
         isLoading={isLoading}
       />
@@ -36,11 +36,11 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  getTrendingMoviesHandler: getTrendingMovies
+  getTrendingMovies: getTrendingMoviesAction
 }
 
 Dashboard.propTypes = {
-  getTrendingMoviesHandler: PropTypes.func.isRequired,
+  getTrendingMovies: PropTypes.func.isRequired,
   trendingMovies: PropTypes.arrayOf(PropTypes.shape),
   totalResults: PropTypes.number,
   currentPage: PropTypes.number,
