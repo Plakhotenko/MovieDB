@@ -1,14 +1,13 @@
+import { browserHistory } from 'react-router'
+
 export const setCurrentPageToUrl = (page = 1) => {
-  const url = new URL(window.location.href)
-  const params = new URLSearchParams(url.search)
-  params.set('page', page)
-  // eslint-disable-next-line
-  history.replaceState(null, null, `${url.pathname}?${params}`)
+  browserHistory.push({
+    pathname: '/dashboard',
+    search: `?page=${page}`
+  })
 }
 
 export const getCurrentPageFromUrl = () => {
-  const url = new URL(window.location.href)
-  const currentPage = url.searchParams.get('page')
-  url.searchParams.set('current', '1')
-  return currentPage ? +currentPage : 1
+  const { query: { page } } = browserHistory.getCurrentLocation()
+  return page ? +page : 1
 }

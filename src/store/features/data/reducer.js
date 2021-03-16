@@ -1,18 +1,12 @@
-import { SET_MOVIES } from './types'
+import * as _ from 'lodash'
+import { SET_DATA } from './types'
 
-const initialState = {
-  movies: {}
-}
+const initialState = {}
 
 const data = (state = initialState, action) => {
   switch (action.type) {
-    case SET_MOVIES:
-      return {
-        movies: {
-          ...state.movies,
-          ...action.movies
-        }
-      }
+    case SET_DATA:
+      return _.merge(state, action.data)
     default:
       return state
   }

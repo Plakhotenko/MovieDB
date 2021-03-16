@@ -11,14 +11,14 @@ import Loader from '../Loader'
 import MoviesList from '../MoviesList'
 
 const DashboardComponent = ({
-  movies, getTrendingMoviesHandler, totalResults, currentPage, paginationDisabled
+  movies, getTrendingMoviesHandler, totalResults, currentPage, paginationDisabled, isLoading
 }) => (
   <Layout>
     <Header />
     <Layout.Content>
       <Search />
       <div className="top-margin">
-        {movies.length ? <MoviesList movies={movies} /> : <Loader /> }
+        {isLoading ? <Loader /> : <MoviesList movies={movies} /> }
         <Row
           type="flex"
           justify="center"
@@ -31,7 +31,7 @@ const DashboardComponent = ({
               showSizeChanger={false}
               hideOnSinglePage
               disabled={paginationDisabled}
-              onChange={page => getTrendingMoviesHandler(page)}
+              onChange={getTrendingMoviesHandler}
               className="pagination"
             />
           </Col>
@@ -46,7 +46,8 @@ DashboardComponent.propTypes = {
   getTrendingMoviesHandler: PropTypes.func.isRequired,
   totalResults: PropTypes.number,
   currentPage: PropTypes.number,
-  paginationDisabled: PropTypes.bool
+  paginationDisabled: PropTypes.bool,
+  isLoading: PropTypes.bool.isRequired
 }
 
 DashboardComponent.defaultProps = {

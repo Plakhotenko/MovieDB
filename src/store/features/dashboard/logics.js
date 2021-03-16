@@ -2,8 +2,8 @@ import { createLogic } from 'redux-logic'
 import { normalize, schema } from 'normalizr'
 import { setCurrentPageToUrl } from 'Utils'
 import httpClient from 'Api/client'
-import { setTrendingMovies, fetchingTrendingMovies } from './actions'
-import { setMovies } from '../data/actions'
+import { setTrendingMovies, setLoading } from './actions'
+import { setData } from '../data/actions'
 import { ENDPOINTS } from './endpoints'
 import { GET_TRENDING_MOVIES } from './types'
 
@@ -14,16 +14,23 @@ const trendingMoviesLogic = createLogic({
   type: GET_TRENDING_MOVIES,
   latest: true,
   async process({ action: { page } }, dispatch, done) {
-    dispatch(fetchingTrendingMovies())
-    const { data: { page: currentPage, results, total_results: totalResults } } = await httpClient.get(`${ENDPOINTS.trending}`, {
+    dispatch(setLoading(true))
+    const {
+      data: {
+        page: currentPage,
+        results,
+        total_results: totalResults
+      }
+    } = await httpClient.get(ENDPOINTS.trending, {
       params: {
         page
       }
     })
 
     const { entities: { movies }, result: moviesIds } = normalize(results, moviesListSchema)
-    dispatch(setMovies(movies))
-    dispatch(setTrendingMovies(moviesIds, currentPage, totalResults))
+    dispatch(setData({ movies }))
+    dispatch(setTrendingMovies({ movies: moviesIds, page: currentPage, total: totalResults }))
+    dispatch(setLoading(false))
     setCurrentPageToUrl(currentPage)
     done()
   }

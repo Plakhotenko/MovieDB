@@ -1,17 +1,18 @@
-import { GET_TRENDING_MOVIES, SET_TRENDING_MOVIES, FETCHING_TRENDING_MOVIES } from './types'
+import { GET_TRENDING_MOVIES, SET_TRENDING_MOVIES, SET_LOADING } from './types'
 
 export const getTrendingMovies = (page = 1) => ({
   type: GET_TRENDING_MOVIES,
   page
 })
 
-export const fetchingTrendingMovies = () => ({
-  type: FETCHING_TRENDING_MOVIES
+export const setLoading = (loading = true) => ({
+  type: SET_LOADING,
+  loading
 })
 
-export const setTrendingMovies = (trendingMoviesArray, currentPage, totalResults) => ({
+export const setTrendingMovies = ({ movies, page, total }) => ({
   type: SET_TRENDING_MOVIES,
-  trendingMoviesArray,
-  currentPage,
-  totalResults
+  movies,
+  page,
+  total
 })

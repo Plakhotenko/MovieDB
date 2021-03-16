@@ -13,7 +13,7 @@ class Dashboard extends Component {
 
   render() {
     const {
-      trendingMovies, currentPage, totalResults, getTrendingMoviesHandler
+      trendingMovies, currentPage, totalResults, getTrendingMoviesHandler, isLoading
     } = this.props
     return (
       <DashboardComponent
@@ -21,7 +21,8 @@ class Dashboard extends Component {
         totalResults={totalResults}
         currentPage={currentPage}
         getTrendingMoviesHandler={getTrendingMoviesHandler}
-        paginationDisabled={!trendingMovies.length}
+        paginationDisabled={isLoading}
+        isLoading={isLoading}
       />
     )
   }
@@ -30,7 +31,8 @@ class Dashboard extends Component {
 const mapStateToProps = state => ({
   trendingMovies: trendingMoviesSelector(state),
   totalResults: state.trendingMovies.totalResults,
-  currentPage: state.trendingMovies.currentPage
+  currentPage: state.trendingMovies.currentPage,
+  isLoading: state.trendingMovies.isLoading
 })
 
 const mapDispatchToProps = {
@@ -41,7 +43,8 @@ Dashboard.propTypes = {
   getTrendingMoviesHandler: PropTypes.func.isRequired,
   trendingMovies: PropTypes.arrayOf(PropTypes.shape),
   totalResults: PropTypes.number,
-  currentPage: PropTypes.number
+  currentPage: PropTypes.number,
+  isLoading: PropTypes.bool.isRequired
 }
 
 Dashboard.defaultProps = {

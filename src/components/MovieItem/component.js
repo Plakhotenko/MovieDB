@@ -13,7 +13,7 @@ const Movie = ({
         alt={title}
         src={`${IMAGES_BASE_URL}${posterPath}`}
       />
-)}
+    )}
     className="top-margin"
     actions={actions}
   >

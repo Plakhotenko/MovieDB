@@ -1,25 +1,26 @@
 import { getCurrentPageFromUrl } from 'Utils'
-import { SET_TRENDING_MOVIES, FETCHING_TRENDING_MOVIES } from './types'
+import { SET_TRENDING_MOVIES, SET_LOADING } from './types'
 
 const initialState = {
   movies: [],
   currentPage: getCurrentPageFromUrl(),
-  totalResults: 0
+  totalResults: 0,
+  isLoading: true
 }
 
 const trendingMovies = (state = initialState, action) => {
   switch (action.type) {
     case SET_TRENDING_MOVIES:
       return {
-        movies: [
-          ...action.trendingMoviesArray
-        ],
-        currentPage: action.currentPage,
-        totalResults: action.totalResults
+        ...state,
+        movies: action.movies,
+        currentPage: action.page,
+        totalResults: action.total
       }
-    case FETCHING_TRENDING_MOVIES:
+    case SET_LOADING:
       return {
-        movies: []
+        ...state,
+        isLoading: action.loading
       }
     default:
       return state

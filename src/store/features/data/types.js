@@ -1,1 +1,1 @@
-export const SET_MOVIES = 'SET_MOVIES'
+export const SET_DATA = 'SET_DATA'

@@ -1,6 +1,6 @@
-import { SET_MOVIES } from './types'
+import { SET_DATA } from './types'
 
-export const setMovies = movies => ({
-  type: SET_MOVIES,
-  movies
+export const setData = data => ({
+  type: SET_DATA,
+  data
 })

@@ -1,4 +1,4 @@
 import sessionLogics from './features/session/logics'
-import getTrendingMoviesLogic from './features/dashboard/logics'
+import trendingMoviesLogics from './features/dashboard/logics'
 
-export default [...sessionLogics, ...getTrendingMoviesLogic]
+export default [...sessionLogics, ...trendingMoviesLogics]
