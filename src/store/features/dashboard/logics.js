@@ -27,11 +27,11 @@ const trendingMoviesLogic = createLogic({
       }
     })
 
-    const { entities: { movies }, result: moviesIds } = normalize(results, moviesListSchema)
+    const { entities: { movies }, result: movieIds } = normalize(results, moviesListSchema)
     dispatch(setData({ movies }))
-    dispatch(setTrendingMovies({ movies: moviesIds, page: currentPage, total: totalResults }))
+    dispatch(setTrendingMovies({ movieIds, page: currentPage, total: totalResults }))
     dispatch(setLoading(false))
-    setCurrentPageToUrl(currentPage)
+    setCurrentPageToUrl({ page: currentPage, pathname: '/dashboard' })
     done()
   }
 })

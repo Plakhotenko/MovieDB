@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 
-const trendingMoviesIdsSelector = state => state.trendingMovies.movies
+const trendingMoviesIdsSelector = state => state.trendingMovies.movieIds
 const dataMoviesSelector = state => state.data.movies
 
 export const trendingMoviesSelector = createSelector(

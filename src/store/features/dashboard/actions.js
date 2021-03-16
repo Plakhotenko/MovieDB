@@ -5,14 +5,14 @@ export const getTrendingMovies = (page = 1) => ({
   page
 })
 
-export const setLoading = (loading = true) => ({
+export const setLoading = isLoading => ({
   type: SET_LOADING,
-  loading
+  isLoading
 })
 
-export const setTrendingMovies = ({ movies, page, total }) => ({
+export const setTrendingMovies = ({ movieIds, page, total }) => ({
   type: SET_TRENDING_MOVIES,
-  movies,
+  movieIds,
   page,
   total
 })
