@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  Layout, Row, Col, Pagination
+  Layout, Row, Col, Pagination, Empty
 } from 'antd'
 
 import { PAGINATION_PARAMS } from 'Constants'
@@ -11,7 +11,7 @@ import Loader from '../Loader'
 import MoviesList from '../MoviesList'
 
 const DashboardComponent = ({
-  movies, getTrendingMovies, totalResults, currentPage, paginationDisabled, isLoading
+  movies, onPageChange, totalResults, currentPage, paginationDisabled, isLoading
 }) => (
   <Layout>
     <Header />
@@ -19,6 +19,13 @@ const DashboardComponent = ({
       <Search />
       <div className="top-margin">
         {isLoading ? <Loader /> : <MoviesList movies={movies} /> }
+        {!movies.length
+        && (
+        <Empty
+          description="No movies found"
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+        />
+        ) }
         <Row
           type="flex"
           justify="center"
@@ -31,7 +38,7 @@ const DashboardComponent = ({
               showSizeChanger={false}
               hideOnSinglePage
               disabled={paginationDisabled}
-              onChange={getTrendingMovies}
+              onChange={onPageChange}
               className="pagination"
             />
           </Col>
@@ -43,7 +50,7 @@ const DashboardComponent = ({
 
 DashboardComponent.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape),
-  getTrendingMovies: PropTypes.func.isRequired,
+  onPageChange: PropTypes.func.isRequired,
   totalResults: PropTypes.number,
   currentPage: PropTypes.number,
   paginationDisabled: PropTypes.bool,

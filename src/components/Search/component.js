@@ -1,7 +1,8 @@
 import React from 'react'
 import { Row, Col, Input } from 'antd'
+import PropTypes from 'prop-types'
 
-const Search = () => (
+const SearchComponent = ({ onSearch, isSearchLoading }) => (
   <Row
     justify="center"
     gutter={{
@@ -17,6 +18,9 @@ const Search = () => (
       xl={{ span: 10 }}
     >
       <Input.Search
+        onSearch={onSearch}
+        loading={isSearchLoading}
+        allowClear
         placeholder="Enter movie name"
         size="large"
         enterButton="Search"
@@ -26,4 +30,13 @@ const Search = () => (
   </Row>
 )
 
-export default Search
+SearchComponent.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+  isSearchLoading: PropTypes.bool
+}
+
+SearchComponent.defaultProps = {
+  isSearchLoading: false
+}
+
+export default SearchComponent
