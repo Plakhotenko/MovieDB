@@ -19,7 +19,7 @@ const DashboardComponent = ({
       <Search />
       <div className="top-margin">
         {isLoading ? <Loader /> : <MoviesList movies={movies} /> }
-        {!movies.length
+        {!movies.length && !isLoading
         && (
         <Empty
           description="No movies found"

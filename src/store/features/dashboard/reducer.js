@@ -1,15 +1,14 @@
 import { getParamsFromUrl } from 'Utils'
-import { SET_TRENDING_MOVIES, SET_LOADING, SET_SEARCH_QUERY } from './types'
+import { SET_TRENDING_MOVIES, SET_LOADING } from './types'
 
-const { page: currentPage, query: searchQuery } = getParamsFromUrl()
+const { page: currentPage } = getParamsFromUrl()
 
 const initialState = {
   movieIds: [],
   currentPage,
   totalResults: 0,
   isLoading: true,
-  isSearchLoading: false,
-  searchQuery
+  isSearchLoading: false
 }
 
 const trendingMovies = (state = initialState, action) => {
@@ -25,11 +24,6 @@ const trendingMovies = (state = initialState, action) => {
       return {
         ...state,
         isLoading: action.isLoading
-      }
-    case SET_SEARCH_QUERY:
-      return {
-        ...state,
-        searchQuery: action.searchQuery
       }
     default:
       return state

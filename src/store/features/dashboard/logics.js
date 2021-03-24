@@ -2,7 +2,7 @@ import { createLogic } from 'redux-logic'
 import { normalize, schema } from 'normalizr'
 import { setParamsToUrl } from 'Utils'
 import httpClient from 'Api/client'
-import { setTrendingMovies, setLoading, setSearchQuery } from './actions'
+import { setTrendingMovies, setLoading } from './actions'
 import { setData } from '../data/actions'
 import { ENDPOINTS } from './endpoints'
 import { GET_TRENDING_MOVIES, SET_SEARCH_LOADING } from './types'
@@ -59,7 +59,6 @@ const searchMoviesLogic = createLogic({
     const { entities: { movies }, result: movieIds } = normalize(results, moviesListSchema)
     dispatch(setData({ movies }))
     dispatch(setTrendingMovies({ movieIds, page: currentPage, total: totalResults }))
-    dispatch(setSearchQuery(query))
     dispatch(setLoading(false))
     setParamsToUrl({ page: currentPage, query })
     done()
