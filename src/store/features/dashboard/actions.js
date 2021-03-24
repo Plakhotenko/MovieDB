@@ -1,5 +1,5 @@
 import {
-  GET_TRENDING_MOVIES, SET_TRENDING_MOVIES, SET_LOADING, SET_SEARCH_LOADING
+  GET_TRENDING_MOVIES, SET_TRENDING_MOVIES, SET_LOADING, GET_SEARCH_MOVIES
 } from './types'
 
 export const getTrendingMovies = (page = 1) => ({
@@ -19,8 +19,8 @@ export const setTrendingMovies = ({ movieIds, page, total }) => ({
   total
 })
 
-export const setSearchLoading = (value, _, page = 1) => ({
-  type: SET_SEARCH_LOADING,
-  query: value,
+export const getSearchMovies = ({ query, page = 1 }) => ({
+  type: GET_SEARCH_MOVIES,
+  query,
   page
 })

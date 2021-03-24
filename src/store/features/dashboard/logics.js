@@ -5,7 +5,7 @@ import httpClient from 'Api/client'
 import { setTrendingMovies, setLoading } from './actions'
 import { setData } from '../data/actions'
 import { ENDPOINTS } from './endpoints'
-import { GET_TRENDING_MOVIES, SET_SEARCH_LOADING } from './types'
+import { GET_TRENDING_MOVIES, GET_SEARCH_MOVIES } from './types'
 
 const moviesSchema = new schema.Entity('movies')
 const moviesListSchema = new schema.Array(moviesSchema)
@@ -37,7 +37,7 @@ const trendingMoviesLogic = createLogic({
 })
 
 const searchMoviesLogic = createLogic({
-  type: SET_SEARCH_LOADING,
+  type: GET_SEARCH_MOVIES,
   latest: true,
   async process({ action: { page, query } }, dispatch, done) {
     dispatch(setLoading(true))

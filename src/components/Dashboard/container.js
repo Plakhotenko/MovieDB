@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { getParamsFromUrl } from 'Utils'
 import { connect } from 'react-redux'
-import { getTrendingMovies as getTrendingMoviesAction, setSearchLoading as setSearchLoadingAction } from 'Store/features/dashboard/actions'
+import { getTrendingMovies as getTrendingMoviesAction, getSearchMovies as getSearchMoviesAction } from 'Store/features/dashboard/actions'
 import { trendingMoviesSelector, isMoviesEmptySelector } from 'Store/features/dashboard/selectors'
 import DashboardComponent from './component'
 
@@ -11,10 +11,10 @@ const { query: searchQuery } = getParamsFromUrl()
 class Dashboard extends Component {
   componentDidMount() {
     const {
-      getTrendingMovies, setSearchLoading, currentPage
+      getTrendingMovies, getSearchMovies, currentPage
     } = this.props
     if (searchQuery) {
-      setSearchLoading(searchQuery, null, currentPage)
+      getSearchMovies({ query: searchQuery, page: currentPage })
     } else {
       getTrendingMovies(currentPage)
     }
@@ -26,14 +26,14 @@ class Dashboard extends Component {
       currentPage,
       totalResults,
       getTrendingMovies,
-      setSearchLoading,
+      getSearchMovies,
       isLoading,
       isMoviesEmpty
     } = this.props
 
     const onPageChange = (page) => {
       if (searchQuery) {
-        setSearchLoading(searchQuery, null, page)
+        getSearchMovies({ query: searchQuery, page })
       } else {
         getTrendingMovies(page)
       }
@@ -63,12 +63,12 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getTrendingMovies: getTrendingMoviesAction,
-  setSearchLoading: setSearchLoadingAction
+  getSearchMovies: getSearchMoviesAction
 }
 
 Dashboard.propTypes = {
   getTrendingMovies: PropTypes.func.isRequired,
-  setSearchLoading: PropTypes.func.isRequired,
+  getSearchMovies: PropTypes.func.isRequired,
   trendingMovies: PropTypes.arrayOf(PropTypes.shape),
   totalResults: PropTypes.number,
   currentPage: PropTypes.number,

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Formik, Field } from 'formik'
 import * as yup from 'yup'
-import { setSearchLoading as setSearchLoadingAction, getTrendingMovies as getTrendingMoviesAction } from 'Store/features/dashboard/actions'
+import { getSearchMovies as getSearchMoviesAction, getTrendingMovies as getTrendingMoviesAction } from 'Store/features/dashboard/actions'
 import { getParamsFromUrl } from 'Utils'
 import SearchComponent from './component'
 
@@ -13,10 +13,10 @@ const searchForSchema = yup.object().shape({
   query: yup.string().required()
 })
 
-const Search = ({ setSearchLoading, getTrendingMovies }) => {
+const Search = ({ getSearchMovies, getTrendingMovies }) => {
   const onSearch = ({ query }) => {
     if (query) {
-      setSearchLoading(query)
+      getSearchMovies({ query })
     } else {
       getTrendingMovies()
     }
@@ -43,12 +43,12 @@ const Search = ({ setSearchLoading, getTrendingMovies }) => {
 }
 
 Search.propTypes = {
-  setSearchLoading: PropTypes.func.isRequired,
+  getSearchMovies: PropTypes.func.isRequired,
   getTrendingMovies: PropTypes.func.isRequired
 }
 
 const mapDispatchToProps = {
-  setSearchLoading: setSearchLoadingAction,
+  getSearchMovies: getSearchMoviesAction,
   getTrendingMovies: getTrendingMoviesAction
 }
 
