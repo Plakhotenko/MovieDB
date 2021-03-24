@@ -7,8 +7,7 @@ const initialState = {
   movieIds: [],
   currentPage,
   totalResults: 0,
-  isLoading: true,
-  isSearchLoading: false
+  isLoading: true
 }
 
 const trendingMovies = (state = initialState, action) => {

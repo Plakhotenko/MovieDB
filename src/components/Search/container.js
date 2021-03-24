@@ -1,11 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { Formik, Field } from 'formik'
+import * as yup from 'yup'
 import { setSearchLoading as setSearchLoadingAction, getTrendingMovies as getTrendingMoviesAction } from 'Store/features/dashboard/actions'
+import { getParamsFromUrl } from 'Utils'
 import SearchComponent from './component'
 
-const Search = ({ setSearchLoading, getTrendingMovies, isSearchLoading }) => {
-  const onSearch = (query) => {
+const { query: searchQuery } = getParamsFromUrl()
+
+const searchForSchema = yup.object().shape({
+  query: yup.string().required()
+})
+
+const Search = ({ setSearchLoading, getTrendingMovies }) => {
+  const onSearch = ({ query }) => {
     if (query) {
       setSearchLoading(query)
     } else {
@@ -13,30 +22,34 @@ const Search = ({ setSearchLoading, getTrendingMovies, isSearchLoading }) => {
     }
   }
   return (
-    <SearchComponent
-      onSearch={onSearch}
-      isSearchLoading={isSearchLoading}
-    />
+    <Formik
+      initialValues={{
+        query: searchQuery
+      }}
+      validationSchema={searchForSchema}
+      onSubmit={onSearch}
+    >
+      {
+        ({ errors }) => (
+          <Field
+            validateStatus={errors.query && 'error'}
+            name="query"
+            component={SearchComponent}
+          />
+        )
+      }
+    </Formik>
   )
 }
 
 Search.propTypes = {
   setSearchLoading: PropTypes.func.isRequired,
-  getTrendingMovies: PropTypes.func.isRequired,
-  isSearchLoading: PropTypes.bool
+  getTrendingMovies: PropTypes.func.isRequired
 }
-
-Search.defaultProps = {
-  isSearchLoading: false
-}
-
-const mapStateToProps = state => ({
-  isSearchLoading: state.trendingMovies.isSearchLoading
-})
 
 const mapDispatchToProps = {
   setSearchLoading: setSearchLoadingAction,
   getTrendingMovies: getTrendingMoviesAction
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+export default connect(null, mapDispatchToProps)(Search)

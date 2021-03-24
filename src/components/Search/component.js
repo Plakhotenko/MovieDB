@@ -1,8 +1,19 @@
 import React from 'react'
-import { Row, Col, Input } from 'antd'
+import {
+  Row, Col, Form, Input
+} from 'antd'
 import PropTypes from 'prop-types'
 
-const SearchComponent = ({ onSearch, isSearchLoading }) => (
+const SearchComponent = ({
+  validateStatus,
+  form: {
+    errors: { query: errorText },
+    handleSubmit,
+    handleChange,
+    handleBlur
+  },
+  field: { name, value }
+}) => (
   <Row
     justify="center"
     gutter={{
@@ -17,26 +28,45 @@ const SearchComponent = ({ onSearch, isSearchLoading }) => (
       lg={{ span: 12 }}
       xl={{ span: 10 }}
     >
-      <Input.Search
-        onSearch={onSearch}
-        loading={isSearchLoading}
-        allowClear
-        placeholder="Enter movie name"
-        size="large"
-        enterButton="Search"
-        className="top-margin"
-      />
+      <Form.Item
+        validateStatus={validateStatus}
+        help={errorText}
+      >
+        <Input.Search
+          onSearch={handleSubmit}
+          name={name}
+          value={value}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          allowClear
+          placeholder="Enter movie name"
+          size="large"
+          enterButton="Search"
+          className="top-margin"
+        />
+      </Form.Item>
     </Col>
   </Row>
 )
 
 SearchComponent.propTypes = {
-  onSearch: PropTypes.func.isRequired,
-  isSearchLoading: PropTypes.bool
+  field: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired
+  }).isRequired,
+  form: PropTypes.shape({
+    errors: PropTypes.shape({
+      query: PropTypes.string
+    }).isRequired,
+    handleChange: PropTypes.func.isRequired,
+    handleBlur: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired
+  }).isRequired,
+  validateStatus: PropTypes.string
 }
 
 SearchComponent.defaultProps = {
-  isSearchLoading: false
+  validateStatus: undefined
 }
 
 export default SearchComponent
