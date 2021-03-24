@@ -8,3 +8,8 @@ export const trendingMoviesSelector = createSelector(
   dataMoviesSelector,
   (ids, movies) => ids.map(id => movies[id])
 )
+
+export const isMoviesEmptySelector = createSelector(
+  trendingMoviesIdsSelector,
+  movies => !movies.length
+)

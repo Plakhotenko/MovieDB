@@ -11,7 +11,7 @@ import Loader from '../Loader'
 import MoviesList from '../MoviesList'
 
 const DashboardComponent = ({
-  movies, onPageChange, totalResults, currentPage, paginationDisabled, isLoading
+  movies, onPageChange, totalResults, currentPage, paginationDisabled, isLoading, isMoviesEmpty
 }) => (
   <Layout>
     <Header />
@@ -19,7 +19,7 @@ const DashboardComponent = ({
       <Search />
       <div className="top-margin">
         {isLoading ? <Loader /> : <MoviesList movies={movies} /> }
-        {!movies.length && !isLoading
+        {isMoviesEmpty && !isLoading
         && (
         <Empty
           description="No movies found"
@@ -54,7 +54,8 @@ DashboardComponent.propTypes = {
   totalResults: PropTypes.number,
   currentPage: PropTypes.number,
   paginationDisabled: PropTypes.bool,
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  isMoviesEmpty: PropTypes.bool.isRequired
 }
 
 DashboardComponent.defaultProps = {

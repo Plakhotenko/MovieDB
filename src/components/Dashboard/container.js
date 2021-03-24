@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { getParamsFromUrl } from 'Utils'
 import { connect } from 'react-redux'
 import { getTrendingMovies as getTrendingMoviesAction, setSearchLoading as setSearchLoadingAction } from 'Store/features/dashboard/actions'
-import { trendingMoviesSelector } from 'Store/features/dashboard/selectors'
+import { trendingMoviesSelector, isMoviesEmptySelector } from 'Store/features/dashboard/selectors'
 import DashboardComponent from './component'
 
 const { query: searchQuery } = getParamsFromUrl()
@@ -27,7 +27,8 @@ class Dashboard extends Component {
       totalResults,
       getTrendingMovies,
       setSearchLoading,
-      isLoading
+      isLoading,
+      isMoviesEmpty
     } = this.props
 
     const onPageChange = (page) => {
@@ -46,6 +47,7 @@ class Dashboard extends Component {
         onPageChange={onPageChange}
         paginationDisabled={isLoading}
         isLoading={isLoading}
+        isMoviesEmpty={isMoviesEmpty}
       />
     )
   }
@@ -55,7 +57,8 @@ const mapStateToProps = state => ({
   trendingMovies: trendingMoviesSelector(state),
   totalResults: state.trendingMovies.totalResults,
   currentPage: state.trendingMovies.currentPage,
-  isLoading: state.trendingMovies.isLoading
+  isLoading: state.trendingMovies.isLoading,
+  isMoviesEmpty: isMoviesEmptySelector(state)
 })
 
 const mapDispatchToProps = {
@@ -69,7 +72,8 @@ Dashboard.propTypes = {
   trendingMovies: PropTypes.arrayOf(PropTypes.shape),
   totalResults: PropTypes.number,
   currentPage: PropTypes.number,
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  isMoviesEmpty: PropTypes.bool.isRequired
 }
 
 Dashboard.defaultProps = {
