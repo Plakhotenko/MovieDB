@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { getParamsFromUrl } from 'Utils'
 import { connect } from 'react-redux'
-import { getTrendingMovies as getTrendingMoviesAction, getSearchMovies as getSearchMoviesAction } from 'Store/features/dashboard/actions'
+import { getTrendingMovies as getTrendingMoviesAction, searchMovies as searchMoviesAction } from 'Store/features/dashboard/actions'
 import { trendingMoviesSelector, isMoviesEmptySelector } from 'Store/features/dashboard/selectors'
 import DashboardComponent from './component'
 
@@ -10,10 +10,10 @@ class Dashboard extends Component {
   componentDidMount() {
     const { query: searchQuery } = getParamsFromUrl()
     const {
-      getTrendingMovies, getSearchMovies, currentPage
+      getTrendingMovies, searchMovies, currentPage
     } = this.props
     if (searchQuery) {
-      getSearchMovies({ query: searchQuery, page: currentPage })
+      searchMovies({ query: searchQuery, page: currentPage })
     } else {
       getTrendingMovies(currentPage)
     }
@@ -25,7 +25,7 @@ class Dashboard extends Component {
       currentPage,
       totalResults,
       getTrendingMovies,
-      getSearchMovies,
+      searchMovies,
       isLoading,
       isMoviesEmpty
     } = this.props
@@ -33,7 +33,7 @@ class Dashboard extends Component {
     const onPageChange = (page) => {
       const { query: searchQuery } = getParamsFromUrl()
       if (searchQuery) {
-        getSearchMovies({ query: searchQuery, page })
+        searchMovies({ query: searchQuery, page })
       } else {
         getTrendingMovies(page)
       }
@@ -63,12 +63,12 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getTrendingMovies: getTrendingMoviesAction,
-  getSearchMovies: getSearchMoviesAction
+  searchMovies: searchMoviesAction
 }
 
 Dashboard.propTypes = {
   getTrendingMovies: PropTypes.func.isRequired,
-  getSearchMovies: PropTypes.func.isRequired,
+  searchMovies: PropTypes.func.isRequired,
   trendingMovies: PropTypes.arrayOf(PropTypes.shape),
   totalResults: PropTypes.number,
   currentPage: PropTypes.number,

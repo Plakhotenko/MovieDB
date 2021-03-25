@@ -1,16 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { getSearchMovies as getSearchMoviesAction, getTrendingMovies as getTrendingMoviesAction } from 'Store/features/dashboard/actions'
+import { searchMovies as searchMoviesAction, getTrendingMovies as getTrendingMoviesAction } from 'Store/features/dashboard/actions'
 import { getParamsFromUrl } from 'Utils'
 import SearchComponent from './component'
 
 const { query: searchQuery } = getParamsFromUrl()
 
-const Search = ({ getSearchMovies, getTrendingMovies }) => {
+const Search = ({ searchMovies, getTrendingMovies }) => {
   const onSearch = ({ query }) => {
     if (query) {
-      getSearchMovies({ query })
+      searchMovies({ query })
     } else {
       getTrendingMovies()
     }
@@ -24,12 +24,12 @@ const Search = ({ getSearchMovies, getTrendingMovies }) => {
 }
 
 Search.propTypes = {
-  getSearchMovies: PropTypes.func.isRequired,
+  searchMovies: PropTypes.func.isRequired,
   getTrendingMovies: PropTypes.func.isRequired
 }
 
 const mapDispatchToProps = {
-  getSearchMovies: getSearchMoviesAction,
+  searchMovies: searchMoviesAction,
   getTrendingMovies: getTrendingMoviesAction
 }
 
