@@ -28,10 +28,10 @@ const trendingMoviesLogic = createLogic({
     })
 
     const { entities: { movies }, result: movieIds } = normalize(results, moviesListSchema)
-    dispatch(setData({ movies }))
-    dispatch(setTrendingMovies({ movieIds, page: currentPage, total: totalResults }))
-    dispatch(setLoading(false))
     setParamsToUrl({ page: currentPage })
+    dispatch(setData({ movies }))
+    dispatch(setTrendingMovies({ movieIds, total: totalResults }))
+    dispatch(setLoading(false))
     done()
   }
 })
@@ -57,10 +57,10 @@ const searchMoviesLogic = createLogic({
     })
 
     const { entities: { movies }, result: movieIds } = normalize(results, moviesListSchema)
-    dispatch(setData({ movies }))
-    dispatch(setTrendingMovies({ movieIds, page: currentPage, total: totalResults }))
-    dispatch(setLoading(false))
     setParamsToUrl({ page: currentPage, query })
+    dispatch(setData({ movies }))
+    dispatch(setTrendingMovies({ movieIds, total: totalResults }))
+    dispatch(setLoading(false))
     done()
   }
 })

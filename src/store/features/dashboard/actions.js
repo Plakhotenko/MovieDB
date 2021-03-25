@@ -12,10 +12,9 @@ export const setLoading = isLoading => ({
   isLoading
 })
 
-export const setTrendingMovies = ({ movieIds, page, total }) => ({
+export const setTrendingMovies = ({ movieIds, total }) => ({
   type: SET_TRENDING_MOVIES,
   movieIds,
-  page,
   total
 })
 

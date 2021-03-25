@@ -31,16 +31,20 @@ const DashboardComponent = ({
           justify="center"
         >
           <Col>
-            <Pagination
-              current={currentPage}
-              total={totalResults}
-              pageSize={PAGINATION_PARAMS.pageSize}
-              showSizeChanger={false}
-              hideOnSinglePage
-              disabled={paginationDisabled}
-              onChange={onPageChange}
-              className="pagination"
-            />
+            {!isLoading
+              && (
+              <Pagination
+                current={currentPage}
+                total={totalResults}
+                pageSize={PAGINATION_PARAMS.pageSize}
+                showSizeChanger={false}
+                hideOnSinglePage
+                disabled={paginationDisabled}
+                onChange={onPageChange}
+                className="pagination"
+              />
+              )
+            }
           </Col>
         </Row>
       </div>

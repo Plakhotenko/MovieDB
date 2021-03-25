@@ -8,10 +8,11 @@ import DashboardComponent from './component'
 
 class Dashboard extends Component {
   componentDidMount() {
-    const { query: searchQuery } = getParamsFromUrl()
+    const { query: searchQuery, page: currentPage } = getParamsFromUrl()
     const {
-      getTrendingMovies, searchMovies, currentPage
+      getTrendingMovies, searchMovies
     } = this.props
+
     if (searchQuery) {
       searchMovies({ query: searchQuery, page: currentPage })
     } else {
@@ -20,9 +21,9 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { page: currentPage } = getParamsFromUrl()
     const {
       trendingMovies,
-      currentPage,
       totalResults,
       getTrendingMovies,
       searchMovies,
@@ -56,7 +57,6 @@ class Dashboard extends Component {
 const mapStateToProps = state => ({
   trendingMovies: trendingMoviesSelector(state),
   totalResults: state.trendingMovies.totalResults,
-  currentPage: state.trendingMovies.currentPage,
   isLoading: state.trendingMovies.isLoading,
   isMoviesEmpty: isMoviesEmptySelector(state)
 })
@@ -71,15 +71,13 @@ Dashboard.propTypes = {
   searchMovies: PropTypes.func.isRequired,
   trendingMovies: PropTypes.arrayOf(PropTypes.shape),
   totalResults: PropTypes.number,
-  currentPage: PropTypes.number,
   isLoading: PropTypes.bool.isRequired,
   isMoviesEmpty: PropTypes.bool.isRequired
 }
 
 Dashboard.defaultProps = {
   trendingMovies: [],
-  totalResults: 0,
-  currentPage: 1
+  totalResults: 0
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
