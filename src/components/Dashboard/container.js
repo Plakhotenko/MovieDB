@@ -6,10 +6,9 @@ import { getTrendingMovies as getTrendingMoviesAction, getSearchMovies as getSea
 import { trendingMoviesSelector, isMoviesEmptySelector } from 'Store/features/dashboard/selectors'
 import DashboardComponent from './component'
 
-const { query: searchQuery } = getParamsFromUrl()
-
 class Dashboard extends Component {
   componentDidMount() {
+    const { query: searchQuery } = getParamsFromUrl()
     const {
       getTrendingMovies, getSearchMovies, currentPage
     } = this.props
@@ -32,6 +31,7 @@ class Dashboard extends Component {
     } = this.props
 
     const onPageChange = (page) => {
+      const { query: searchQuery } = getParamsFromUrl()
       if (searchQuery) {
         getSearchMovies({ query: searchQuery, page })
       } else {

@@ -2,18 +2,15 @@ import React from 'react'
 import {
   Row, Col, Form, Input
 } from 'antd'
+import { Formik } from 'formik'
 import PropTypes from 'prop-types'
+import * as yup from 'yup'
 
-const SearchComponent = ({
-  validateStatus,
-  form: {
-    errors: { query: errorText },
-    handleSubmit,
-    handleChange,
-    handleBlur
-  },
-  field: { name, value }
-}) => (
+const searchForSchema = yup.object().shape({
+  query: yup.string().required()
+})
+
+const SearchComponent = ({ onSearch, searchQuery }) => (
   <Row
     justify="center"
     gutter={{
@@ -28,45 +25,48 @@ const SearchComponent = ({
       lg={{ span: 12 }}
       xl={{ span: 10 }}
     >
-      <Form.Item
-        validateStatus={validateStatus}
-        help={errorText}
+      <Formik
+        initialValues={{
+          query: searchQuery
+        }}
+        validationSchema={searchForSchema}
+        onSubmit={onSearch}
       >
-        <Input.Search
-          onSearch={handleSubmit}
-          name={name}
-          value={value}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          allowClear
-          placeholder="Enter movie name"
-          size="large"
-          enterButton="Search"
-          className="top-margin"
-        />
-      </Form.Item>
+        {
+          ({
+            values: { query: queryValue },
+            errors: { query: errorText },
+            handleSubmit,
+            handleChange,
+            handleBlur
+          }) => (
+            <Form.Item
+              validateStatus={errorText && 'error'}
+              help={errorText}
+            >
+              <Input.Search
+                onSearch={handleSubmit}
+                name="query"
+                value={queryValue}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                allowClear
+                placeholder="Enter movie name"
+                size="large"
+                enterButton="Search"
+                className="top-margin"
+              />
+            </Form.Item>
+          )
+        }
+      </Formik>
     </Col>
   </Row>
 )
 
 SearchComponent.propTypes = {
-  field: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired
-  }).isRequired,
-  form: PropTypes.shape({
-    errors: PropTypes.shape({
-      query: PropTypes.string
-    }).isRequired,
-    handleChange: PropTypes.func.isRequired,
-    handleBlur: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired
-  }).isRequired,
-  validateStatus: PropTypes.string
-}
-
-SearchComponent.defaultProps = {
-  validateStatus: undefined
+  onSearch: PropTypes.func.isRequired,
+  searchQuery: PropTypes.string.isRequired
 }
 
 export default SearchComponent
