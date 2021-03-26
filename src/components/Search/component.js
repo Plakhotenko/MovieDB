@@ -6,7 +6,7 @@ import { Formik } from 'formik'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
-const searchForSchema = yup.object().shape({
+const validationSchema = yup.object().shape({
   query: yup.string().required()
 })
 
@@ -29,7 +29,7 @@ const SearchComponent = ({ onSearch, searchQuery }) => (
         initialValues={{
           query: searchQuery
         }}
-        validationSchema={searchForSchema}
+        validationSchema={validationSchema}
         onSubmit={onSearch}
       >
         {
