@@ -1,4 +1,6 @@
-import { GET_TRENDING_MOVIES, SET_TRENDING_MOVIES, SET_LOADING } from './types'
+import {
+  GET_TRENDING_MOVIES, SET_TRENDING_MOVIES, SET_LOADING, SEARCH_MOVIES
+} from './types'
 
 export const getTrendingMovies = (page = 1) => ({
   type: GET_TRENDING_MOVIES,
@@ -10,9 +12,14 @@ export const setLoading = isLoading => ({
   isLoading
 })
 
-export const setTrendingMovies = ({ movieIds, page, total }) => ({
+export const setTrendingMovies = ({ movieIds, total }) => ({
   type: SET_TRENDING_MOVIES,
   movieIds,
-  page,
   total
+})
+
+export const searchMovies = ({ query, page = 1 }) => ({
+  type: SEARCH_MOVIES,
+  query,
+  page
 })

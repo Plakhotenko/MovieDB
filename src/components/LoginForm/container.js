@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { loginUser } from 'Store/features/session/action'
 import LoginFormComponent from './component'
 
-const loginFormSchema = yup.object().shape({
+const validationSchema = yup.object().shape({
   username: yup.string().required(),
   password: yup.string().required().min(4)
 })
@@ -17,7 +17,7 @@ const LoginForm = ({ onSubmit }) => (
       username: '',
       password: ''
     }}
-    validationSchema={loginFormSchema}
+    validationSchema={validationSchema}
     onSubmit={onSubmit}
   >
     {
