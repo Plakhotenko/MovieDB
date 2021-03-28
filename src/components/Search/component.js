@@ -66,7 +66,11 @@ const SearchComponent = ({ onSearch, searchQuery }) => (
 
 SearchComponent.propTypes = {
   onSearch: PropTypes.func.isRequired,
-  searchQuery: PropTypes.string.isRequired
+  searchQuery: PropTypes.string
+}
+
+SearchComponent.defaultProps = {
+  searchQuery: undefined
 }
 
 export default SearchComponent
