@@ -59,13 +59,13 @@ const getUserDataLogic = createLogic({
   latest: true,
   async process(_, dispatch, done) {
     const sessionId = Cookies.get('session_id')
-    const { data: { username } } = await httpClient.get(ENDPOINTS.account,
+    const { data: { username, id: accountId } } = await httpClient.get(ENDPOINTS.account,
       {
         params: {
           session_id: sessionId
         }
       })
-    dispatch(setUserData(username))
+    dispatch(setUserData({ username, accountId }))
     done()
   }
 })

@@ -19,9 +19,10 @@ export const getUserData = () => ({
   type: GET_USER_DATA
 })
 
-export const setUserData = username => ({
+export const setUserData = ({ username, accountId }) => ({
   type: SET_USER_DATA,
-  username
+  username,
+  accountId
 })
 
 export const logoutUser = () => ({
