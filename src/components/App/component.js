@@ -4,7 +4,7 @@ import PrivateRoute from '../PrivateRoute'
 import GuestRoute from '../GuestRoute'
 import LoginForm from '../LoginForm'
 import Dashboard from '../Dashboard'
-
+import Lists from '../Lists'
 
 const App = () => (
   <BrowserRouter>
@@ -17,6 +17,11 @@ const App = () => (
       <PrivateRoute
         component={Dashboard}
         path="/dashboard"
+        exact
+      />
+      <PrivateRoute
+        component={Lists}
+        path="/lists"
         exact
       />
     </Switch>
