@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
-import { getLists as getListsAction } from 'Store/features/lists/actions'
+import { getLists as getListsAction, removeList as removeListAction } from 'Store/features/lists/actions'
 import { getParamsFromUrl } from 'Utils'
 import { listsSelector, isListsEmptySelector } from 'Store/features/lists/selectors'
 import ListsComponent from './component'
@@ -16,7 +16,7 @@ class Lists extends Component {
   render() {
     const { page: currentPage } = getParamsFromUrl()
     const {
-      isLoading, lists, totalResults, isListsEmpty, getLists
+      isLoading, lists, totalResults, isListsEmpty, getLists, removeList
     } = this.props
     return (
       <ListsComponent
@@ -27,6 +27,7 @@ class Lists extends Component {
         paginationDisabled={isLoading}
         isListsEmpty={isListsEmpty}
         onPageChange={getLists}
+        removeList={removeList}
       />
     )
   }
@@ -40,11 +41,13 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  getLists: getListsAction
+  getLists: getListsAction,
+  removeList: removeListAction
 }
 
 Lists.propTypes = {
   getLists: PropTypes.func.isRequired,
+  removeList: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   lists: PropTypes.arrayOf(PropTypes.shape),
   totalResults: PropTypes.number,

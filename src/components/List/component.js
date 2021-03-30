@@ -5,7 +5,9 @@ import {
 } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 
-const List = ({ title, description, onClickHandler }) => (
+const List = ({
+  title, description, id, onClickHandler
+}) => (
   <Col
     xs={{ span: 24 }}
     sm={{ span: 12 }}
@@ -19,7 +21,7 @@ const List = ({ title, description, onClickHandler }) => (
       actions={[
         <DeleteOutlined
           key="delete"
-          onClick={onClickHandler}
+          onClick={() => onClickHandler(id)}
         />
       ]}
     >
@@ -34,7 +36,8 @@ const List = ({ title, description, onClickHandler }) => (
 List.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  onClickHandler: PropTypes.func.isRequired
+  onClickHandler: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired
 }
 
 List.defaultProps = {

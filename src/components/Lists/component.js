@@ -10,14 +10,6 @@ import CreateListModal from '../stubs/CreateListModal'
 import Loader from '../Loader'
 import List from '../List'
 
-const showModal = () => {
-  Modal.confirm({
-    title: 'Do you want to delete list?',
-    onOk() {},
-    onCancel() {}
-  })
-}
-
 class ListsComponent extends React.Component {
   constructor(props) {
     super(props)
@@ -36,8 +28,25 @@ class ListsComponent extends React.Component {
   render() {
     const { modalVisible } = this.state
     const {
-      isLoading, lists, currentPage, totalResults, paginationDisabled, onPageChange, isListsEmpty
+      isLoading,
+      lists,
+      currentPage,
+      totalResults,
+      paginationDisabled,
+      onPageChange,
+      isListsEmpty,
+      removeList
     } = this.props
+
+    const showModal = (id) => {
+      Modal.confirm({
+        title: 'Do you want to delete list?',
+        onOk() {
+          removeList(id)
+        },
+        onCancel() {}
+      })
+    }
 
     return (
       <Layout>
@@ -84,6 +93,7 @@ class ListsComponent extends React.Component {
                 {!isLoading && lists.map(({ id, name, description }) => (
                   <List
                     key={id}
+                    id={id}
                     title={name}
                     description={description}
                     onClickHandler={showModal}
@@ -133,7 +143,8 @@ ListsComponent.propTypes = {
   currentPage: PropTypes.number,
   totalResults: PropTypes.number,
   paginationDisabled: PropTypes.bool,
-  onPageChange: PropTypes.func,
+  onPageChange: PropTypes.func.isRequired,
+  removeList: PropTypes.func.isRequired,
   isListsEmpty: PropTypes.bool
 }
 
@@ -142,7 +153,6 @@ ListsComponent.defaultProps = {
   currentPage: 1,
   totalResults: 0,
   paginationDisabled: true,
-  onPageChange: undefined,
   isListsEmpty: true
 }
 

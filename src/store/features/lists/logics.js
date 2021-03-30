@@ -4,8 +4,8 @@ import { normalize, schema } from 'normalizr'
 import { setParamsToUrl } from 'Utils'
 import httpClient from 'Api/client'
 import { setData } from '../data/actions'
-import { setListsLoading, setLists } from './actions'
-import { GET_LISTS } from './types'
+import { setListsLoading, setLists, getLists } from './actions'
+import { GET_LISTS, REMOVE_LIST } from './types'
 import { ENDPOINTS } from './endpoints'
 
 const listsItemSchema = new schema.Entity('lists')
@@ -49,4 +49,26 @@ const listsLogic = createLogic({
   }
 })
 
-export default [listsLogic]
+const removeListLogic = createLogic({
+  type: REMOVE_LIST,
+  latest: true,
+  async process({ action: { id } }, dispatch, done) {
+    const sessionId = Cookies.get('session_id')
+    try {
+      await httpClient.delete(ENDPOINTS.deleteList(id), {
+        params: {
+          session_id: sessionId
+        }
+      })
+      dispatch(getLists())
+    } catch (error) {
+      if (error.status === 500) {
+        dispatch(getLists())
+      }
+    }
+
+    done()
+  }
+})
+
+export default [listsLogic, removeListLogic]

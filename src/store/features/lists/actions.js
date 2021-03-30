@@ -1,5 +1,5 @@
 import {
-  GET_LISTS, SET_LISTS_LOADING, SET_LISTS
+  GET_LISTS, SET_LISTS_LOADING, SET_LISTS, REMOVE_LIST
 } from './types'
 
 export const setListsLoading = isLoading => ({
@@ -16,4 +16,9 @@ export const setLists = ({ listIds, total }) => ({
   type: SET_LISTS,
   listIds,
   total
+})
+
+export const removeList = id => ({
+  type: REMOVE_LIST,
+  id
 })
