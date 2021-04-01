@@ -3,8 +3,7 @@ import { LOGIN_USER_SUCCESS, LOGOUT_USER_SUCCESS, SET_USER_DATA } from './types'
 
 const initialState = {
   userIsAuthorized: !!Cookies.get('session_id'),
-  username: undefined,
-  accountId: undefined
+  username: undefined
 }
 
 const session = (state = initialState, action) => {
@@ -17,14 +16,12 @@ const session = (state = initialState, action) => {
     case LOGOUT_USER_SUCCESS:
       return {
         userIsAuthorized: false,
-        username: undefined,
-        accountId: undefined
+        username: undefined
       }
     case SET_USER_DATA:
       return {
         ...state,
-        username: action.username,
-        accountId: action.accountId
+        username: action.username
       }
     default:
       return state

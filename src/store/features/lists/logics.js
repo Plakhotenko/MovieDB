@@ -17,13 +17,7 @@ const listsLogic = createLogic({
   async process({ action: { page } }, dispatch, done) {
     dispatch(setListsLoading(true))
     const sessionId = Cookies.get('session_id')
-
-    const { data: { id: accountId } } = await httpClient.get(ENDPOINTS.account,
-      {
-        params: {
-          session_id: sessionId
-        }
-      })
+    const accountId = Cookies.set('account_id')
 
     const {
       data: {

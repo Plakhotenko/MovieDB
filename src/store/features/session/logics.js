@@ -50,6 +50,7 @@ const logOutLogic = createLogic({
 
     dispatch(logoutUserSuccess())
     Cookies.remove('session_id')
+    Cookies.remove('account_id')
     done()
   }
 })
@@ -65,7 +66,8 @@ const getUserDataLogic = createLogic({
           session_id: sessionId
         }
       })
-    dispatch(setUserData({ username, accountId }))
+    Cookies.set('account_id', accountId)
+    dispatch(setUserData({ username }))
     done()
   }
 })
