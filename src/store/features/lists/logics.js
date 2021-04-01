@@ -4,7 +4,7 @@ import { normalize, schema } from 'normalizr'
 import { setParamsToUrl } from 'Utils'
 import httpClient from 'Api/client'
 import { setData } from '../data/actions'
-import { setListsLoading, setLists, getLists } from './actions'
+import { setListsLoading, setLists, removeListSuccess } from './actions'
 import { GET_LISTS, REMOVE_LIST } from './types'
 import { ENDPOINTS } from './endpoints'
 
@@ -60,10 +60,10 @@ const removeListLogic = createLogic({
           session_id: sessionId
         }
       })
-      dispatch(getLists())
+      dispatch(removeListSuccess(id))
     } catch (error) {
       if (error.status === 500) {
-        dispatch(getLists())
+        dispatch(removeListSuccess(id))
       }
     }
 
