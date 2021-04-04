@@ -4,8 +4,11 @@ import { normalize, schema } from 'normalizr'
 import { setParamsToUrl } from 'Utils'
 import httpClient from 'Api/client'
 import { setData } from '../data/actions'
-import { setListsLoading, setLists, removeListSuccess } from './actions'
-import { GET_LISTS, REMOVE_LIST } from './types'
+import {
+  setListsLoading, setLists, removeListSuccess, getLists
+} from './actions'
+import { setModal } from '../modal/actions'
+import { GET_LISTS, REMOVE_LIST, CREATE_LIST } from './types'
 import { ENDPOINTS } from './endpoints'
 
 const listsItemSchema = new schema.Entity('lists')
@@ -65,4 +68,29 @@ const removeListLogic = createLogic({
   }
 })
 
-export default [listsLogic, removeListLogic]
+const createListLogic = createLogic({
+  type: CREATE_LIST,
+  latest: true,
+  async process({ action: { name, description } }, dispatch, done) {
+    dispatch(setModal(undefined))
+    const sessionId = Cookies.get('session_id')
+    await httpClient({
+      url: ENDPOINTS.createList,
+      method: 'post',
+      params: {
+        session_id: sessionId
+      },
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      data: {
+        name,
+        description
+      }
+    })
+    dispatch(getLists())
+    done()
+  }
+})
+
+export default [listsLogic, removeListLogic, createListLogic]

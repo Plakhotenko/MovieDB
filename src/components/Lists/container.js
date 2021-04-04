@@ -4,6 +4,7 @@ import { PropTypes } from 'prop-types'
 import { getLists as getListsAction, removeList as removeListAction } from 'Store/features/lists/actions'
 import { getParamsFromUrl } from 'Utils'
 import { listsSelector, isListsEmptySelector } from 'Store/features/lists/selectors'
+import { setModal as setModalAction } from 'Store/features/modal/actions'
 import ListsComponent from './component'
 
 class Lists extends Component {
@@ -16,7 +17,7 @@ class Lists extends Component {
   render() {
     const { page: currentPage } = getParamsFromUrl()
     const {
-      isLoading, lists, totalResults, isListsEmpty, getLists, removeList
+      isLoading, lists, totalResults, isListsEmpty, getLists, removeList, setModal
     } = this.props
     return (
       <ListsComponent
@@ -28,6 +29,7 @@ class Lists extends Component {
         isListsEmpty={isListsEmpty}
         onPageChange={getLists}
         removeList={removeList}
+        setModal={setModal}
       />
     )
   }
@@ -42,12 +44,14 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getLists: getListsAction,
-  removeList: removeListAction
+  removeList: removeListAction,
+  setModal: setModalAction
 }
 
 Lists.propTypes = {
   getLists: PropTypes.func.isRequired,
   removeList: PropTypes.func.isRequired,
+  setModal: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   lists: PropTypes.arrayOf(PropTypes.shape),
   totalResults: PropTypes.number,
