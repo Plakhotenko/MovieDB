@@ -19,7 +19,7 @@ const listsLogic = createLogic({
   async process({ action: { page } }, dispatch, done) {
     dispatch(setListsLoading(true))
     const sessionId = Cookies.get('session_id')
-    const accountId = Cookies.set('account_id')
+    const accountId = Cookies.get('account_id')
 
     const {
       data: {
