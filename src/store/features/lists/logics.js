@@ -5,9 +5,8 @@ import { setParamsToUrl } from 'Utils'
 import httpClient from 'Api/client'
 import { setData } from '../data/actions'
 import {
-  setListsLoading, setLists, removeListSuccess, getLists
+  setListsLoading, setLists, removeListSuccess, createListSuccess
 } from './actions'
-import { setModal } from '../modal/actions'
 import { GET_LISTS, REMOVE_LIST, CREATE_LIST } from './types'
 import { ENDPOINTS } from './endpoints'
 
@@ -72,9 +71,8 @@ const createListLogic = createLogic({
   type: CREATE_LIST,
   latest: true,
   async process({ action: { name, description } }, dispatch, done) {
-    dispatch(setModal(undefined))
     const sessionId = Cookies.get('session_id')
-    await httpClient({
+    const { data: { list_id: listId } } = await httpClient({
       url: ENDPOINTS.createList,
       method: 'post',
       params: {
@@ -88,7 +86,15 @@ const createListLogic = createLogic({
         description
       }
     })
-    dispatch(getLists())
+    const newList = {
+      [listId]: {
+        id: listId,
+        name,
+        description
+      }
+    }
+    dispatch(setData({ lists: newList }))
+    dispatch(createListSuccess(listId))
     done()
   }
 })

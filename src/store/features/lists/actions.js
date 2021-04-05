@@ -1,5 +1,6 @@
 import {
-  GET_LISTS, SET_LISTS_LOADING, SET_LISTS, REMOVE_LIST, REMOVE_LIST_SUCCESS, CREATE_LIST
+  GET_LISTS, SET_LISTS_LOADING, SET_LISTS, REMOVE_LIST, REMOVE_LIST_SUCCESS, CREATE_LIST,
+  CREATE_LIST_SUCCESS
 } from './types'
 
 export const setListsLoading = isLoading => ({
@@ -32,4 +33,9 @@ export const createList = ({ name, description }) => ({
   type: CREATE_LIST,
   name,
   description
+})
+
+export const createListSuccess = id => ({
+  type: CREATE_LIST_SUCCESS,
+  id
 })

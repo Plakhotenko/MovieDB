@@ -17,7 +17,10 @@ const CreateListModalComponent = ({ setModal, createList }) => (
       description: ''
     }}
     validationSchema={validationSchema}
-    onSubmit={createList}
+    onSubmit={(data) => {
+      setModal(undefined)
+      createList(data)
+    }}
   >
     {({ handleSubmit }) => (
       <Modal

@@ -1,4 +1,6 @@
-import { SET_LISTS, SET_LISTS_LOADING, REMOVE_LIST_SUCCESS } from './types'
+import {
+  SET_LISTS, SET_LISTS_LOADING, REMOVE_LIST_SUCCESS, CREATE_LIST_SUCCESS
+} from './types'
 
 const initialState = {
   listIds: [],
@@ -24,6 +26,12 @@ const lists = (state = initialState, action) => {
         ...state,
         listIds: state.listIds.filter(id => id !== action.id),
         totalResults: state.totalResults - 1
+      }
+    case CREATE_LIST_SUCCESS:
+      return {
+        ...state,
+        listIds: [action.id, ...state.listIds],
+        totalResults: state.totalResults + 1
       }
     default:
       return state
