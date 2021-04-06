@@ -20,6 +20,7 @@ const List = ({
       className="top-margin"
       actions={[
         <DeleteOutlined
+          aria-label="delete list"
           key="delete"
           onClick={() => onClickHandler(id)}
         />
