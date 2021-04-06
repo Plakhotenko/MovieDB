@@ -29,22 +29,19 @@ const ListsComponent = ({
           span={20}
         >
           <div className="top-margin">
-            {!isLoading
-            && (
+            {isLoading ? <Loader /> : (
               <Typography.Title>
                 My Lists
                 {' '}
                 <PlusCircleOutlined onClick={onClick} />
               </Typography.Title>
             )}
-            {isLoading && <Loader />}
-            {isListsEmpty && !isLoading
-              && (
+            {isListsEmpty && !isLoading && (
               <Empty
                 description="No lists created yet"
                 image={Empty.PRESENTED_IMAGE_SIMPLE}
               />
-              ) }
+            )}
           </div>
         </Col>
       </Row>
@@ -78,8 +75,7 @@ const ListsComponent = ({
         justify="center"
       >
         <Col>
-          {!isLoading
-          && (
+          {!isLoading && (
             <Pagination
               current={currentPage}
               total={totalResults}
@@ -90,8 +86,7 @@ const ListsComponent = ({
               onChange={onPageChange}
               className="pagination"
             />
-          )
-          }
+          )}
         </Col>
       </Row>
     </Layout.Content>

@@ -19,20 +19,18 @@ const DashboardComponent = ({
       <Search />
       <div className="top-margin">
         {isLoading ? <Loader /> : <MoviesList movies={movies} /> }
-        {isMoviesEmpty && !isLoading
-        && (
-        <Empty
-          description="No movies found"
-          image={Empty.PRESENTED_IMAGE_SIMPLE}
-        />
-        ) }
+        {isMoviesEmpty && !isLoading && (
+          <Empty
+            description="No movies found"
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+          />
+        )}
         <Row
           type="flex"
           justify="center"
         >
           <Col>
-            {!isLoading
-              && (
+            {!isLoading && (
               <Pagination
                 current={currentPage}
                 total={totalResults}
@@ -43,8 +41,7 @@ const DashboardComponent = ({
                 onChange={onPageChange}
                 className="pagination"
               />
-              )
-            }
+            )}
           </Col>
         </Row>
       </div>
