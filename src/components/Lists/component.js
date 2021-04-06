@@ -21,13 +21,12 @@ const ListsComponent = ({
   removeList,
   setModal
 }) => {
-  const showModal = (id) => {
+  const onRemove = (id) => {
     Modal.confirm({
       title: 'Do you want to delete list?',
       onOk() {
         removeList(id)
-      },
-      onCancel() {}
+      }
     })
   }
   return (
@@ -78,7 +77,7 @@ const ListsComponent = ({
                   id={id}
                   title={name}
                   description={description}
-                  onClickHandler={showModal}
+                  removeList={onRemove}
                 />
               ))}
             </Row>
