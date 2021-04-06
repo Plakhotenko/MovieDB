@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
+import { Modal } from 'antd'
 import { getLists as getListsAction, removeList as removeListAction } from 'Store/features/lists/actions'
+import { createListModal } from 'Store/features/modal/constants'
 import { getParamsFromUrl } from 'Utils'
 import { listsSelector, isListsEmptySelector } from 'Store/features/lists/selectors'
 import { setModal as setModalAction } from 'Store/features/modal/actions'
@@ -19,6 +21,15 @@ class Lists extends Component {
     const {
       isLoading, lists, totalResults, isListsEmpty, getLists, removeList, setModal
     } = this.props
+    const onRemove = (id) => {
+      Modal.confirm({
+        title: 'Do you want to delete list?',
+        onOk() {
+          removeList(id)
+        }
+      })
+    }
+    const onClick = () => setModal(createListModal)
     return (
       <ListsComponent
         currentPage={currentPage}
@@ -28,8 +39,8 @@ class Lists extends Component {
         paginationDisabled={isLoading}
         isListsEmpty={isListsEmpty}
         onPageChange={getLists}
-        removeList={removeList}
-        setModal={setModal}
+        removeList={onRemove}
+        onClick={onClick}
       />
     )
   }
