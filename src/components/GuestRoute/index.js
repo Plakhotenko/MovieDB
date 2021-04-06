@@ -1,3 +1,1 @@
-import GuestRoute from './container'
-
-export default GuestRoute
+export { default } from './container'

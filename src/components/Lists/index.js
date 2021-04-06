@@ -1,3 +1,1 @@
-import MyLists from './container'
-
-export default MyLists
+export { default } from './container'

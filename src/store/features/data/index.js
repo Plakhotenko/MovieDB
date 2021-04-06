@@ -1,3 +1,1 @@
-import data from './reducer'
-
-export default data
+export { default } from './reducer'

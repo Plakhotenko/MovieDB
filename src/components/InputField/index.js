@@ -1,3 +1,1 @@
-import InputField from './container'
-
-export default InputField
+export { default } from './container'

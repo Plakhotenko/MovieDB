@@ -1,3 +1,1 @@
-import lists from './reducer'
-
-export default lists
+export { default } from './reducer'

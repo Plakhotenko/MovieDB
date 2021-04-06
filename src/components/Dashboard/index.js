@@ -1,3 +1,1 @@
-import Dashboard from './container'
-
-export default Dashboard
+export { default } from './container'

@@ -1,3 +1,1 @@
-import trendingMovies from './reducer'
-
-export default trendingMovies
+export { default } from './reducer'

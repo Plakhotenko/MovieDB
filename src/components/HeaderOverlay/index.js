@@ -1,3 +1,1 @@
-import HeaderOverlay from './component'
-
-export default HeaderOverlay
+export { default } from './component'

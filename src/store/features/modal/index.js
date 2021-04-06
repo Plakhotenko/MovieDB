@@ -1,3 +1,1 @@
-import modal from './reducer'
-
-export default modal
+export { default } from './reducer'
