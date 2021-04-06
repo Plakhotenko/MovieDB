@@ -10,22 +10,19 @@ const validationSchema = yup.object().shape({
   description: yup.string().required()
 })
 
-const CreateListModalComponent = ({ hideModal, createList }) => (
+const CreateListModalComponent = ({ hideModal, onSubmit }) => (
   <Formik
     initialValues={{
       name: '',
       description: ''
     }}
     validationSchema={validationSchema}
-    onSubmit={(data) => {
-      hideModal()
-      createList(data)
-    }}
+    onSubmit={onSubmit}
   >
     {({ handleSubmit }) => (
       <Modal
         visible
-        onCancel={() => hideModal()}
+        onCancel={hideModal}
         onOk={handleSubmit}
         okText="Create"
         title="Create list"
@@ -49,7 +46,7 @@ const CreateListModalComponent = ({ hideModal, createList }) => (
 
 CreateListModalComponent.propTypes = {
   hideModal: PropTypes.func.isRequired,
-  createList: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired
 }
 
 export default CreateListModalComponent

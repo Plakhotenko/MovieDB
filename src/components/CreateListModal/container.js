@@ -5,12 +5,18 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import CreateListModalComponent from './component'
 
-const CreateListModal = ({ hideModal, createList }) => (
-  <CreateListModalComponent
-    hideModal={hideModal}
-    createList={createList}
-  />
-)
+const CreateListModal = ({ hideModal, createList }) => {
+  const onSubmit = (data) => {
+    hideModal()
+    createList(data)
+  }
+  return (
+    <CreateListModalComponent
+      onSubmit={onSubmit}
+      hideModal={hideModal}
+    />
+  )
+}
 
 const mapDispatchToProps = {
   hideModal: hideModalAction,
