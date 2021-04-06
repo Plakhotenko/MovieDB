@@ -1,14 +1,12 @@
 import { createLogic } from 'redux-logic'
-import { normalize, schema } from 'normalizr'
+import { normalize } from 'normalizr'
 import { setParamsToUrl } from 'Utils'
+import { moviesListSchema } from 'Schemas'
 import httpClient from 'Api/client'
 import { setTrendingMovies, setLoading } from './actions'
 import { setData } from '../data/actions'
 import { ENDPOINTS } from './endpoints'
 import { GET_TRENDING_MOVIES, SEARCH_MOVIES } from './types'
-
-const moviesSchema = new schema.Entity('movies')
-const moviesListSchema = new schema.Array(moviesSchema)
 
 const trendingMoviesLogic = createLogic({
   type: GET_TRENDING_MOVIES,

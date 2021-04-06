@@ -70,7 +70,8 @@ module.exports = {
       Store: path.resolve(__dirname, '../src/store'),
       Constants: path.resolve(__dirname, '../src/constants'),
       Utils: path.resolve(__dirname, '../src/utils'),
-      Api: path.resolve(__dirname, '../src/api')
+      Api: path.resolve(__dirname, '../src/api'),
+      Schemas: path.resolve(__dirname, '../src/schemas')
     }
   },
   devServer: {

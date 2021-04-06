@@ -1,7 +1,8 @@
 import Cookies from 'js-cookie'
 import { createLogic } from 'redux-logic'
-import { normalize, schema } from 'normalizr'
+import { normalize } from 'normalizr'
 import { setParamsToUrl } from 'Utils'
+import { listsSchema } from 'Schemas'
 import httpClient from 'Api/client'
 import { setData } from '../data/actions'
 import {
@@ -9,9 +10,6 @@ import {
 } from './actions'
 import { GET_LISTS, REMOVE_LIST, CREATE_LIST } from './types'
 import { ENDPOINTS } from './endpoints'
-
-const listsItemSchema = new schema.Entity('lists')
-const listsSchema = new schema.Array(listsItemSchema)
 
 const listsLogic = createLogic({
   type: GET_LISTS,
