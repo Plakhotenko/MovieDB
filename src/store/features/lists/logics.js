@@ -72,20 +72,16 @@ const createListLogic = createLogic({
   latest: true,
   async process({ action: { name, description } }, dispatch, done) {
     const sessionId = Cookies.get('session_id')
-    const { data: { list_id: listId } } = await httpClient({
-      url: ENDPOINTS.createList,
-      method: 'post',
-      params: {
-        session_id: sessionId
-      },
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      },
-      data: {
+    const { data: { list_id: listId } } = await httpClient.post(ENDPOINTS.createList,
+      {
         name,
         description
-      }
-    })
+      },
+      {
+        params: {
+          session_id: sessionId
+        }
+      })
     const newList = {
       [listId]: {
         id: listId,
