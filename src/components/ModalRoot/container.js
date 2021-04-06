@@ -2,17 +2,19 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { MODALS } from 'Store/features/modal/constants'
 import PropTypes from 'prop-types'
-import RootModalComponent from './component'
 
-const RootModal = ({ currentModal }) => (
-  currentModal ? <RootModalComponent component={MODALS[currentModal]} /> : null
-)
+const ModalRoot = ({ currentModal }) => {
+  const Modal = MODALS[currentModal]
+  return (
+    currentModal ? <Modal /> : null
+  )
+}
 
-RootModal.propTypes = {
+ModalRoot.propTypes = {
   currentModal: PropTypes.string
 }
 
-RootModal.defaultProps = {
+ModalRoot.defaultProps = {
   currentModal: undefined
 }
 
@@ -20,4 +22,4 @@ const mapStateToProps = state => ({
   currentModal: state.modal.currentModal
 })
 
-export default connect(mapStateToProps)(RootModal)
+export default connect(mapStateToProps)(ModalRoot)

@@ -5,7 +5,7 @@ import GuestRoute from '../GuestRoute'
 import LoginForm from '../LoginForm'
 import Dashboard from '../Dashboard'
 import Lists from '../Lists'
-import RootModal from '../RootModal'
+import ModalRoot from '../ModalRoot'
 
 const App = () => (
   <Fragment>
@@ -28,7 +28,7 @@ const App = () => (
         />
       </Switch>
     </BrowserRouter>
-    <RootModal />
+    <ModalRoot />
   </Fragment>
 )
 
