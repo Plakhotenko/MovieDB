@@ -1,24 +1,24 @@
 import React from 'react'
-import { setModal as setModalAction } from 'Store/features/modal/actions'
+import { hideModal as hideModalAction } from 'Store/features/modal/actions'
 import { createList as createListAction } from 'Store/features/lists/actions'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import CreateListModalComponent from './component'
 
-const CreateListModal = ({ setModal, createList }) => (
+const CreateListModal = ({ hideModal, createList }) => (
   <CreateListModalComponent
-    setModal={setModal}
+    hideModal={hideModal}
     createList={createList}
   />
 )
 
 const mapDispatchToProps = {
-  setModal: setModalAction,
+  hideModal: hideModalAction,
   createList: createListAction
 }
 
 CreateListModal.propTypes = {
-  setModal: PropTypes.func.isRequired,
+  hideModal: PropTypes.func.isRequired,
   createList: PropTypes.func.isRequired
 }
 
