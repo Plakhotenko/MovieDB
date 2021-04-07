@@ -1,6 +1,7 @@
 {
   "plugins": ["react"],
   "extends": ["eslint:recommended", "airbnb", "plugin:react/recommended"],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2018
   },
