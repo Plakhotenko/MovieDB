@@ -16,19 +16,22 @@ class Lists extends Component {
     getLists(currentPage)
   }
 
+  onRemove(id) {
+    const { removeList } = this.props
+    Modal.confirm({
+      title: 'Do you want to delete list?',
+      onOk() {
+        removeList(id)
+      }
+    })
+  }
+
   render() {
     const { page: currentPage } = getParamsFromUrl()
     const {
-      isLoading, lists, totalResults, isListsEmpty, getLists, removeList, setModal
+      isLoading, lists, totalResults, isListsEmpty, getLists, setModal
     } = this.props
-    const onRemove = (id) => {
-      Modal.confirm({
-        title: 'Do you want to delete list?',
-        onOk() {
-          removeList(id)
-        }
-      })
-    }
+
     const onClick = () => setModal(createListModal)
     return (
       <ListsComponent
@@ -39,7 +42,7 @@ class Lists extends Component {
         paginationDisabled={isLoading}
         isListsEmpty={isListsEmpty}
         onPageChange={getLists}
-        removeList={onRemove}
+        removeList={this.onRemove}
         onClick={onClick}
       />
     )

@@ -1,21 +1,26 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { hideModal as hideModalAction } from 'Store/features/modal/actions'
 import { createList as createListAction } from 'Store/features/lists/actions'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import CreateListModalComponent from './component'
 
-const CreateListModal = ({ hideModal, createList }) => {
-  const onSubmit = (data) => {
+class CreateListModal extends Component {
+  onSubmit(data) {
+    const { hideModal, createList } = this.props
     hideModal()
     createList(data)
   }
-  return (
-    <CreateListModalComponent
-      onSubmit={onSubmit}
-      hideModal={hideModal}
-    />
-  )
+
+  render() {
+    const { hideModal } = this.props
+    return (
+      <CreateListModalComponent
+        onSubmit={this.onSubmit}
+        hideModal={hideModal}
+      />
+    )
+  }
 }
 
 const mapDispatchToProps = {

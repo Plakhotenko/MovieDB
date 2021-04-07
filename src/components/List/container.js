@@ -1,21 +1,24 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ListComponent from './component'
 
-const List = ({
-  title, description, id, removeList
-}) => {
-  const onClick = () => {
+class List extends Component {
+  onClick() {
+    const { removeList, id } = this.props
     removeList(id)
   }
-  return (
-    <ListComponent
-      title={title}
-      description={description}
-      id={id}
-      onClick={onClick}
-    />
-  )
+
+  render() {
+    const { title, description, id } = this.props
+    return (
+      <ListComponent
+        title={title}
+        description={description}
+        id={id}
+        onClick={this.onClick}
+      />
+    )
+  }
 }
 
 List.propTypes = {
