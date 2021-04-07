@@ -16,7 +16,7 @@ class Lists extends Component {
     getLists(currentPage)
   }
 
-  onRemove(id) {
+  onRemove = (id) => {
     const { removeList } = this.props
     Modal.confirm({
       title: 'Do you want to delete list?',
@@ -26,13 +26,17 @@ class Lists extends Component {
     })
   }
 
+  onClick = () => {
+    const { setModal } = this.props
+    setModal(createListModal)
+  }
+
   render() {
     const { page: currentPage } = getParamsFromUrl()
     const {
-      isLoading, lists, totalResults, isListsEmpty, getLists, setModal
+      isLoading, lists, totalResults, isListsEmpty, getLists
     } = this.props
 
-    const onClick = () => setModal(createListModal)
     return (
       <ListsComponent
         currentPage={currentPage}
@@ -43,7 +47,7 @@ class Lists extends Component {
         isListsEmpty={isListsEmpty}
         onPageChange={getLists}
         removeList={this.onRemove}
-        onClick={onClick}
+        onClick={this.onClick}
       />
     )
   }

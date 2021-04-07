@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import CreateListModalComponent from './component'
 
 class CreateListModal extends Component {
-  onSubmit(data) {
+  onSubmit = (data) => {
     const { hideModal, createList } = this.props
     hideModal()
     createList(data)

@@ -3,18 +3,17 @@ import PropTypes from 'prop-types'
 import ListComponent from './component'
 
 class List extends Component {
-  onClick() {
+  onClick = () => {
     const { removeList, id } = this.props
     removeList(id)
   }
 
   render() {
-    const { title, description, id } = this.props
+    const { title, description } = this.props
     return (
       <ListComponent
         title={title}
         description={description}
-        id={id}
         onClick={this.onClick}
       />
     )
