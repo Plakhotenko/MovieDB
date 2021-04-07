@@ -9,7 +9,7 @@ import {
   setListsLoading, setLists, removeListSuccess, createListSuccess
 } from './actions'
 import { GET_LISTS, REMOVE_LIST, CREATE_LIST } from './types'
-import { ENDPOINTS } from './endpoints'
+import { API_ROUTES } from './api_routes'
 
 const listsLogic = createLogic({
   type: GET_LISTS,
@@ -25,7 +25,7 @@ const listsLogic = createLogic({
         results,
         total_results: total
       }
-    } = await httpClient.get(ENDPOINTS.getCreatedLists(accountId), {
+    } = await httpClient.get(API_ROUTES.getCreatedLists(accountId), {
       params: {
         session_id: sessionId,
         page
@@ -49,7 +49,7 @@ const removeListLogic = createLogic({
   async process({ action: { id } }, dispatch, done) {
     const sessionId = Cookies.get('session_id')
     try {
-      await httpClient.delete(ENDPOINTS.deleteList(id), {
+      await httpClient.delete(API_ROUTES.deleteList(id), {
         params: {
           session_id: sessionId
         }
@@ -70,7 +70,7 @@ const createListLogic = createLogic({
   latest: true,
   async process({ action: { name, description } }, dispatch, done) {
     const sessionId = Cookies.get('session_id')
-    const { data: { list_id: listId } } = await httpClient.post(ENDPOINTS.createList,
+    const { data: { list_id: listId } } = await httpClient.post(API_ROUTES.createList,
       {
         name,
         description

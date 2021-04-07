@@ -5,7 +5,7 @@ import { moviesListSchema } from 'Schemas'
 import httpClient from 'Api/client'
 import { setTrendingMovies, setLoading } from './actions'
 import { setData } from '../data/actions'
-import { ENDPOINTS } from './endpoints'
+import { API_ROUTES } from './api_routes'
 import { GET_TRENDING_MOVIES, SEARCH_MOVIES } from './types'
 
 const trendingMoviesLogic = createLogic({
@@ -19,7 +19,7 @@ const trendingMoviesLogic = createLogic({
         results,
         total_results: totalResults
       }
-    } = await httpClient.get(ENDPOINTS.trending, {
+    } = await httpClient.get(API_ROUTES.trending, {
       params: {
         page
       }
@@ -46,7 +46,7 @@ const searchMoviesLogic = createLogic({
         results,
         total_results: totalResults
       }
-    } = await httpClient.get(ENDPOINTS.search, {
+    } = await httpClient.get(API_ROUTES.search, {
       params: {
         page,
         query,

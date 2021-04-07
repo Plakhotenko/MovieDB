@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { MODALS } from 'Store/features/modal/constants'
 import PropTypes from 'prop-types'
+import { MODALS } from 'Store/features/modal/constants'
 
 const ModalRoot = ({ currentModal }) => {
   const Modal = MODALS[currentModal]
