@@ -3,7 +3,7 @@ import { Row, Col } from 'antd'
 import PropTypes from 'prop-types'
 import Movie from '../MovieItem'
 
-const MoviesList = ({ movies }) => (
+const MoviesList = ({ movies, onClick }) => (
   <Row
     type="flex"
     gutter={16}
@@ -33,6 +33,8 @@ const MoviesList = ({ movies }) => (
               posterPath={posterPath}
               title={title || name}
               description={overview}
+              id={id}
+              onClick={onClick}
             />
           </Col>
         ))}
@@ -42,11 +44,13 @@ const MoviesList = ({ movies }) => (
 )
 
 MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape)
+  movies: PropTypes.arrayOf(PropTypes.shape),
+  onClick: PropTypes.func
 }
 
 MoviesList.defaultProps = {
-  movies: []
+  movies: [],
+  onClick: undefined
 }
 
 export default MoviesList

@@ -4,6 +4,7 @@ import PrivateRoute from '../PrivateRoute'
 import GuestRoute from '../GuestRoute'
 import LoginForm from '../LoginForm'
 import Dashboard from '../Dashboard'
+import Watchlist from '../Watchlist'
 import Lists from '../Lists'
 import ModalRoot from '../ModalRoot'
 
@@ -24,6 +25,11 @@ const App = () => (
         <PrivateRoute
           component={Lists}
           path="/lists"
+          exact
+        />
+        <PrivateRoute
+          component={Watchlist}
+          path="/watchlist"
           exact
         />
       </Switch>
