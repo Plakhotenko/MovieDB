@@ -1,6 +1,7 @@
 {
   "plugins": ["react"],
   "extends": ["eslint:recommended", "airbnb", "plugin:react/recommended"],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2018
   },
@@ -38,7 +39,7 @@
     "import/no-unresolved": [
       "error",
       {
-        "ignore": ["Components/", "Helpers/", "Store/", "Constants", "Utils", "Api/"]
+        "ignore": ["Components/", "Helpers/", "Store/", "Constants", "Utils", "Api/", "Schemas"]
       }
     ]
   }

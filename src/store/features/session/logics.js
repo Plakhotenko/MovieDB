@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 import { createLogic } from 'redux-logic'
 import httpClient from 'Api/client'
 import { loginUserSuccess, logoutUserSuccess, setUserData } from './action'
-import { ENDPOINTS } from './endpoints'
+import { API_ROUTES } from './api_routes'
 import { LOGIN_USER, LOGOUT_USER, GET_USER_DATA } from './types'
 
 const authLogic = createLogic({
@@ -16,16 +16,16 @@ const authLogic = createLogic({
   },
   dispatch, done) {
     try {
-      const { data: { request_token: requestToken } } = await httpClient.get(ENDPOINTS.newToken)
+      const { data: { request_token: requestToken } } = await httpClient.get(API_ROUTES.newToken)
       const { data: { request_token: validatedToken } } = await httpClient.post(
-        ENDPOINTS.validateWithLogin, {
+        API_ROUTES.validateWithLogin, {
           username,
           password,
           request_token: requestToken
         }
       )
       const { data: { session_id: sessionId } } = await httpClient.post(
-        ENDPOINTS.newSession,
+        API_ROUTES.newSession,
         { request_token: validatedToken }
       )
       Cookies.set('session_id', sessionId)
@@ -46,10 +46,11 @@ const logOutLogic = createLogic({
   type: LOGOUT_USER,
   latest: true,
   async process(_, dispatch, done) {
-    await httpClient.delete(ENDPOINTS.session, { data: { session_id: Cookies.get('session_id') } })
+    await httpClient.delete(API_ROUTES.session, { data: { session_id: Cookies.get('session_id') } })
 
     dispatch(logoutUserSuccess())
     Cookies.remove('session_id')
+    Cookies.remove('account_id')
     done()
   }
 })
@@ -59,13 +60,14 @@ const getUserDataLogic = createLogic({
   latest: true,
   async process(_, dispatch, done) {
     const sessionId = Cookies.get('session_id')
-    const { data: { username } } = await httpClient.get(ENDPOINTS.account,
+    const { data: { username, id: accountId } } = await httpClient.get(API_ROUTES.account,
       {
         params: {
           session_id: sessionId
         }
       })
-    dispatch(setUserData(username))
+    Cookies.set('account_id', accountId)
+    dispatch(setUserData({ username }))
     done()
   }
 })

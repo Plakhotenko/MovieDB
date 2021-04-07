@@ -19,7 +19,7 @@ export const getUserData = () => ({
   type: GET_USER_DATA
 })
 
-export const setUserData = username => ({
+export const setUserData = ({ username }) => ({
   type: SET_USER_DATA,
   username
 })
