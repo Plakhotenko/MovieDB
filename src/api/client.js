@@ -20,7 +20,7 @@ client.interceptors.request.use((config) => {
     newConfig.headers = { Authorization: `Bearer ${token}` }
   }
   if (sessionId) {
-    newConfig.params = { session_id: sessionId, ...newConfig.params }
+    newConfig.params.session_id = sessionId
   }
 
   return newConfig
