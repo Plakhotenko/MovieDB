@@ -21,6 +21,7 @@ class Movie extends Component {
         actions={
           onClick ? [
             <DeleteOutlined
+              aria-label="delete movie"
               key="delete"
               onClick={this.onClickHandler}
             />
