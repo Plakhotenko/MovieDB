@@ -5,7 +5,7 @@ import { moviesListSchema } from 'Schemas'
 import httpClient from 'Api/client'
 import { setTrendingMovies, setLoading } from './actions'
 import { setData } from '../data/actions'
-import { API_ROUTES } from './api_routes'
+import { API_ROUTES } from './apiRoutes'
 import { GET_TRENDING_MOVIES, SEARCH_MOVIES } from './types'
 
 const trendingMoviesLogic = createLogic({

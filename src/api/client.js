@@ -14,10 +14,13 @@ const client = axios.create({
 
 client.interceptors.request.use((config) => {
   const newConfig = config
-
   const token = Cookies.get('auth_token')
+  const sessionId = Cookies.get('session_id')
   if (token) {
     newConfig.headers = { Authorization: `Bearer ${token}` }
+  }
+  if (sessionId) {
+    newConfig.params.session_id = sessionId
   }
 
   return newConfig

@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 import { createLogic } from 'redux-logic'
 import httpClient from 'Api/client'
 import { loginUserSuccess, logoutUserSuccess, setUserData } from './action'
-import { API_ROUTES } from './api_routes'
+import { API_ROUTES } from './apiRoutes'
 import { LOGIN_USER, LOGOUT_USER, GET_USER_DATA } from './types'
 
 const authLogic = createLogic({
@@ -59,13 +59,7 @@ const getUserDataLogic = createLogic({
   type: GET_USER_DATA,
   latest: true,
   async process(_, dispatch, done) {
-    const sessionId = Cookies.get('session_id')
-    const { data: { username, id: accountId } } = await httpClient.get(API_ROUTES.account,
-      {
-        params: {
-          session_id: sessionId
-        }
-      })
+    const { data: { username, id: accountId } } = await httpClient.get(API_ROUTES.account)
     Cookies.set('account_id', accountId)
     dispatch(setUserData({ username }))
     done()

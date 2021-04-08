@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Card } from 'antd'
 import { IMAGES_BASE_URL } from 'Constants'
 
-const Movie = ({
+const MovieItemComponent = ({
   actions, posterPath, title, description
 }) => (
   <Card
@@ -24,17 +24,17 @@ const Movie = ({
   </Card>
 )
 
-Movie.propTypes = {
+MovieItemComponent.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.node),
   posterPath: PropTypes.string.isRequired,
   title: PropTypes.string,
   description: PropTypes.string
 }
 
-Movie.defaultProps = {
+MovieItemComponent.defaultProps = {
   actions: [],
   title: undefined,
   description: undefined
 }
 
-export default Movie
+export default MovieItemComponent
