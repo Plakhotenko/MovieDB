@@ -16,7 +16,6 @@ const listsLogic = createLogic({
   latest: true,
   async process({ action: { page } }, dispatch, done) {
     dispatch(setListsLoading(true))
-    const sessionId = Cookies.get('session_id')
     const accountId = Cookies.get('account_id')
 
     const {
@@ -27,7 +26,6 @@ const listsLogic = createLogic({
       }
     } = await httpClient.get(API_ROUTES.getCreatedLists(accountId), {
       params: {
-        session_id: sessionId,
         page
       }
     })
@@ -47,13 +45,8 @@ const removeListLogic = createLogic({
   type: REMOVE_LIST,
   latest: true,
   async process({ action: { id } }, dispatch, done) {
-    const sessionId = Cookies.get('session_id')
     try {
-      await httpClient.delete(API_ROUTES.deleteList(id), {
-        params: {
-          session_id: sessionId
-        }
-      })
+      await httpClient.delete(API_ROUTES.deleteList(id))
       dispatch(removeListSuccess(id))
     } catch (error) {
       if (error.status === 500) {
@@ -69,16 +62,10 @@ const createListLogic = createLogic({
   type: CREATE_LIST,
   latest: true,
   async process({ action: { name, description } }, dispatch, done) {
-    const sessionId = Cookies.get('session_id')
     const { data: { list_id: listId } } = await httpClient.post(API_ROUTES.createList,
       {
         name,
         description
-      },
-      {
-        params: {
-          session_id: sessionId
-        }
       })
     const newList = {
       [listId]: {

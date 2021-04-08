@@ -14,7 +14,6 @@ const watchlistMoviesLogic = createLogic({
   latest: true,
   async process({ action: { page } }, dispatch, done) {
     dispatch(setWatchlistLoading(true))
-    const sessionId = Cookies.get('session_id')
     const accountId = Cookies.get('account_id')
 
     const {
@@ -25,8 +24,7 @@ const watchlistMoviesLogic = createLogic({
       }
     } = await httpClient.get(API_ROUTES.watchlistMovies(accountId), {
       params: {
-        page,
-        session_id: sessionId
+        page
       }
     })
 
@@ -43,17 +41,11 @@ const removeWatchlistMovieLogic = createLogic({
   type: REMOVE_WATCHLIST_MOVIE,
   latest: true,
   async process({ action: { id } }, dispatch, done) {
-    const sessionId = Cookies.get('session_id')
     const accountId = Cookies.get('account_id')
     await httpClient.post(API_ROUTES.watchlist(accountId), {
       media_type: 'movie',
       media_id: id,
       watchlist: false
-    },
-    {
-      params: {
-        session_id: sessionId
-      }
     })
     dispatch(removeWatchlistMovieSuccess(id))
     done()
