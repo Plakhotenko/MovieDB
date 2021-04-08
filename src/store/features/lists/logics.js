@@ -9,7 +9,7 @@ import {
   setListsLoading, setLists, removeListSuccess, createListSuccess
 } from './actions'
 import { GET_LISTS, REMOVE_LIST, CREATE_LIST } from './types'
-import { API_ROUTES } from './api_routes'
+import { API_ROUTES } from './apiRoutes'
 
 const listsLogic = createLogic({
   type: GET_LISTS,

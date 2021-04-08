@@ -17,7 +17,7 @@ class Watchlist extends Component {
     getWatchlistMovies(currentPage)
   }
 
-  showDeleteMovieModal = (id) => {
+  onShowDeleteModal = (id) => {
     const { removeWatchlistMovie } = this.props
     Modal.confirm({
       title: 'Do you want to delete movie from watchlist?',
@@ -42,7 +42,7 @@ class Watchlist extends Component {
         paginationDisabled={isLoading}
         isLoading={isLoading}
         isMoviesEmpty={isMoviesEmpty}
-        onClick={this.showDeleteMovieModal}
+        onClick={this.onShowDeleteModal}
       />
     )
   }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DeleteOutlined } from '@ant-design/icons'
-import MovieComponent from './component'
+import MovieItemComponent from './component'
 
-class Movie extends Component {
+class MovieItem extends Component {
   onClickHandler = () => {
     const { id, onClick } = this.props
     onClick(id)
@@ -14,7 +14,7 @@ class Movie extends Component {
       posterPath, title, description, onClick
     } = this.props
     return (
-      <MovieComponent
+      <MovieItemComponent
         posterPath={posterPath}
         title={title}
         description={description}
@@ -32,7 +32,7 @@ class Movie extends Component {
   }
 }
 
-Movie.propTypes = {
+MovieItem.propTypes = {
   posterPath: PropTypes.string.isRequired,
   title: PropTypes.string,
   description: PropTypes.string,
@@ -40,10 +40,10 @@ Movie.propTypes = {
   id: PropTypes.number.isRequired
 }
 
-Movie.defaultProps = {
+MovieItem.defaultProps = {
   title: undefined,
   description: undefined,
   onClick: undefined
 }
 
-export default Movie
+export default MovieItem

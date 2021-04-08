@@ -6,7 +6,7 @@ import { moviesListSchema } from 'Schemas'
 import httpClient from 'Api/client'
 import { setWatchlistMovies, setWatchlistLoading, removeWatchlistMovieSuccess } from './actions'
 import { setData } from '../data/actions'
-import { API_ROUTES } from './api_routes'
+import { API_ROUTES } from './apiRoutes'
 import { GET_WATCHLIST_MOVIES, REMOVE_WATCHLIST_MOVIE } from './types'
 
 const watchlistMoviesLogic = createLogic({

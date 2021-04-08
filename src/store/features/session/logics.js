@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 import { createLogic } from 'redux-logic'
 import httpClient from 'Api/client'
 import { loginUserSuccess, logoutUserSuccess, setUserData } from './action'
-import { API_ROUTES } from './api_routes'
+import { API_ROUTES } from './apiRoutes'
 import { LOGIN_USER, LOGOUT_USER, GET_USER_DATA } from './types'
 
 const authLogic = createLogic({

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col } from 'antd'
 import PropTypes from 'prop-types'
-import Movie from '../MovieItem'
+import MovieItem from '../MovieItem'
 
 const MoviesList = ({ movies, onClick }) => (
   <Row
@@ -29,7 +29,7 @@ const MoviesList = ({ movies, onClick }) => (
             lg={{ span: 8 }}
             xl={{ span: 6 }}
           >
-            <Movie
+            <MovieItem
               posterPath={posterPath}
               title={title || name}
               description={overview}
