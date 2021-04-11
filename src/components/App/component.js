@@ -7,6 +7,7 @@ import Dashboard from '../Dashboard'
 import Favorites from '../Favorites'
 import Watchlist from '../Watchlist'
 import Lists from '../Lists'
+import ListDetails from '../ListDetails'
 import ModalRoot from '../ModalRoot'
 
 const App = () => (
@@ -37,6 +38,10 @@ const App = () => (
           component={Favorites}
           path="/favorites"
           exact
+        />
+        <PrivateRoute
+          component={ListDetails}
+          path="/list/:listId"
         />
       </Switch>
     </BrowserRouter>

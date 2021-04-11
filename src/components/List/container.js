@@ -9,12 +9,13 @@ class List extends Component {
   }
 
   render() {
-    const { title, description } = this.props
+    const { title, description, id } = this.props
     return (
       <ListComponent
         title={title}
         description={description}
         onClick={this.onClick}
+        id={id}
       />
     )
   }
