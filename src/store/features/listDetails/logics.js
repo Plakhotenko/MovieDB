@@ -5,7 +5,7 @@ import httpClient from 'Api/client'
 import { setListDetailsMovies, setListDetailsLoading, removeListDetailsMovieSuccess } from './actions'
 import { setData } from '../data/actions'
 import { API_ROUTES } from './apiRoutes'
-import { GET_LIST_DETAILS_MOVIES, REMOVE_LIST_DETAILS_MOVIE } from './types'
+import { GET_LIST_DETAILS_MOVIES, REMOVE_LIST_DETAILS_MOVIE, REMOVE_LIST_DETAILS } from './types'
 
 const listDetailsMoviesLogic = createLogic({
   type: GET_LIST_DETAILS_MOVIES,
@@ -21,7 +21,7 @@ const listDetailsMoviesLogic = createLogic({
 
     const { entities: { movies }, result: movieIds } = normalize(items, moviesListSchema)
     dispatch(setData({ movies }))
-    dispatch(setListDetailsMovies({ movieIds, name }))
+    dispatch(setListDetailsMovies({ movieIds, name, listId }))
     dispatch(setListDetailsLoading(false))
     done()
   }
@@ -39,4 +39,20 @@ const removeListDetailsMovieLogic = createLogic({
   }
 })
 
-export default [listDetailsMoviesLogic, removeListDetailsMovieLogic]
+const removeListDetailsLogic = createLogic({
+  type: REMOVE_LIST_DETAILS,
+  latest: true,
+  async process({ action: { id, redirect } }, dispatch, done) {
+    try {
+      await httpClient.delete(API_ROUTES.deleteList(id))
+      redirect('/lists')
+    } catch (error) {
+      if (error.status === 500) {
+        redirect('/lists')
+      }
+    }
+    done()
+  }
+})
+
+export default [listDetailsMoviesLogic, removeListDetailsMovieLogic, removeListDetailsLogic]

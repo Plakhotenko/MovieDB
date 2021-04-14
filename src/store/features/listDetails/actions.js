@@ -1,6 +1,6 @@
 import {
   GET_LIST_DETAILS_MOVIES, SET_LIST_DETAILS_MOVIES, SET_LIST_DETAILS_LOADING,
-  REMOVE_LIST_DETAILS_MOVIE, REMOVE_LIST_DETAILS_MOVIE_SUCCESS
+  REMOVE_LIST_DETAILS_MOVIE, REMOVE_LIST_DETAILS_MOVIE_SUCCESS, REMOVE_LIST_DETAILS
 } from './types'
 
 export const getListDetailsMovies = listId => ({
@@ -13,10 +13,11 @@ export const setListDetailsLoading = isLoading => ({
   isLoading
 })
 
-export const setListDetailsMovies = ({ movieIds, name }) => ({
+export const setListDetailsMovies = ({ movieIds, name, listId }) => ({
   type: SET_LIST_DETAILS_MOVIES,
   movieIds,
-  name
+  name,
+  listId
 })
 
 export const removeListDetailsMovie = ({ listId, movieId }) => ({
@@ -28,4 +29,10 @@ export const removeListDetailsMovie = ({ listId, movieId }) => ({
 export const removeListDetailsMovieSuccess = id => ({
   type: REMOVE_LIST_DETAILS_MOVIE_SUCCESS,
   id
+})
+
+export const removeListDetails = ({ id, redirect }) => ({
+  type: REMOVE_LIST_DETAILS,
+  id,
+  redirect
 })

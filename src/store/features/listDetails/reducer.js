@@ -3,8 +3,9 @@ import {
 } from './types'
 
 const initialState = {
-  movieIds: [],
+  listId: undefined,
   name: undefined,
+  movieIds: [],
   isLoading: true
 }
 
@@ -13,8 +14,9 @@ const listDetails = (state = initialState, action) => {
     case SET_LIST_DETAILS_MOVIES:
       return {
         ...state,
-        movieIds: action.movieIds,
-        name: action.name
+        listId: action.listId,
+        name: action.name,
+        movieIds: action.movieIds
       }
     case SET_LIST_DETAILS_LOADING:
       return {

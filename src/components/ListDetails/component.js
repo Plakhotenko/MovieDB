@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import {
   Layout, Row, Col, Typography, Empty
 } from 'antd'
+import { MinusCircleOutlined } from '@ant-design/icons'
 import Header from '../Header'
 import Loader from '../Loader'
 import MoviesList from '../MoviesList'
 
 const ListDetailsComponent = ({
-  isLoading, movies, isMoviesEmpty, onClick, name
+  isLoading, movies, isMoviesEmpty, onClick, name, showDeleteListModal
 }) => (
   <Layout>
     <Header />
@@ -19,7 +20,13 @@ const ListDetailsComponent = ({
           span={20}
         >
           <div className="top-margin">
-            {!isLoading && <Typography.Title>{name}</Typography.Title>}
+            {!isLoading && (
+              <Typography.Title>
+                {name}
+                {' '}
+                <MinusCircleOutlined onClick={showDeleteListModal} />
+              </Typography.Title>
+            )}
           </div>
         </Col>
       </Row>
@@ -46,6 +53,7 @@ ListDetailsComponent.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isMoviesEmpty: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
+  showDeleteListModal: PropTypes.func.isRequired,
   name: PropTypes.string
 }
 

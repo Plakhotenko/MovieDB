@@ -16,24 +16,24 @@ const ListComponent = ({
     lg={{ span: 8 }}
     xl={{ span: 6 }}
   >
-    <Link to={`list/${id}`}>
-      <Card
-        hoverable
-        className="top-margin"
-        actions={[
-          <DeleteOutlined
-            aria-label="delete list"
-            key="delete"
-            onClick={onClick}
-          />
-        ]}
-      >
+    <Card
+      hoverable
+      className="top-margin"
+      actions={[
+        <DeleteOutlined
+          aria-label="delete list"
+          key="delete"
+          onClick={onClick}
+        />
+      ]}
+    >
+      <Link to={`list/${id}`}>
         <Typography.Title level={4}>
           {title}
         </Typography.Title>
         {description}
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   </Col>
 )
 
