@@ -20,7 +20,7 @@ class MovieDetails extends Component {
       movie: {
         title,
         overview,
-        lang,
+        original_language: lang,
         runtime,
         budget,
         revenue,
@@ -67,7 +67,7 @@ MovieDetails.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string,
     overview: PropTypes.string,
-    lang: PropTypes.string,
+    original_language: PropTypes.string,
     runtime: PropTypes.number,
     budget: PropTypes.number,
     revenue: PropTypes.number,
@@ -89,7 +89,7 @@ MovieDetails.defaultProps = {
   movie: {
     title: undefined,
     overview: undefined,
-    lang: undefined,
+    original_language: undefined,
     runtime: undefined,
     budget: undefined,
     revenue: undefined,

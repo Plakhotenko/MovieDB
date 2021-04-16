@@ -5,7 +5,6 @@ import {
   Row,
   Col,
   Typography,
-  Tag,
   Popover,
   Button,
   Modal
@@ -13,6 +12,7 @@ import {
 import { HeartOutlined, BookOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import PersonList from '../PersonList'
 import MovieDetailsCarousel from '../MovieDetailsCarousel'
+import MovieDetailsInfo from '../MovieDetailsInfo'
 import Loader from '../Loader'
 import Header from '../Header'
 import CreateListModal from '../CreateListModal'
@@ -142,65 +142,16 @@ class MovieDetailsComponent extends React.Component {
                       onClick={this.handleBookmark}
                     />
                   </Typography.Title>
-                  <Typography.Title level={3}>Overview</Typography.Title>
-                  <Typography.Paragraph>
-                    { overview }
-                  </Typography.Paragraph>
                 </Col>
               </Row>
-              <Row>
-                <Col
-                  span={20}
-                  offset={2}
-                >
-                  <Typography.Paragraph>
-                    <b>Original Language: </b>
-                    <span>{lang}</span>
-                  </Typography.Paragraph>
-                </Col>
-                <Col
-                  span={20}
-                  offset={2}
-                >
-                  <Typography.Paragraph>
-                    <b>Runtime: </b>
-                    <span>{runtime}</span>
-                  </Typography.Paragraph>
-                </Col>
-                <Col
-                  span={20}
-                  offset={2}
-                >
-                  <Typography.Paragraph>
-                    <b>Budget: </b>
-                    <span>
-                      $
-                      {budget}
-                    </span>
-                  </Typography.Paragraph>
-                </Col>
-                <Col
-                  span={20}
-                  offset={2}
-                >
-                  <Typography.Paragraph>
-                    <b>Revenue: </b>
-                    <span>
-                      $
-                      {revenue}
-                    </span>
-                  </Typography.Paragraph>
-                </Col>
-                <Col
-                  span={20}
-                  offset={2}
-                >
-                  <Typography.Paragraph>
-                    <b>Genres: </b>
-                    {genres && genres.map(item => <Tag key={item.id}>{item.name}</Tag>)}
-                  </Typography.Paragraph>
-                </Col>
-              </Row>
+              <MovieDetailsInfo
+                overview={overview}
+                lang={lang}
+                runtime={runtime}
+                budget={budget}
+                revenue={revenue}
+                genres={genres}
+              />
               <PersonList
                 heading="Casts"
                 persons={cast}
