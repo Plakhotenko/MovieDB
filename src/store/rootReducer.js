@@ -6,10 +6,11 @@ import lists from './features/lists'
 import listDetails from './features/listDetails'
 import watchlist from './features/watchlist'
 import favorites from './features/favorites'
+import movieDetails from './features/movieDetails'
 import modal from './features/modal'
 
 const reducers = combineReducers({
-  session, data, trendingMovies, lists, listDetails, watchlist, favorites, modal
+  session, data, trendingMovies, lists, listDetails, watchlist, favorites, movieDetails, modal
 })
 
 export default reducers

@@ -8,6 +8,7 @@ import Favorites from '../Favorites'
 import Watchlist from '../Watchlist'
 import Lists from '../Lists'
 import ListDetails from '../ListDetails'
+import MovieDetails from '../MovieDetails'
 import ModalRoot from '../ModalRoot'
 
 const App = () => (
@@ -42,6 +43,10 @@ const App = () => (
         <PrivateRoute
           component={ListDetails}
           path="/list/:listId"
+        />
+        <PrivateRoute
+          component={MovieDetails}
+          path="/movie/:movieId"
         />
       </Switch>
     </BrowserRouter>
