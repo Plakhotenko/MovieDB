@@ -9,7 +9,13 @@ import {
   Button,
   Modal
 } from 'antd'
-import { HeartOutlined, BookOutlined, PlusCircleOutlined } from '@ant-design/icons'
+import {
+  HeartFilled,
+  BookFilled,
+  HeartOutlined,
+  BookOutlined,
+  PlusCircleOutlined
+} from '@ant-design/icons'
 import PersonList from '../PersonList'
 import MovieDetailsCarousel from '../MovieDetailsCarousel'
 import MovieDetailsInfo from '../MovieDetailsInfo'
@@ -53,9 +59,7 @@ class MovieDetailsComponent extends React.Component {
 
     this.state = {
       modalVisible: false,
-      popoverVisible: false,
-      bookmarked: false,
-      watchlist: false
+      popoverVisible: false
     }
 
     this.handleVisiblePopover = (visible) => {
@@ -69,22 +73,12 @@ class MovieDetailsComponent extends React.Component {
     this.hideModal = () => {
       this.setState({ modalVisible: false })
     }
-
-    this.handleWatchlist = () => {
-      this.setState(state => ({ watchlist: !state.watchlist }))
-    }
-
-    this.handleBookmark = () => {
-      this.setState(state => ({ bookmarked: !state.bookmarked }))
-    }
   }
 
   render() {
     const {
       modalVisible,
-      popoverVisible,
-      bookmarked,
-      watchlist
+      popoverVisible
     } = this.state
     const {
       isLoading,
@@ -97,7 +91,11 @@ class MovieDetailsComponent extends React.Component {
       genres,
       backdrops,
       cast,
-      crew
+      crew,
+      favorite,
+      watchlist,
+      onSetFavorite,
+      onSetWatchlist
     } = this.props
     return (
       <Layout>
@@ -132,15 +130,23 @@ class MovieDetailsComponent extends React.Component {
                       <PlusCircleOutlined />
                     </Popover>
                     {' '}
-                    <HeartOutlined
-                      theme={watchlist ? 'filled' : undefined}
-                      onClick={this.handleWatchlist}
-                    />
+                    <button
+                      onClick={onSetFavorite}
+                      type="button"
+                      aria-label={favorite ? 'remove from favorite' : 'mark as favorite'}
+                      title={favorite ? 'remove from favorite' : 'mark as favorite'}
+                    >
+                      {favorite ? <HeartFilled /> : <HeartOutlined />}
+                    </button>
                     {' '}
-                    <BookOutlined
-                      theme={bookmarked ? 'filled' : undefined}
-                      onClick={this.handleBookmark}
-                    />
+                    <button
+                      onClick={onSetWatchlist}
+                      type="button"
+                      aria-label={watchlist ? 'remove from watchlist' : 'add to watchlist'}
+                      title={watchlist ? 'remove from watchlist' : 'add to watchlist'}
+                    >
+                      {watchlist ? <BookFilled /> : <BookOutlined />}
+                    </button>
                   </Typography.Title>
                 </Col>
               </Row>
@@ -187,7 +193,11 @@ MovieDetailsComponent.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.shape()),
   backdrops: PropTypes.arrayOf(PropTypes.shape()),
   cast: PropTypes.arrayOf(PropTypes.shape()),
-  crew: PropTypes.arrayOf(PropTypes.shape())
+  crew: PropTypes.arrayOf(PropTypes.shape()),
+  favorite: PropTypes.bool,
+  watchlist: PropTypes.bool,
+  onSetFavorite: PropTypes.func.isRequired,
+  onSetWatchlist: PropTypes.func.isRequired
 }
 
 MovieDetailsComponent.defaultProps = {
@@ -200,7 +210,9 @@ MovieDetailsComponent.defaultProps = {
   genres: undefined,
   backdrops: undefined,
   cast: undefined,
-  crew: undefined
+  crew: undefined,
+  favorite: false,
+  watchlist: false
 }
 
 export default MovieDetailsComponent
