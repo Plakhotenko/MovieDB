@@ -4,7 +4,6 @@ import {
   Layout,
   Row,
   Col,
-  Carousel,
   Typography,
   Tag,
   Popover,
@@ -12,8 +11,8 @@ import {
   Modal
 } from 'antd'
 import { HeartOutlined, BookOutlined, PlusCircleOutlined } from '@ant-design/icons'
-import { IMAGES_BASE_URL } from 'Constants'
 import PersonList from '../PersonList'
+import MovieDetailsCarousel from '../MovieDetailsCarousel'
 import Loader from '../Loader'
 import Header from '../Header'
 import CreateListModal from '../CreateListModal'
@@ -105,21 +104,10 @@ class MovieDetailsComponent extends React.Component {
         <Header />
         {isLoading ? <div className="top-margin"><Loader /></div> : (
           <Layout.Content>
-            <Row type="flex">
-              <Col span={24}>
-                <Carousel autoplay>
-                  {backdrops.map(({ file_path: filePath }) => (
-                    <div key={filePath}>
-                      <img
-                        className="movie-image"
-                        src={`${IMAGES_BASE_URL}/${filePath}`}
-                        alt={title}
-                      />
-                    </div>
-                  ))}
-                </Carousel>
-              </Col>
-            </Row>
+            <MovieDetailsCarousel
+              images={backdrops}
+              alt={title}
+            />
             <div className="top-margin">
               <Row>
                 <Col
