@@ -6,7 +6,6 @@ import {
   Col,
   Typography,
   Popover,
-  Button,
   Modal
 } from 'antd'
 import {
@@ -22,36 +21,7 @@ import MovieDetailsInfo from '../MovieDetailsInfo'
 import Loader from '../Loader'
 import Header from '../Header'
 import CreateListModal from '../CreateListModal'
-
-const PopoverContent = ({ openModal, closePopover }) => (
-  <React.Fragment>
-    <div>
-      <Button
-        type="link"
-        onClick={() => {
-          closePopover()
-          openModal()
-        }}
-      >
-        Create new list ...
-      </Button>
-    </div>
-    <div>
-      <Button type="link">List 1</Button>
-    </div>
-    <div>
-      <Button type="link">List 2</Button>
-    </div>
-    <div>
-      <Button type="link">List 3</Button>
-    </div>
-  </React.Fragment>
-)
-
-PopoverContent.propTypes = {
-  openModal: PropTypes.func.isRequired,
-  closePopover: PropTypes.func.isRequired
-}
+import PopoverContent from '../PopoverContent'
 
 class MovieDetailsComponent extends React.Component {
   constructor(props) {
@@ -64,14 +34,6 @@ class MovieDetailsComponent extends React.Component {
 
     this.handleVisiblePopover = (visible) => {
       this.setState({ popoverVisible: visible })
-    }
-
-    this.showModal = () => {
-      this.setState({ modalVisible: true })
-    }
-
-    this.hideModal = () => {
-      this.setState({ modalVisible: false })
     }
   }
 
@@ -95,7 +57,10 @@ class MovieDetailsComponent extends React.Component {
       favorite,
       watchlist,
       onSetFavorite,
-      onSetWatchlist
+      onSetWatchlist,
+      lists,
+      addMovieToList,
+      addMovieToNewList
     } = this.props
     return (
       <Layout>
@@ -122,8 +87,10 @@ class MovieDetailsComponent extends React.Component {
                       onVisibleChange={this.handleVisiblePopover}
                       content={(
                         <PopoverContent
-                          openModal={this.showModal}
                           closePopover={() => this.handleVisiblePopover(false)}
+                          lists={lists}
+                          addMovieToList={addMovieToList}
+                          addMovieToNewList={addMovieToNewList}
                         />
                       )}
                     >
@@ -197,7 +164,10 @@ MovieDetailsComponent.propTypes = {
   favorite: PropTypes.bool,
   watchlist: PropTypes.bool,
   onSetFavorite: PropTypes.func.isRequired,
-  onSetWatchlist: PropTypes.func.isRequired
+  onSetWatchlist: PropTypes.func.isRequired,
+  addMovieToList: PropTypes.func.isRequired,
+  addMovieToNewList: PropTypes.func.isRequired,
+  lists: PropTypes.arrayOf(PropTypes.shape())
 }
 
 MovieDetailsComponent.defaultProps = {
@@ -212,7 +182,8 @@ MovieDetailsComponent.defaultProps = {
   cast: undefined,
   crew: undefined,
   favorite: false,
-  watchlist: false
+  watchlist: false,
+  lists: undefined
 }
 
 export default MovieDetailsComponent

@@ -4,7 +4,9 @@ import { normalize } from 'normalizr'
 import merge from 'lodash/merge'
 import { moviesSchema, personsListSchema } from 'Schemas'
 import httpClient from 'Api/client'
-import { GET_MOVIE_DETAILS, SET_FAVORITE, SET_WATCHLIST } from './types'
+import {
+  GET_MOVIE_DETAILS, SET_FAVORITE, SET_WATCHLIST, ADD_MOVIE_TO_LIST
+} from './types'
 import { setMoviesDetails, setMoviesDetailsLoading } from './actions'
 import { setData } from '../data/actions'
 import { API_ROUTES } from './apiRoutes'
@@ -93,4 +95,15 @@ const setWatchlistLogic = createLogic({
   }
 })
 
-export default [getMovieDetailsLogic, setFavoriteLogic, setWatchlistLogic]
+const addMovieToListLogic = createLogic({
+  type: ADD_MOVIE_TO_LIST,
+  latest: true,
+  async process({ action: { movieId, listId } }, dispatch, done) {
+    await httpClient.post(API_ROUTES.addItem(listId), {
+      media_id: movieId
+    })
+    done()
+  }
+})
+
+export default [getMovieDetailsLogic, setFavoriteLogic, setWatchlistLogic, addMovieToListLogic]
