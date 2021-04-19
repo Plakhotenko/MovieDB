@@ -3,7 +3,6 @@ import {
 } from './types'
 
 const initialState = {
-  listId: undefined,
   name: undefined,
   movieIds: [],
   isLoading: true
@@ -14,7 +13,6 @@ const listDetails = (state = initialState, action) => {
     case SET_LIST_DETAILS_MOVIES:
       return {
         ...state,
-        listId: action.listId,
         name: action.name,
         movieIds: action.movieIds
       }

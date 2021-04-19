@@ -13,11 +13,10 @@ export const setListDetailsLoading = isLoading => ({
   isLoading
 })
 
-export const setListDetailsMovies = ({ movieIds, name, listId }) => ({
+export const setListDetailsMovies = ({ movieIds, name }) => ({
   type: SET_LIST_DETAILS_MOVIES,
   movieIds,
-  name,
-  listId
+  name
 })
 
 export const removeListDetailsMovie = ({ listId, movieId }) => ({
