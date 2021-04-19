@@ -13,11 +13,10 @@ export const setListDetailsLoading = isLoading => ({
   isLoading
 })
 
-export const setListDetailsMovies = ({ movieIds, name, listId }) => ({
+export const setListDetailsMovies = ({ movieIds, name }) => ({
   type: SET_LIST_DETAILS_MOVIES,
   movieIds,
-  name,
-  listId
+  name
 })
 
 export const removeListDetailsMovie = ({ listId, movieId }) => ({
@@ -31,8 +30,7 @@ export const removeListDetailsMovieSuccess = id => ({
   id
 })
 
-export const removeListDetails = ({ id, redirect }) => ({
+export const removeListDetails = id => ({
   type: REMOVE_LIST_DETAILS,
-  id,
-  redirect
+  id
 })

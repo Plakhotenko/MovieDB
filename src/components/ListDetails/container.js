@@ -16,18 +16,12 @@ class ListDetails extends Component {
     getListDetailsMovies(listId)
   }
 
-  redirect = (path) => {
-    const { history } = this.props
-    history.push(path)
-  }
-
   showDeleteListModal = () => {
-    const { removeListDetails, listId } = this.props
-    const { redirect } = this
+    const { removeListDetails, match: { params: { listId } } } = this.props
     Modal.confirm({
       title: 'Do you want to delete list?',
       onOk() {
-        removeListDetails({ id: listId, redirect })
+        removeListDetails(listId)
       }
     })
   }
@@ -62,7 +56,6 @@ class ListDetails extends Component {
 const mapStateToProps = state => ({
   listDetailsMovies: listDetailsMoviesSelector(state),
   name: state.listDetails.name,
-  listId: state.listDetails.listId,
   isLoading: state.listDetails.isLoading,
   isMoviesEmpty: isMoviesEmptySelector(state)
 })
@@ -81,19 +74,16 @@ ListDetails.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isMoviesEmpty: PropTypes.bool.isRequired,
   name: PropTypes.string,
-  listId: PropTypes.string,
   match: PropTypes.shape({
     params: PropTypes.shape({
       listId: PropTypes.string.isRequired
     })
-  }).isRequired,
-  history: PropTypes.shape().isRequired
+  }).isRequired
 }
 
 ListDetails.defaultProps = {
   listDetailsMovies: [],
-  name: undefined,
-  listId: undefined
+  name: undefined
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListDetails)

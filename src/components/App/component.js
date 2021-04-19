@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
-import { BrowserRouter, Switch } from 'react-router-dom'
+import { Router, Switch } from 'react-router-dom'
+import history from 'Utils/history'
 import PrivateRoute from '../PrivateRoute'
 import GuestRoute from '../GuestRoute'
 import LoginForm from '../LoginForm'
@@ -13,7 +14,7 @@ import ModalRoot from '../ModalRoot'
 
 const App = () => (
   <Fragment>
-    <BrowserRouter>
+    <Router history={history}>
       <Switch>
         <GuestRoute
           component={LoginForm}
@@ -49,7 +50,7 @@ const App = () => (
           path="/movie/:movieId"
         />
       </Switch>
-    </BrowserRouter>
+    </Router>
     <ModalRoot />
   </Fragment>
 )

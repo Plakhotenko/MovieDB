@@ -1,5 +1,6 @@
 import { createLogic } from 'redux-logic'
 import { normalize } from 'normalizr'
+import history from 'Utils/history'
 import { moviesListSchema } from 'Schemas'
 import httpClient from 'Api/client'
 import { setListDetailsMovies, setListDetailsLoading, removeListDetailsMovieSuccess } from './actions'
@@ -42,13 +43,13 @@ const removeListDetailsMovieLogic = createLogic({
 const removeListDetailsLogic = createLogic({
   type: REMOVE_LIST_DETAILS,
   latest: true,
-  async process({ action: { id, redirect } }, dispatch, done) {
+  async process({ action: { id } }, dispatch, done) {
     try {
       await httpClient.delete(API_ROUTES.deleteList(id))
-      redirect('/lists')
+      history.push('/lists')
     } catch (error) {
       if (error.status === 500) {
-        redirect('/lists')
+        history.push('/lists')
       }
     }
     done()
