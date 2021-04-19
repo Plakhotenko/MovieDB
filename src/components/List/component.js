@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import {
   Col, Card, Typography
 } from 'antd'
+import { Link } from 'react-router-dom'
 import { DeleteOutlined } from '@ant-design/icons'
 
 const ListComponent = ({
-  title, description, onClick
+  title, description, onClick, id
 }) => (
   <Col
     xs={{ span: 24 }}
@@ -26,10 +27,12 @@ const ListComponent = ({
         />
       ]}
     >
-      <Typography.Title level={4}>
-        {title}
-      </Typography.Title>
-      {description}
+      <Link to={`list/${id}`}>
+        <Typography.Title level={4}>
+          {title}
+        </Typography.Title>
+        {description}
+      </Link>
     </Card>
   </Col>
 )
@@ -37,7 +40,8 @@ const ListComponent = ({
 ListComponent.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired
 }
 
 ListComponent.defaultProps = {
