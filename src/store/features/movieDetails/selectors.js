@@ -18,7 +18,7 @@ const getCastIds = ({
 export const castSelector = createSelector(
   getCastIds,
   getDataPersons,
-  (ids = [], persons = []) => ids.map(item => persons[item])
+  (ids, persons) => ((ids && persons) ? ids.map(item => persons[item]) : undefined)
 )
 
 const getCrewIds = ({
@@ -28,5 +28,5 @@ const getCrewIds = ({
 export const crewSelector = createSelector(
   getCrewIds,
   getDataPersons,
-  (ids = [], persons = []) => ids.map(item => persons[item])
+  (ids, persons) => ((ids && persons) ? ids.map(item => persons[item]) : undefined)
 )
