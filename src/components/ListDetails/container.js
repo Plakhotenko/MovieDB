@@ -16,18 +16,12 @@ class ListDetails extends Component {
     getListDetailsMovies(listId)
   }
 
-  redirect = (path) => {
-    const { history } = this.props
-    history.push(path)
-  }
-
   showDeleteListModal = () => {
     const { removeListDetails, listId } = this.props
-    const { redirect } = this
     Modal.confirm({
       title: 'Do you want to delete list?',
       onOk() {
-        removeListDetails({ id: listId, redirect })
+        removeListDetails(listId)
       }
     })
   }
@@ -86,8 +80,7 @@ ListDetails.propTypes = {
     params: PropTypes.shape({
       listId: PropTypes.string.isRequired
     })
-  }).isRequired,
-  history: PropTypes.shape().isRequired
+  }).isRequired
 }
 
 ListDetails.defaultProps = {

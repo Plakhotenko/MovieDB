@@ -31,8 +31,7 @@ export const removeListDetailsMovieSuccess = id => ({
   id
 })
 
-export const removeListDetails = ({ id, redirect }) => ({
+export const removeListDetails = id => ({
   type: REMOVE_LIST_DETAILS,
-  id,
-  redirect
+  id
 })
