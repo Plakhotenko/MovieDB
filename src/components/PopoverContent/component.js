@@ -1,18 +1,15 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'antd'
 
-const PopoverContent = ({
-  closePopover, lists, addMovieToList, addMovieToNewList
+const PopoverContentComponent = ({
+  lists, onAddMovieToNewList, onAddMovieToList
 }) => (
-  <React.Fragment>
+  <Fragment>
     <div>
       <Button
         type="link"
-        onClick={() => {
-          addMovieToNewList()
-          closePopover()
-        }}
+        onClick={onAddMovieToNewList}
       >
         Create new list ...
       </Button>
@@ -20,28 +17,24 @@ const PopoverContent = ({
     {lists.map(({ id, name }) => (
       <div key={id}>
         <Button
-          onClick={() => {
-            addMovieToList(id)
-            closePopover()
-          }}
+          onClick={() => onAddMovieToList(id)}
           type="link"
         >
           {name}
         </Button>
       </div>
     ))}
-  </React.Fragment>
+  </Fragment>
 )
 
-PopoverContent.propTypes = {
-  closePopover: PropTypes.func.isRequired,
+PopoverContentComponent.propTypes = {
   lists: PropTypes.arrayOf(PropTypes.shape()),
-  addMovieToList: PropTypes.func.isRequired,
-  addMovieToNewList: PropTypes.func.isRequired
+  onAddMovieToNewList: PropTypes.func.isRequired,
+  onAddMovieToList: PropTypes.func.isRequired
 }
 
-PopoverContent.defaultProps = {
+PopoverContentComponent.defaultProps = {
   lists: undefined
 }
 
-export default PopoverContent
+export default PopoverContentComponent
