@@ -15,6 +15,18 @@ import { createListModal } from 'Store/features/modal/constants'
 import MovieDetailsComponent from './component'
 
 class MovieDetails extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      popoverVisible: false
+    }
+
+    this.handleVisiblePopover = (visible) => {
+      this.setState({ popoverVisible: visible })
+    }
+  }
+
   componentDidMount() {
     const { getLists, getMoviesDetails, match: { params: { movieId } } } = this.props
     getMoviesDetails(movieId)
@@ -41,7 +53,12 @@ class MovieDetails extends Component {
     setWatchlist({ id, watchlist: !watchlist })
   }
 
+  closePopover = () => {
+    this.setState({ popoverVisible: false })
+  }
+
   render() {
+    const { popoverVisible } = this.state
     const {
       isLoading,
       id,
@@ -82,6 +99,9 @@ class MovieDetails extends Component {
         lists={lists}
         addMovieToList={this.onAddMovieToList}
         addMovieToNewList={this.onAddMovieToNewList}
+        popoverVisible={popoverVisible}
+        handleVisiblePopover={this.handleVisiblePopover}
+        closePopover={this.closePopover}
       />
     )
   }
