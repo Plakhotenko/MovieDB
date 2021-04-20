@@ -1,8 +1,7 @@
-import { SET_MOVIE_DETAILS_LOADING, SET_MOVIE_DETAILS } from './types'
+import { SET_MOVIE_DETAILS_LOADING } from './types'
 
 const initialState = {
-  isLoading: true,
-  id: undefined
+  isLoading: true
 }
 
 const movieDetails = (state = initialState, action) => {
@@ -11,11 +10,6 @@ const movieDetails = (state = initialState, action) => {
       return {
         ...state,
         isLoading: action.isLoading
-      }
-    case SET_MOVIE_DETAILS:
-      return {
-        ...state,
-        id: action.id
       }
     default:
       return state

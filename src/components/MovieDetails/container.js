@@ -34,7 +34,7 @@ class MovieDetails extends Component {
   }
 
   onAddMovieToList = (listId) => {
-    const { id: movieId, addMovieToList } = this.props
+    const { match: { params: { movieId } }, addMovieToList } = this.props
     addMovieToList({ listId, movieId })
   }
 
@@ -44,13 +44,13 @@ class MovieDetails extends Component {
   }
 
   onSetFavorite = () => {
-    const { id, movie: { favorite }, setFavorite } = this.props
-    setFavorite({ id, favorite: !favorite })
+    const { match: { params: { movieId } }, movie: { favorite }, setFavorite } = this.props
+    setFavorite({ id: movieId, favorite: !favorite })
   }
 
   onSetWatchlist = () => {
-    const { id, movie: { watchlist }, setWatchlist } = this.props
-    setWatchlist({ id, watchlist: !watchlist })
+    const { match: { params: { movieId } }, movie: { watchlist }, setWatchlist } = this.props
+    setWatchlist({ id: movieId, watchlist: !watchlist })
   }
 
   closePopover = () => {
@@ -61,7 +61,7 @@ class MovieDetails extends Component {
     const { popoverVisible } = this.state
     const {
       isLoading,
-      id,
+      match: { params: { movieId } },
       cast,
       crew,
       movie: {
@@ -81,7 +81,7 @@ class MovieDetails extends Component {
     return (
       <MovieDetailsComponent
         isLoading={isLoading}
-        id={id}
+        id={movieId}
         title={title}
         overview={overview}
         lang={lang}
@@ -107,12 +107,11 @@ class MovieDetails extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   isLoading: state.movieDetails.isLoading,
-  id: state.movieDetails.id,
-  movie: movieDetailsSelector(state),
-  cast: castSelector(state),
-  crew: crewSelector(state),
+  movie: movieDetailsSelector(state, props),
+  cast: castSelector(state, props),
+  crew: crewSelector(state, props),
   lists: listsSelector(state)
 })
 
@@ -127,7 +126,6 @@ const mapDispatchToProps = {
 
 MovieDetails.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  id: PropTypes.string,
   cast: PropTypes.arrayOf(PropTypes.shape()),
   crew: PropTypes.arrayOf(PropTypes.shape()),
   movie: PropTypes.shape({
@@ -157,7 +155,6 @@ MovieDetails.propTypes = {
 }
 
 MovieDetails.defaultProps = {
-  id: undefined,
   cast: undefined,
   crew: undefined,
   movie: {

@@ -7,7 +7,7 @@ import httpClient from 'Api/client'
 import {
   GET_MOVIE_DETAILS, SET_FAVORITE, SET_WATCHLIST, ADD_MOVIE_TO_LIST
 } from './types'
-import { setMoviesDetails, setMoviesDetailsLoading } from './actions'
+import { setMoviesDetailsLoading } from './actions'
 import { setData } from '../data/actions'
 import { API_ROUTES } from './apiRoutes'
 
@@ -58,7 +58,6 @@ const getMovieDetailsLogic = createLogic({
 
     const persons = merge({}, castPersons, crewPersons)
 
-    dispatch(setMoviesDetails(id))
     dispatch(setData({ movies, persons }))
     dispatch(setMoviesDetailsLoading(false))
     done()

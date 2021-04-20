@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 
-const getMovieDetailsIdSelector = state => state.movieDetails.id
+const getMovieDetailsIdSelector = (_, props) => props.match.params.movieId
 const getDataMoviesSelector = state => state.data.movies
 
 export const movieDetailsSelector = createSelector(
