@@ -1,32 +1,34 @@
 import { createSelector } from 'reselect'
 
-const getDetailsId = state => state.movieDetails.id
-const getDataMovies = state => state.data.movies
+const getMovieDetailsIdSelector = state => state.movieDetails.id
+const getDataMoviesSelector = state => state.data.movies
 
 export const movieDetailsSelector = createSelector(
-  getDetailsId,
-  getDataMovies,
-  (id, movies) => ((id && movies) ? movies[id] : undefined)
+  getMovieDetailsIdSelector,
+  getDataMoviesSelector,
+  (id, movies) => (movies ? movies[id] : undefined)
 )
 
-const getDataPersons = state => state.data.persons
+const getDataPersonsSelector = state => state.data.persons
 
-const getCastIds = ({
-  movieDetails: { id }, data: { movies }
-}) => ((id && movies) ? movies[id].cast : undefined)
+const getCastIdsSelector = createSelector(
+  movieDetailsSelector,
+  movie => (movie ? movie.cast : undefined)
+)
 
 export const castSelector = createSelector(
-  getCastIds,
-  getDataPersons,
-  (ids, persons) => ((ids && persons) ? ids.map(item => persons[item]) : undefined)
+  getCastIdsSelector,
+  getDataPersonsSelector,
+  (ids, persons) => (persons ? ids.map(item => persons[item]) : undefined)
 )
 
-const getCrewIds = ({
-  movieDetails: { id }, data: { movies }
-}) => ((id && movies) ? movies[id].crew : undefined)
+const getCrewIdsSelector = createSelector(
+  movieDetailsSelector,
+  movie => (movie ? movie.crew : undefined)
+)
 
 export const crewSelector = createSelector(
-  getCrewIds,
-  getDataPersons,
-  (ids, persons) => ((ids && persons) ? ids.map(item => persons[item]) : undefined)
+  getCrewIdsSelector,
+  getDataPersonsSelector,
+  (ids, persons) => (persons ? ids.map(item => persons[item]) : undefined)
 )
