@@ -6,7 +6,8 @@ import {
   getMoviesDetails as getMoviesDetailsAction,
   setFavorite as setFavoriteAction,
   setWatchlist as setWatchlistAction,
-  addMovieToList as addMovieToListAction
+  addMovieToList as addMovieToListAction,
+  addMovieToNewList as addMovieToNewListAction
 } from 'Store/features/movieDetails/actions'
 import { setModal as setModalAction } from 'Store/features/modal/actions'
 import { movieDetailsSelector, castSelector, crewSelector } from 'Store/features/movieDetails/selectors'
@@ -39,8 +40,14 @@ class MovieDetails extends Component {
   }
 
   onAddMovieToNewList = () => {
-    const { setModal } = this.props
-    setModal(createListModal)
+    const { setModal, addMovieToNewList, match: { params: { movieId } } } = this.props
+    setModal({
+      component: createListModal,
+      action: addMovieToNewList,
+      data: {
+        movieId
+      }
+    })
   }
 
   onSetFavorite = () => {
@@ -121,7 +128,8 @@ const mapDispatchToProps = {
   setWatchlist: setWatchlistAction,
   getLists: getListsAction,
   addMovieToList: addMovieToListAction,
-  setModal: setModalAction
+  setModal: setModalAction,
+  addMovieToNewList: addMovieToNewListAction
 }
 
 MovieDetails.propTypes = {
@@ -145,6 +153,7 @@ MovieDetails.propTypes = {
   setWatchlist: PropTypes.func.isRequired,
   getLists: PropTypes.func.isRequired,
   addMovieToList: PropTypes.func.isRequired,
+  addMovieToNewList: PropTypes.func.isRequired,
   setModal: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({

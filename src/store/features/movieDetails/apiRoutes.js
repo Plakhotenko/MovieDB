@@ -5,5 +5,6 @@ export const API_ROUTES = {
   movieState: id => `movie/${id}/account_states`,
   setFavorite: accountId => `account/${accountId}/favorite`,
   setWatchlist: accountId => `account/${accountId}/watchlist`,
-  addItem: listId => `/list/${listId}/add_item`
+  addItem: listId => `/list/${listId}/add_item`,
+  createList: 'list'
 }

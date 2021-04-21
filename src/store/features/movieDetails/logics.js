@@ -5,9 +5,10 @@ import merge from 'lodash/merge'
 import { moviesSchema, personsListSchema } from 'Schemas'
 import httpClient from 'Api/client'
 import {
-  GET_MOVIE_DETAILS, SET_FAVORITE, SET_WATCHLIST, ADD_MOVIE_TO_LIST
+  GET_MOVIE_DETAILS, SET_FAVORITE, SET_WATCHLIST, ADD_MOVIE_TO_LIST, ADD_MOVIE_TO_NEW_LIST
 } from './types'
-import { setMoviesDetailsLoading } from './actions'
+import { createListSuccess } from '../lists/actions'
+import { setMoviesDetailsLoading, addMovieToList } from './actions'
 import { setData } from '../data/actions'
 import { API_ROUTES } from './apiRoutes'
 
@@ -105,4 +106,33 @@ const addMovieToListLogic = createLogic({
   }
 })
 
-export default [getMovieDetailsLogic, setFavoriteLogic, setWatchlistLogic, addMovieToListLogic]
+const addMovieToNewListLogic = createLogic({
+  type: ADD_MOVIE_TO_NEW_LIST,
+  latest: true,
+  async process({ action: { name, description, movieId } }, dispatch, done) {
+    const { data: { list_id: listId } } = await httpClient.post(API_ROUTES.createList,
+      {
+        name,
+        description
+      })
+    const newList = {
+      [listId]: {
+        id: listId,
+        name,
+        description
+      }
+    }
+    dispatch(setData({ lists: newList }))
+    dispatch(createListSuccess(listId))
+    dispatch(addMovieToList({ listId, movieId }))
+    done()
+  }
+})
+
+export default [
+  getMovieDetailsLogic,
+  setFavoriteLogic,
+  setWatchlistLogic,
+  addMovieToListLogic,
+  addMovieToNewListLogic
+]
