@@ -49,7 +49,7 @@ const PersonList = ({ persons, heading }) => (
                     alt={`${name} ${character || job}`}
                     src={`${IMAGES_BASE_URL}/${profilePath}`}
                   />
-              )}
+                )}
                 className="top-margin"
               >
                 <Card.Meta

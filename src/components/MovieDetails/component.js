@@ -46,7 +46,11 @@ const MovieDetailsComponent = ({
 }) => (
   <Layout>
     <Header />
-    {isLoading ? <div className="top-margin"><Loader /></div> : (
+    {isLoading ? (
+      <div className="top-margin">
+        <Loader />
+      </div>
+    ) : (
       <Layout.Content>
         <MovieDetailsCarousel
           images={backdrops}
