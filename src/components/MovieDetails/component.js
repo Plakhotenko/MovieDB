@@ -41,7 +41,7 @@ const MovieDetailsComponent = ({
   addMovieToList,
   addMovieToNewList,
   popoverVisible,
-  handleVisiblePopover,
+  handleVisibleChange,
   closePopover
 }) => (
   <Layout>
@@ -68,7 +68,7 @@ const MovieDetailsComponent = ({
                   title="Add movie to list"
                   trigger="click"
                   visible={popoverVisible}
-                  onVisibleChange={handleVisiblePopover}
+                  onVisibleChange={handleVisibleChange}
                   content={(
                     <PopoverContent
                       closePopover={closePopover}
@@ -143,7 +143,7 @@ MovieDetailsComponent.propTypes = {
   addMovieToNewList: PropTypes.func.isRequired,
   lists: PropTypes.arrayOf(PropTypes.shape()),
   popoverVisible: PropTypes.bool,
-  handleVisiblePopover: PropTypes.func.isRequired,
+  handleVisibleChange: PropTypes.func.isRequired,
   closePopover: PropTypes.func.isRequired
 }
 

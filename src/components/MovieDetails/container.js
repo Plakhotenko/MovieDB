@@ -22,16 +22,16 @@ class MovieDetails extends Component {
     this.state = {
       popoverVisible: false
     }
-
-    this.handleVisiblePopover = (visible) => {
-      this.setState({ popoverVisible: visible })
-    }
   }
 
   componentDidMount() {
     const { getLists, getMoviesDetails, match: { params: { movieId } } } = this.props
     getMoviesDetails(movieId)
     getLists()
+  }
+
+  handleVisibleChange = (visible) => {
+    this.setState({ popoverVisible: visible })
   }
 
   onAddMovieToList = (listId) => {
@@ -107,7 +107,7 @@ class MovieDetails extends Component {
         addMovieToList={this.onAddMovieToList}
         addMovieToNewList={this.onAddMovieToNewList}
         popoverVisible={popoverVisible}
-        handleVisiblePopover={this.handleVisiblePopover}
+        handleVisibleChange={this.handleVisibleChange}
         closePopover={this.closePopover}
       />
     )
