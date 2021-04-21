@@ -54,7 +54,6 @@ const MovieDetailsComponent = ({
       <Layout.Content>
         <MovieDetailsCarousel
           images={backdrops}
-          alt={title}
         />
         <div className="top-margin">
           <Row>

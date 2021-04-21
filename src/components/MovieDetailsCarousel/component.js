@@ -3,7 +3,7 @@ import { Row, Col, Carousel } from 'antd'
 import { IMAGES_BASE_URL } from 'Constants'
 import PropTypes from 'prop-types'
 
-const MovieDetailsCarousel = ({ images, alt }) => (
+const MovieDetailsCarousel = ({ images }) => (
   <Row type="flex">
     <Col span={24}>
       <Carousel autoplay>
@@ -12,7 +12,7 @@ const MovieDetailsCarousel = ({ images, alt }) => (
             <img
               className="movie-image"
               src={`${IMAGES_BASE_URL}/${filePath}`}
-              alt={alt}
+              alt=""
             />
           </div>
         ))}
@@ -22,13 +22,11 @@ const MovieDetailsCarousel = ({ images, alt }) => (
 )
 
 MovieDetailsCarousel.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.shape()),
-  alt: PropTypes.string
+  images: PropTypes.arrayOf(PropTypes.shape())
 }
 
 MovieDetailsCarousel.defaultProps = {
-  images: undefined,
-  alt: undefined
+  images: undefined
 }
 
 export default MovieDetailsCarousel
