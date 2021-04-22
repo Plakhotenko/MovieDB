@@ -33,7 +33,7 @@ const PersonList = ({ persons, heading }) => (
           }}
         >
           {persons.map(({
-            credit_id: creditId, profile_path: profilePath, name, character, job
+            creditId, profilePath, name, character, job
           }) => (
             <Col
               key={creditId}

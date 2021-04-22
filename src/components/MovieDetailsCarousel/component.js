@@ -7,7 +7,7 @@ const MovieDetailsCarousel = ({ images }) => (
   <Row type="flex">
     <Col span={24}>
       <Carousel autoplay>
-        {images.map(({ file_path: filePath }) => (
+        {images.map(({ filePath }) => (
           <div key={filePath}>
             <img
               className="movie-image"

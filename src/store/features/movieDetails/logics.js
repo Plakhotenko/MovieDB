@@ -2,6 +2,7 @@ import Cookies from 'js-cookie'
 import { createLogic } from 'redux-logic'
 import { normalize } from 'normalizr'
 import merge from 'lodash/merge'
+import camelcaseKeys from 'camelcase-keys'
 import { moviesSchema, personsListSchema } from 'Schemas'
 import httpClient from 'Api/client'
 import {
@@ -51,7 +52,7 @@ const getMovieDetailsLogic = createLogic({
     const { entities: { movies } } = normalize(data, moviesSchema)
 
 
-    movies[id].backdrops = backdrops
+    movies[id].backdrops = camelcaseKeys(backdrops)
     movies[id].cast = castIds
     movies[id].crew = crewIds
     movies[id].watchlist = watchlist

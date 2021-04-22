@@ -19,7 +19,7 @@ const MoviesList = ({ movies, onClick }) => (
         }}
       >
         {movies.map(({
-          id, poster_path: posterPath, title, name, overview
+          id, posterPath, title, name, overview
         }) => (
           <Col
             key={id}
