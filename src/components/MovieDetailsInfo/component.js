@@ -79,7 +79,7 @@ const MovieDetailsInfo = ({
       >
         <Typography.Paragraph>
           <b>Genres: </b>
-          {genres && genres.map(item => <Tag key={item.id}>{item.name}</Tag>)}
+          {genres.map(item => <Tag key={item.id}>{item.name}</Tag>)}
         </Typography.Paragraph>
       </Col>
     )}
