@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'antd'
+import PopoverItem from '../PopoverItem'
 
 const PopoverContentComponent = ({
   lists, onAddMovieToNewList, onAddMovieToList
@@ -15,14 +16,12 @@ const PopoverContentComponent = ({
       </Button>
     </div>
     {lists.map(({ id, name }) => (
-      <div key={id}>
-        <Button
-          onClick={() => onAddMovieToList(id)}
-          type="link"
-        >
-          {name}
-        </Button>
-      </div>
+      <PopoverItem
+        key={id}
+        id={id}
+        name={name}
+        onAddMovieToList={onAddMovieToList}
+      />
     ))}
   </Fragment>
 )
