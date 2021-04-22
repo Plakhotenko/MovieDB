@@ -4,9 +4,9 @@ import {
 } from 'antd'
 import PropTypes from 'prop-types'
 
-const MovieDetailsInfo = ({
+const MovieDetailsInfoComponent = ({
   overview,
-  lang,
+  originalLanguage,
   runtime,
   budget,
   revenue,
@@ -22,14 +22,14 @@ const MovieDetailsInfo = ({
         <Typography.Paragraph>{ overview }</Typography.Paragraph>
       </Col>
     )}
-    {lang && (
+    {originalLanguage && (
       <Col
         span={20}
         offset={2}
       >
         <Typography.Paragraph>
           <b>Original Language: </b>
-          <span>{lang}</span>
+          <span>{originalLanguage}</span>
         </Typography.Paragraph>
       </Col>
     )}
@@ -86,22 +86,22 @@ const MovieDetailsInfo = ({
   </Row>
 )
 
-MovieDetailsInfo.propTypes = {
+MovieDetailsInfoComponent.propTypes = {
   overview: PropTypes.string,
-  lang: PropTypes.string,
+  originalLanguage: PropTypes.string,
   runtime: PropTypes.number,
   budget: PropTypes.number,
   revenue: PropTypes.number,
   genres: PropTypes.arrayOf(PropTypes.shape())
 }
 
-MovieDetailsInfo.defaultProps = {
+MovieDetailsInfoComponent.defaultProps = {
   overview: undefined,
-  lang: undefined,
+  originalLanguage: undefined,
   runtime: undefined,
   budget: undefined,
   revenue: undefined,
   genres: undefined
 }
 
-export default MovieDetailsInfo
+export default MovieDetailsInfoComponent
