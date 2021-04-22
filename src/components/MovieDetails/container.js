@@ -114,11 +114,11 @@ class MovieDetails extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = (state, { match: { params: { movieId } } }) => ({
   isLoading: state.movieDetails.isLoading,
-  movie: movieDetailsSelector(state, props),
-  cast: castSelector(state, props),
-  crew: crewSelector(state, props),
+  movie: movieDetailsSelector(state, movieId),
+  cast: castSelector(state, movieId),
+  crew: crewSelector(state, movieId),
   lists: listsSelector(state)
 })
 
