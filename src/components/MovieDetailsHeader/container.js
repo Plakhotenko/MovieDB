@@ -9,7 +9,7 @@ import {
   addMovieToNewList as addMovieToNewListAction
 } from 'Store/features/movieDetails/actions'
 import { setModal as setModalAction } from 'Store/features/modal/actions'
-import { movieDetailsSelector } from 'Store/features/movieDetails/selectors'
+import { movieSelector } from 'Store/features/movieDetails/selectors'
 import { listsSelector } from 'Store/features/lists/selectors'
 import { createListModal } from 'Store/features/modal/constants'
 import MovieDetailsHeaderComponent from './component'
@@ -28,7 +28,7 @@ class MovieDetailsHeader extends Component {
     getLists()
   }
 
-  handleVisibleChange = (visible) => {
+  onVisibleChange = (visible) => {
     this.setState({ popoverVisible: visible })
   }
 
@@ -40,7 +40,7 @@ class MovieDetailsHeader extends Component {
   onAddMovieToNewList = () => {
     const { setModal, addMovieToNewList, movieId } = this.props
     setModal({
-      component: createListModal,
+      name: createListModal,
       action: addMovieToNewList,
       data: {
         movieId
@@ -83,7 +83,7 @@ class MovieDetailsHeader extends Component {
         addMovieToList={this.onAddMovieToList}
         addMovieToNewList={this.onAddMovieToNewList}
         popoverVisible={popoverVisible}
-        handleVisibleChange={this.handleVisibleChange}
+        onVisibleChange={this.onVisibleChange}
         closePopover={this.closePopover}
       />
     )
@@ -91,7 +91,7 @@ class MovieDetailsHeader extends Component {
 }
 
 const mapStateToProps = (state, { movieId }) => ({
-  movie: movieDetailsSelector(state, movieId),
+  movie: movieSelector(state, movieId),
   lists: listsSelector(state)
 })
 

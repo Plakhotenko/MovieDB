@@ -1,34 +1,34 @@
 import { createSelector } from 'reselect'
 
-const getMovieDetailsIdSelector = (_, movieId) => movieId
-const getDataMoviesSelector = state => state.data.movies
+const movieIdSelector = (_, movieId) => movieId
+const moviesSelector = state => state.data.movies
 
-export const movieDetailsSelector = createSelector(
-  getMovieDetailsIdSelector,
-  getDataMoviesSelector,
+export const movieSelector = createSelector(
+  movieIdSelector,
+  moviesSelector,
   (id, movies) => (movies ? movies[id] : undefined)
 )
 
-const getDataPersonsSelector = state => state.data.persons
+const personsSelector = state => state.data.persons
 
-const getCastIdsSelector = createSelector(
-  movieDetailsSelector,
+const castIdsSelector = createSelector(
+  movieSelector,
   movie => (movie ? movie.cast : undefined)
 )
 
 export const castSelector = createSelector(
-  getCastIdsSelector,
-  getDataPersonsSelector,
+  castIdsSelector,
+  personsSelector,
   (ids, persons) => (persons ? ids.map(item => persons[item]) : undefined)
 )
 
-const getCrewIdsSelector = createSelector(
-  movieDetailsSelector,
+const crewIdsSelector = createSelector(
+  movieSelector,
   movie => (movie ? movie.crew : undefined)
 )
 
 export const crewSelector = createSelector(
-  getCrewIdsSelector,
-  getDataPersonsSelector,
+  crewIdsSelector,
+  personsSelector,
   (ids, persons) => (persons ? ids.map(item => persons[item]) : undefined)
 )

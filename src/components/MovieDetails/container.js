@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { getMoviesDetails as getMoviesDetailsAction } from 'Store/features/movieDetails/actions'
-import { movieDetailsSelector, castSelector, crewSelector } from 'Store/features/movieDetails/selectors'
+import { movieSelector, castSelector, crewSelector } from 'Store/features/movieDetails/selectors'
 import MovieDetailsComponent from './component'
 
 class MovieDetails extends Component {
@@ -35,7 +35,7 @@ class MovieDetails extends Component {
 
 const mapStateToProps = (state, { match: { params: { movieId } } }) => ({
   isLoading: state.movieDetails.isLoading,
-  movie: movieDetailsSelector(state, movieId),
+  movie: movieSelector(state, movieId),
   cast: castSelector(state, movieId),
   crew: crewSelector(state, movieId)
 })

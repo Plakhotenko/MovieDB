@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { MODALS } from 'Store/features/modal/constants'
 
-const ModalRoot = ({ currentModal: { component, action, data } }) => {
-  const Modal = MODALS[component]
+const ModalRoot = ({ currentModal: { name, action, data } }) => {
+  const Modal = MODALS[name]
   return (
-    component ? (
+    name ? (
       <Modal
         action={action}
         data={data}
@@ -17,7 +17,7 @@ const ModalRoot = ({ currentModal: { component, action, data } }) => {
 
 ModalRoot.propTypes = {
   currentModal: PropTypes.shape({
-    component: PropTypes.string,
+    name: PropTypes.string,
     action: PropTypes.func,
     data: PropTypes.shape()
   })
@@ -25,7 +25,7 @@ ModalRoot.propTypes = {
 
 ModalRoot.defaultProps = {
   currentModal: {
-    component: undefined,
+    name: undefined,
     action: undefined,
     data: undefined
   }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { movieDetailsSelector } from 'Store/features/movieDetails/selectors'
+import { movieSelector } from 'Store/features/movieDetails/selectors'
 import MovieDetailsInfoComponent from './component'
 
 const MovieDetailsInfo = ({
@@ -25,7 +25,7 @@ const MovieDetailsInfo = ({
 )
 
 const mapStateToProps = (state, { movieId }) => ({
-  movie: movieDetailsSelector(state, movieId)
+  movie: movieSelector(state, movieId)
 })
 
 MovieDetailsInfo.propTypes = {

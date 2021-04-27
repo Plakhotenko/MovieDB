@@ -19,7 +19,7 @@ const MovieDetailsInfoComponent = ({
         offset={2}
       >
         <Typography.Title level={3}>Overview</Typography.Title>
-        <Typography.Paragraph>{ overview }</Typography.Paragraph>
+        <Typography.Paragraph>{overview}</Typography.Paragraph>
       </Col>
     )}
     {originalLanguage && (

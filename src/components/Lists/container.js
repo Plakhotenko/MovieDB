@@ -32,7 +32,7 @@ class Lists extends Component {
 
   onClick = () => {
     const { setModal, createList } = this.props
-    setModal({ component: createListModal, action: createList })
+    setModal({ name: createListModal, action: createList })
   }
 
   render() {
