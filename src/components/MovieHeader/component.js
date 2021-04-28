@@ -15,7 +15,7 @@ import {
 } from '@ant-design/icons'
 import PopoverContent from '../PopoverContent'
 
-const MovieDetailsHeaderComponent = ({
+const MovieHeaderComponent = ({
   title,
   favorite,
   watchlist,
@@ -75,7 +75,7 @@ const MovieDetailsHeaderComponent = ({
   </Row>
 )
 
-MovieDetailsHeaderComponent.propTypes = {
+MovieHeaderComponent.propTypes = {
   title: PropTypes.string,
   favorite: PropTypes.bool,
   watchlist: PropTypes.bool,
@@ -89,7 +89,7 @@ MovieDetailsHeaderComponent.propTypes = {
   closePopover: PropTypes.func.isRequired
 }
 
-MovieDetailsHeaderComponent.defaultProps = {
+MovieHeaderComponent.defaultProps = {
   title: undefined,
   favorite: false,
   watchlist: false,
@@ -97,4 +97,4 @@ MovieDetailsHeaderComponent.defaultProps = {
   popoverVisible: false
 }
 
-export default MovieDetailsHeaderComponent
+export default MovieHeaderComponent

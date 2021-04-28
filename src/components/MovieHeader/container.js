@@ -12,9 +12,9 @@ import { setModal as setModalAction } from 'Store/features/modal/actions'
 import { movieSelector } from 'Store/features/movieDetails/selectors'
 import { listsSelector } from 'Store/features/lists/selectors'
 import { createListModal } from 'Store/features/modal/constants'
-import MovieDetailsHeaderComponent from './component'
+import MovieHeaderComponent from './component'
 
-class MovieDetailsHeader extends Component {
+class MovieHeader extends Component {
   constructor(props) {
     super(props)
 
@@ -73,7 +73,7 @@ class MovieDetailsHeader extends Component {
       lists
     } = this.props
     return (
-      <MovieDetailsHeaderComponent
+      <MovieHeaderComponent
         title={title}
         favorite={favorite}
         watchlist={watchlist}
@@ -104,7 +104,7 @@ const mapDispatchToProps = {
   addMovieToNewList: addMovieToNewListAction
 }
 
-MovieDetailsHeader.propTypes = {
+MovieHeader.propTypes = {
   movieId: PropTypes.string.isRequired,
   movie: PropTypes.shape({
     title: PropTypes.string,
@@ -120,7 +120,7 @@ MovieDetailsHeader.propTypes = {
   setModal: PropTypes.func.isRequired
 }
 
-MovieDetailsHeader.defaultProps = {
+MovieHeader.defaultProps = {
   movie: {
     title: undefined,
     favorite: false,
@@ -129,4 +129,4 @@ MovieDetailsHeader.defaultProps = {
   lists: undefined
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieDetailsHeader)
+export default connect(mapStateToProps, mapDispatchToProps)(MovieHeader)

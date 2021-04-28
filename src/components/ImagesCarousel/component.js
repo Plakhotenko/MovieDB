@@ -3,7 +3,7 @@ import { Row, Col, Carousel } from 'antd'
 import { IMAGES_BASE_URL } from 'Constants'
 import PropTypes from 'prop-types'
 
-const MovieDetailsCarousel = ({ images }) => (
+const ImagesCarousel = ({ images }) => (
   <Row type="flex">
     <Col span={24}>
       <Carousel autoplay>
@@ -21,12 +21,12 @@ const MovieDetailsCarousel = ({ images }) => (
   </Row>
 )
 
-MovieDetailsCarousel.propTypes = {
+ImagesCarousel.propTypes = {
   images: PropTypes.arrayOf(PropTypes.shape())
 }
 
-MovieDetailsCarousel.defaultProps = {
+ImagesCarousel.defaultProps = {
   images: undefined
 }
 
-export default MovieDetailsCarousel
+export default ImagesCarousel

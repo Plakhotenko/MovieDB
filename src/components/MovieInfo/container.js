@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { movieSelector } from 'Store/features/movieDetails/selectors'
-import MovieDetailsInfoComponent from './component'
+import MovieInfoComponent from './component'
 
-const MovieDetailsInfo = ({
+const MovieInfo = ({
   movie: {
     overview,
     originalLanguage,
@@ -14,7 +14,7 @@ const MovieDetailsInfo = ({
     genres
   }
 }) => (
-  <MovieDetailsInfoComponent
+  <MovieInfoComponent
     overview={overview}
     originalLanguage={originalLanguage}
     runtime={runtime}
@@ -28,7 +28,7 @@ const mapStateToProps = (state, { movieId }) => ({
   movie: movieSelector(state, movieId)
 })
 
-MovieDetailsInfo.propTypes = {
+MovieInfo.propTypes = {
   movie: PropTypes.shape({
     overview: PropTypes.string,
     originalLanguage: PropTypes.string,
@@ -39,7 +39,7 @@ MovieDetailsInfo.propTypes = {
   })
 }
 
-MovieDetailsInfo.defaultProps = {
+MovieInfo.defaultProps = {
   movie: {
     overview: undefined,
     originalLanguage: undefined,
@@ -50,4 +50,4 @@ MovieDetailsInfo.defaultProps = {
   }
 }
 
-export default connect(mapStateToProps)(MovieDetailsInfo)
+export default connect(mapStateToProps)(MovieInfo)

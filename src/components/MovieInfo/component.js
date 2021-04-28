@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import PropTypes from 'prop-types'
 
-const MovieDetailsInfoComponent = ({
+const MovieInfoComponent = ({
   overview,
   originalLanguage,
   runtime,
@@ -86,7 +86,7 @@ const MovieDetailsInfoComponent = ({
   </Row>
 )
 
-MovieDetailsInfoComponent.propTypes = {
+MovieInfoComponent.propTypes = {
   overview: PropTypes.string,
   originalLanguage: PropTypes.string,
   runtime: PropTypes.number,
@@ -95,7 +95,7 @@ MovieDetailsInfoComponent.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.shape())
 }
 
-MovieDetailsInfoComponent.defaultProps = {
+MovieInfoComponent.defaultProps = {
   overview: undefined,
   originalLanguage: undefined,
   runtime: undefined,
@@ -104,4 +104,4 @@ MovieDetailsInfoComponent.defaultProps = {
   genres: undefined
 }
 
-export default MovieDetailsInfoComponent
+export default MovieInfoComponent

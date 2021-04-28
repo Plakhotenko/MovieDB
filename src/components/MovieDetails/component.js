@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Layout } from 'antd'
 import PersonList from '../PersonList'
-import MovieDetailsCarousel from '../MovieDetailsCarousel'
-import MovieDetailsInfo from '../MovieDetailsInfo'
+import ImagesCarousel from '../ImagesCarousel'
+import MovieInfo from '../MovieInfo'
 import Loader from '../Loader'
 import Header from '../Header'
-import MovieDetailsHeader from '../MovieDetailsHeader'
+import MovieHeader from '../MovieHeader'
 
 const MovieDetailsComponent = ({
   isLoading,
@@ -23,12 +23,12 @@ const MovieDetailsComponent = ({
       </div>
     ) : (
       <Layout.Content>
-        <MovieDetailsCarousel
+        <ImagesCarousel
           images={backdrops}
         />
         <div className="top-margin">
-          <MovieDetailsHeader movieId={movieId} />
-          <MovieDetailsInfo movieId={movieId} />
+          <MovieHeader movieId={movieId} />
+          <MovieInfo movieId={movieId} />
           <PersonList
             heading="Casts"
             persons={cast}
