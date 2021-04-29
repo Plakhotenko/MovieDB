@@ -1,5 +1,6 @@
 import React from 'react'
 import { Row, Col, Carousel } from 'antd'
+import map from 'lodash/map'
 import { IMAGES_BASE_URL } from 'Constants'
 import PropTypes from 'prop-types'
 
@@ -7,7 +8,7 @@ const ImagesCarousel = ({ images }) => (
   <Row type="flex">
     <Col span={24}>
       <Carousel autoplay>
-        {images.map(({ filePath }) => (
+        {map(images, ({ filePath }) => (
           <div key={filePath}>
             <img
               className="movie-image"
