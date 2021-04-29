@@ -24,7 +24,7 @@ ModalRoot.propTypes = {
 }
 
 ModalRoot.defaultProps = {
-  currentModal: {}
+  currentModal: undefined
 }
 
 const mapStateToProps = state => ({
