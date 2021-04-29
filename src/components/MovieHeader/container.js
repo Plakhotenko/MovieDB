@@ -37,8 +37,8 @@ class MovieHeader extends Component {
     const { setModal, addMovieToNewList, movieId } = this.props
     setModal({
       name: createListModal,
-      onSubmit: addMovieToNewList,
-      data: {
+      props: {
+        onSubmit: addMovieToNewList,
         movieId
       }
     })
