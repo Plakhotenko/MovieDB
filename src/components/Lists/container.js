@@ -32,7 +32,7 @@ class Lists extends Component {
 
   onClick = () => {
     const { setModal, createList } = this.props
-    setModal({ name: createListModal, action: createList })
+    setModal({ name: createListModal, onSubmit: createList })
   }
 
   render() {
@@ -83,7 +83,7 @@ Lists.propTypes = {
 }
 
 Lists.defaultProps = {
-  lists: [],
+  lists: undefined,
   totalResults: 0
 }
 

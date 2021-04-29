@@ -15,12 +15,8 @@ import { createListModal } from 'Store/features/modal/constants'
 import MovieHeaderComponent from './component'
 
 class MovieHeader extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      popoverVisible: false
-    }
+  state = {
+    popoverVisible: false
   }
 
   componentDidMount() {
@@ -28,8 +24,8 @@ class MovieHeader extends Component {
     getLists()
   }
 
-  onVisibleChange = (visible) => {
-    this.setState({ popoverVisible: visible })
+  onVisibleChange = (popoverVisible) => {
+    this.setState({ popoverVisible })
   }
 
   onAddMovieToList = (listId) => {
@@ -41,7 +37,7 @@ class MovieHeader extends Component {
     const { setModal, addMovieToNewList, movieId } = this.props
     setModal({
       name: createListModal,
-      action: addMovieToNewList,
+      onSubmit: addMovieToNewList,
       data: {
         movieId
       }
@@ -121,11 +117,7 @@ MovieHeader.propTypes = {
 }
 
 MovieHeader.defaultProps = {
-  movie: {
-    title: undefined,
-    favorite: false,
-    watchlist: false
-  },
+  movie: undefined,
   lists: undefined
 }
 

@@ -62,9 +62,7 @@ MovieDetails.propTypes = {
 MovieDetails.defaultProps = {
   cast: undefined,
   crew: undefined,
-  movie: {
-    backdrops: undefined
-  }
+  movie: undefined
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails)

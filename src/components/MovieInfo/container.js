@@ -40,14 +40,7 @@ MovieInfo.propTypes = {
 }
 
 MovieInfo.defaultProps = {
-  movie: {
-    overview: undefined,
-    originalLanguage: undefined,
-    runtime: undefined,
-    budget: undefined,
-    revenue: undefined,
-    genres: undefined
-  }
+  movie: undefined
 }
 
 export default connect(mapStateToProps)(MovieInfo)
