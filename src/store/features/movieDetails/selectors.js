@@ -6,7 +6,7 @@ const moviesSelector = state => state.data.movies
 export const movieSelector = createSelector(
   movieIdSelector,
   moviesSelector,
-  (id, movies) => (movies ? movies[id] : {})
+  (id, movies) => (movies ? movies[id] : undefined)
 )
 
 const personsSelector = state => state.data.persons

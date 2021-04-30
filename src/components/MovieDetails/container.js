@@ -17,10 +17,9 @@ class MovieDetails extends Component {
       match: { params: { movieId } },
       cast,
       crew,
-      movie: {
-        backdrops
-      }
+      movie
     } = this.props
+    const backdrops = movie?.backdrops
     return (
       <MovieDetailsComponent
         isLoading={isLoading}
