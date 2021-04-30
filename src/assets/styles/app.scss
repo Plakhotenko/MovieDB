@@ -7,6 +7,20 @@ body,
   height: 100vh;
 }
 
+button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  &:focus{
+    outline: none;
+  }
+  &:focus-visible {
+    outline: 2px solid black;
+    outline: -webkit-focus-ring-color auto 1px;
+  }
+}
+
 .center {
   display: flex;
   align-items: center;

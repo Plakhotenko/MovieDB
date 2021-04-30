@@ -3,7 +3,7 @@ import {
   Layout, Row, Col, Typography, Pagination, Empty
 } from 'antd'
 import { PlusCircleOutlined } from '@ant-design/icons'
-import { PropTypes } from 'prop-types'
+import PropTypes from 'prop-types'
 import { PAGINATION_PARAMS } from 'Constants'
 import Header from '../Header'
 import Loader from '../Loader'

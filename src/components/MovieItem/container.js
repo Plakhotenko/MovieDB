@@ -11,13 +11,14 @@ class MovieItem extends Component {
 
   render() {
     const {
-      posterPath, title, description, onClick
+      posterPath, title, description, onClick, id
     } = this.props
     return (
       <MovieItemComponent
         posterPath={posterPath}
         title={title}
         description={description}
+        id={id}
         actions={
           onClick ? [
             <DeleteOutlined

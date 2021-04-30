@@ -1,7 +1,7 @@
 import { SET_MODAL, HIDE_MODAL } from './types'
 
 const initialState = {
-  currentModal: undefined
+  currentModal: {}
 }
 
 const modal = (state = initialState, action) => {
