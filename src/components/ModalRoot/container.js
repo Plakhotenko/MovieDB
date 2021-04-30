@@ -8,7 +8,7 @@ const ModalRoot = ({ currentModal: { name, props } }) => {
   return (
     name ? (
       <Modal
-        props={props}
+        {...props}
       />
     ) : null
   )
@@ -17,9 +17,7 @@ const ModalRoot = ({ currentModal: { name, props } }) => {
 ModalRoot.propTypes = {
   currentModal: PropTypes.shape({
     name: PropTypes.string,
-    onSubmit: PropTypes.func,
-    props: PropTypes.shape(),
-    data: PropTypes.shape()
+    props: PropTypes.shape()
   })
 }
 

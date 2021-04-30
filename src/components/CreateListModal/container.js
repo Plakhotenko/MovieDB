@@ -6,7 +6,7 @@ import CreateListModalComponent from './component'
 
 class CreateListModal extends Component {
   onSubmit = ({ name, description }) => {
-    const { hideModal, props: { onSubmit, movieId } } = this.props
+    const { hideModal, onSubmit, movieId } = this.props
     hideModal()
     onSubmit({ name, description, movieId })
   }
@@ -28,14 +28,12 @@ const mapDispatchToProps = {
 
 CreateListModal.propTypes = {
   hideModal: PropTypes.func.isRequired,
-  props: PropTypes.shape({
-    movieId: PropTypes.string,
-    onSubmit: PropTypes.func.isRequired
-  })
+  onSubmit: PropTypes.func.isRequired,
+  movieId: PropTypes.string
 }
 
 CreateListModal.defaultProps = {
-  props: undefined
+  movieId: undefined
 }
 
 export default connect(null, mapDispatchToProps)(CreateListModal)
