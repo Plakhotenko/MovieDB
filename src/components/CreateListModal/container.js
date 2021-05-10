@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import { hideModal as hideModalAction } from 'Store/features/modal/actions'
-import { createList as createListAction } from 'Store/features/lists/actions'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import CreateListModalComponent from './component'
 
 class CreateListModal extends Component {
-  onSubmit = (data) => {
-    const { hideModal, createList } = this.props
+  onSubmit = ({ name, description }) => {
+    const { hideModal, onSubmit, movieId } = this.props
     hideModal()
-    createList(data)
+    onSubmit({ name, description, movieId })
   }
 
   render() {
@@ -24,13 +23,17 @@ class CreateListModal extends Component {
 }
 
 const mapDispatchToProps = {
-  hideModal: hideModalAction,
-  createList: createListAction
+  hideModal: hideModalAction
 }
 
 CreateListModal.propTypes = {
   hideModal: PropTypes.func.isRequired,
-  createList: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  movieId: PropTypes.string
+}
+
+CreateListModal.defaultProps = {
+  movieId: undefined
 }
 
 export default connect(null, mapDispatchToProps)(CreateListModal)

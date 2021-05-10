@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { PropTypes } from 'prop-types'
+import PropTypes from 'prop-types'
 import { Modal } from 'antd'
-import { getLists as getListsAction, removeList as removeListAction } from 'Store/features/lists/actions'
+import {
+  getLists as getListsAction,
+  removeList as removeListAction,
+  createList as createListAction
+} from 'Store/features/lists/actions'
 import { createListModal } from 'Store/features/modal/constants'
 import { getParamsFromUrl } from 'Utils'
 import { listsSelector, isListsEmptySelector } from 'Store/features/lists/selectors'
@@ -27,8 +31,8 @@ class Lists extends Component {
   }
 
   onClick = () => {
-    const { setModal } = this.props
-    setModal(createListModal)
+    const { setModal, createList } = this.props
+    setModal({ name: createListModal, props: { onSubmit: createList } })
   }
 
   render() {
@@ -63,13 +67,15 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getLists: getListsAction,
   removeList: removeListAction,
-  setModal: setModalAction
+  setModal: setModalAction,
+  createList: createListAction
 }
 
 Lists.propTypes = {
   getLists: PropTypes.func.isRequired,
   removeList: PropTypes.func.isRequired,
   setModal: PropTypes.func.isRequired,
+  createList: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   lists: PropTypes.arrayOf(PropTypes.shape),
   totalResults: PropTypes.number,
@@ -77,7 +83,7 @@ Lists.propTypes = {
 }
 
 Lists.defaultProps = {
-  lists: [],
+  lists: undefined,
   totalResults: 0
 }
 

@@ -61,6 +61,7 @@
     "@babel/runtime": "^7.12.18",
     "antd": "^4.12.3",
     "axios": "^0.21.1",
+    "camelcase-keys": "^6.2.2",
     "classnames": "^2.2.6",
     "formik": "^2.2.6",
     "js-cookie": "^2.2.1",
